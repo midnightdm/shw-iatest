@@ -1,0 +1,29 @@
+{
+  "name": "shw-iatest",
+  "version": "1.0.0",
+  "description": "Front end html/JavaScript for switching video display",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/midnightdm/shw-iatest.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "video",
+    "switcher",
+    "streaming",
+    "webcam",
+    "railfan",
+    "railroad",
+    "trains"
+  ],
+  "author": "Brian Griffin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/midnightdm/shw-iatest/issues"
+  },
+  "homepage": "https://github.com/midnightdm/shw-iatest#readme"
+}
