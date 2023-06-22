@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Steel Highway, the magazine for the modern railfan. Steel Highway, the railfan network.">
+  <meta name="keywords" content="Steel-Highway, Railroad, train, railcam, webcam, railfan">
+  <link rel="icon" type="image/png" href="//cdn.shopify.com/s/files/1/0731/3912/6580/files/cropped_logo.png?crop=center&height=32&v=1677307442&width=32">
+ 
+  <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard.css"> 
+  
+  <title>Best Of Railcams Channel</title>
+  
+</head>
+<body>
+  <div class="grid-container">
+
+    <header class="banner">
+      Hello World!
+      
+    </header>
+
+    <div class="primary"></div>
+    <div class="sub1"></div>
+    <div class="sub2"></div>
+    <div class="sub3"></div>
+    
+
+    
+    <div class="grid-item" id="waypoint"><h2 id="waypoint-label">WAYPOINT</h2>
+      <video id="video">
+        <source id="video-source" src="clintonWebcamA.m3u8" type="application/x-mpegURL">
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a web browser that
+          <a href="https://videojs.com/html5-video-support/" target="_blank"
+            >supports HTML5 video</a>
+        </p>
+      </video>
+      <div id="waypoint-inner"></div>
+    </div>
+    
+  </div>
+
+
+  <!-- Overlays exists outside the main flow to superimpose text over video -->
+  <h2 id="overlay">MAP</h2>
+  <div id="overlay2">
+    <h3>VESSELS IN CAMERA RANGE</h3>
+    <ul id="overlay-list">
+    </ul>
+  </div>
+  <div id="overlay3"></div>
+  
+  
+  
+  <div id="popup1" class="popup">
+    <div class="content">
+      
+       
+      <h1>Tracker Mode</h1> 
+      <p>Enable to follow a single vessel of your choice on the map.</p>
+      <select id="tracker-options" class="input-field">
+        <option value="null"></option>
+      </select>
+      <div class="input-field"><input type="radio" id="tracker-on" name="tracker-mode-switch" value="on">On</div>
+      <div class="input-field"><input type="radio" id="tracker-off" name="tracker-mode-switch" default value="off">Off</div>
+      <button id="sb1" class="second-button">Close</button>
+      
+     </div>
+    </div>
+  </div>
+  
+
+  <script src="bundle.js"></script>
+  
+  <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.js"></script>
+  
+  <!-- scr ipt type="text/JavaScript">
+    //Detect screen resolution and adjust clock size
+    const iframe = document.getElementById("clock");
+    function resizeClock() {
+
+      if(window.innerWidth < 1900) {
+        iframe.attributes["src"].nodeValue = "clock720.html";
+      } else if(window.innerWidth > 2200) {
+        iframe.attributes["src"].nodeValue = "clock4k.html";
+        iframe.attributes["width"].nodeValue = "400";
+      } else {
+        iframe.attributes["src"].nodeValue = "clock.html";
+      }
+      
+    }
+    window.addEventListener('resize', resizeClock);
+    resizeClock();
+  </!script     -->
+</body>
+</html>

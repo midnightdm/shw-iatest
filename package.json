@@ -2,9 +2,10 @@
   "name": "shw-iatest",
   "version": "1.0.0",
   "description": "Front end html/JavaScript for switching video display",
-  "main": "webpack.config.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,18 @@
   "bugs": {
     "url": "https://github.com/midnightdm/shw-iatest/issues"
   },
-  "homepage": "https://github.com/midnightdm/shw-iatest#readme"
+  "homepage": "https://github.com/midnightdm/shw-iatest#readme",
+  "devDependencies": {
+    "babel-core": "^4.7.16",
+    "babel-loader": "^9.1.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "html-webpack-plugin": "^5.5.3",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.22.5",
+    "lodash": "^4.17.21"
+  }
 }

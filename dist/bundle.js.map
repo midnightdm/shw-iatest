@@ -1,0 +1,1 @@
+{"version":3,"file":"bundle.js","mappings":";;;;;AAAA,SAASA,SAASA,CAAA,EAAG;EACjB,MAAMC,OAAO,GAAGC,QAAQ,CAACC,aAAa,CAAC,KAAK,CAAC;AAEjD,C","sources":["webpack://shw-iatest/./src/index.js"],"sourcesContent":["function component() {\r\n    const element = document.createElement('div');\r\n    \r\n}"],"names":["component","element","document","createElement"],"sourceRoot":""}

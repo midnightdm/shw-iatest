@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   mode: 'development',
   entry: path.join(__dirname, 'src', 'index'),
@@ -9,6 +11,14 @@ module.exports = {
     filename: "bundle.js",
     chunkFilename: '[name].js'
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject: true,
+      chunks: ['bundle'],
+      filename: 'index.html'
+    }),
+  ],
   module: {
     rules: [{
       test: /.jsx?$/,
@@ -39,5 +49,6 @@ module.exports = {
     inline: true,
     host: 'localhost',
     port: 8080,
-  }
+  },
+  watch: false
 };
