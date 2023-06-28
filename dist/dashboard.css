@@ -1,3 +1,7 @@
+body {
+    overflow: hidden; /* Hide scrollbars */
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 25vw 25vw 25vw 25vw;
@@ -9,26 +13,30 @@
 .primary { 
     grid-area: 2 / 1 / 5 / 4;
     min-height: 80vh;
-    min-width: 75vw;
+    min-width: 75vw; max-width: 75vw;
     background-color: darkgreen;
 }
 .sub1 { 
     grid-area: 2 / 4 / 3 / 5; 
-    min-width: 25vw;
+    min-width: 25vw; max-width: 25vw;
+    max-height: 25.66vh;
     background-color: blueviolet;
 }
 .sub2 { 
     grid-area: 3 / 4 / 4 / 5;
-    min-width: 25vw;
+    min-width: 25vw; max-width: 25vw;
+    max-height: 25.66vh;
     background-color: aquamarine; 
 }
 .sub3 { 
     grid-area: 4 / 4 / 5 / 5;
-    min-width: 25vw;
+    min-width: 25vw; max-width: 25vw;
+    max-height: 25.66vh;
     background-color: coral; 
 }
 .banner { 
     grid-area: 1 / 1 / 2 / 5;
-    background-image: url("https://cdn.shopify.com/s/files/1/0731/3912/6580/files/ytbanner2_19c7efb7-1dfa-4d8c-b181-ba2258b4f6e2.png?v=1678133541&width=3000");
+    min-height: 20vh; max-height: 20vh;
+    background-image: url("https://cdn.shopify.com/s/files/1/0731/3912/6580/files/ytbanner2_19c7efb7-1dfa-4d8c-b181-ba2258b4f6e2.png?v=1678133541");
 
 }

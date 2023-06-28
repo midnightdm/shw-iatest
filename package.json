@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.22.5",
+    "firebase": "^9.23.0",
     "lodash": "^4.17.21"
   }
 }
