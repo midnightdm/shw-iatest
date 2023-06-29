@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "npm run build && firebase deploy",
+    "dbbackup": "firestore-export -a serviceAccountKey.json -b backup/database.json --prettyPrint"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.22.5",
     "firebase": "^9.23.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "node-firestore-import-export": "^1.1.0"
   }
 }

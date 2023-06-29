@@ -10,25 +10,25 @@ body {
     grid-row-gap: 0px;
 }
     
-.primary { 
+.prim { 
     grid-area: 2 / 1 / 5 / 4;
     min-height: 80vh;
     min-width: 75vw; max-width: 75vw;
     background-color: darkgreen;
 }
-.sub1 { 
+.suba { 
     grid-area: 2 / 4 / 3 / 5; 
     min-width: 25vw; max-width: 25vw;
     max-height: 25.66vh;
     background-color: blueviolet;
 }
-.sub2 { 
+.subb { 
     grid-area: 3 / 4 / 4 / 5;
     min-width: 25vw; max-width: 25vw;
     max-height: 25.66vh;
     background-color: aquamarine; 
 }
-.sub3 { 
+.subc { 
     grid-area: 4 / 4 / 5 / 5;
     min-width: 25vw; max-width: 25vw;
     max-height: 25.66vh;

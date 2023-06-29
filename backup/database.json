@@ -1,0 +1,108 @@
+{
+  "__collections__": {
+    "Controls": {
+      "Flags": {
+        "channelIsEnabled": true,
+        "liveCams": {
+          "suba": {
+            "isShowingPoster": false,
+            "srcUrl": "https://www.youtube.com/watch?v=WCf8F9Qkpq4",
+            "isMuted": false,
+            "srcID": "IL-PortByron",
+            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-13.png"
+          },
+          "subb": {
+            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-11.png",
+            "srcID": "IN-Griffith",
+            "isShowingPoster": false,
+            "srcUrl": "https://www.youtube.com/watch?v=YMGLorDhw0w",
+            "isMuted": true
+          },
+          "subc": {
+            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-08.png",
+            "srcID": "MI-ThreeRivers",
+            "isShowingPoster": false,
+            "srcUrl": "https://www.youtube.com/watch?v=YCWQh1MRqn0",
+            "isMuted": true
+          },
+          "prim": {
+            "srcUrl": "https://www.youtube.com/watch?v=Uz64iqF7E_0",
+            "srcID": "IA-Clinton",
+            "isMuted": false,
+            "isShowingPoster": false,
+            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-01.png"
+          }
+        },
+        "__collections__": {}
+      },
+      "Timers": {
+        "refreshTimes": [
+          {
+            "sec": 30,
+            "min": 20
+          }
+        ],
+        "idTimes": [
+          {
+            "sec": 45,
+            "min": 59,
+            "videoIsFull": false
+          }
+        ],
+        "__collections__": {}
+      }
+    },
+    "News": {
+      "All": {
+        "Priority": {
+          "text": "Urgent message would be here",
+          "isDateControlled": false,
+          "isActive": false
+        },
+        "A01": {
+          "start": {
+            "__datatype__": "timestamp",
+            "value": {
+              "_seconds": 1688003113,
+              "_nanoseconds": 874000000
+            }
+          },
+          "end": {
+            "__datatype__": "timestamp",
+            "value": {
+              "_seconds": 1690854341,
+              "_nanoseconds": 6000000
+            }
+          },
+          "text": "This is announcement A01",
+          "isDateControlled": true,
+          "isActive": true
+        },
+        "__collections__": {}
+      }
+    },
+    "Sources": {
+      "Cameras": {
+        "IL-PortByron": {
+          "src": "https://www.youtube.com/watch?v=WCf8F9Qkpq4",
+          "name": "Port Byron, Illinois",
+          "type": "video/youtube"
+        },
+        "IA-Clinton": {
+          "src": "https://www.youtube.com/watch?v=Uz64iqF7E_0",
+          "name": "Clinton County Historical  Society",
+          "type": "video/youtube"
+        },
+        "__collections__": {}
+      },
+      "Promos": {
+        "p20230627-01": {
+          "src": "https://webcam.clintonrivertraffic.com/promo-buell.m3u8",
+          "type": "application/x-mpegURL",
+          "title": "Buell Terrace Flyover"
+        },
+        "__collections__": {}
+      }
+    }
+  }
+}
