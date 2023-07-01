@@ -23726,7 +23726,22 @@ const DataModel = {
   },
   newsObj: {},
   newsArr: [],
-  newsRotationKey: 0
+  newsKey: 0,
+  tock: 0,
+  minute: 0,
+  resetTime: [{
+    min: 30,
+    sec: 45
+  }],
+  idTime: [{
+    min: 59,
+    sec: 45,
+    videoIsFull: false
+  }],
+  idPlus15: {
+    min: 0,
+    sec: 0
+  }
 };
 
 /***/ }),
@@ -26119,6 +26134,26 @@ const vtSubb = document.getElementById("vt-subb");
 const vsSubb = document.getElementById("vs-subb");
 const vtSubc = document.getElementById("vt-subc");
 const vsSubc = document.getElementById("vs-subc");
+const news = document.getElementById("newstext");
+
+//CSS animation 
+const animateCSS = (element, animation, prefix = 'animate__') => {
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    const node = document.querySelector(element);
+    node.classList.add(`${prefix}animated`, animationName);
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve('Animation ended');
+    }
+    node.addEventListener('animationend', handleAnimationEnd, {
+      once: true
+    });
+  });
+};
 
 /**
  *                      Link Database
@@ -26129,7 +26164,7 @@ const firebaseConfig = env.firebaseConfig;
 const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
 
 /**
- *         Run the app now (eventual loop here)
+ *         Run the app now 
  */
 initApp();
 
@@ -26137,6 +26172,63 @@ initApp();
  * 
  *                            Define Functions
  *  
+ */
+
+async function startClockLoop() {
+  /*   *   *   *   *   *   *   *   *   *   *  *  *  *
+   *                                                *
+   * Begin a 60 sec master clock for loop control   *
+   *                                                *
+   *   *   *   *   *   *   *   *   *   *   *  *  *  */
+
+  setInterval(async () => {
+    let now, nowObj, key, vessObj;
+    //Reset clock to 0 every 1 min (& increment minute)
+    if (dataModel.tock == 60) {
+      dataModel.tock = 0;
+    }
+    //Events below to fire on specific intervals (Modulas % determines multiples)
+
+    //Every 20 sec --> 
+    if (dataModel.tock % 20 == 0) {
+      //Change news text...
+      if (dataModel.newsArr.length) {
+        if (dataModel.newsKey >= dataModel.newsArr.length) {
+          dataModel.newsKey = 0;
+        }
+        //Show Priority message only if activated
+        if (dataModel.newsObj.Priority.isActive == true) {
+          news.innerHTML = dataModel.newsObj.Priority.text;
+          //Otherwise show next message in the rotation  
+        } else {
+          outputNews();
+          dataModel.newsKey++;
+        }
+      }
+    }
+    //Every 1 sec advance clock 
+    dataModel.tock++;
+    //Test for time triggers
+
+    now = getTime();
+    dataModel.resetTime.forEach(rt => {
+      if (now.min == rt.min && now.sec == rt.sec) {
+        //Refreshes the browser
+        location.reload();
+      }
+    });
+    dataModel.idTime.forEach(async idt => {
+      if (now.min == idt.min && now.sec == idt.sec) {
+        //Command to play ID promo
+        //  [Not implemented yet]
+      }
+    });
+  }, 1000);
+  /*  END OF CLOCK LOOP   */
+}
+
+/**
+ *    Data-related functions
  */
 
 async function fetchControlsFlags() {
@@ -26182,8 +26274,12 @@ async function fetchNews() {
       i,
       keys = Object.keys(dataSet);
     for (i = 0; i < keys.length; i++) {
+      if (keys[i] == "Priority") {
+        continue;
+      }
       arr.push(dataSet[keys[i]]);
     }
+    dataModel.newsObj = dataSet;
     dataModel.newsArr = arr;
   });
 }
@@ -26191,7 +26287,27 @@ function initApp() {
   fetchControlsFlags();
   fetchControlsTimers();
   fetchNews();
+  startClockLoop();
 }
+function getTime() {
+  var date = new Date();
+  var now = {
+    month: date.getMonth() + 1,
+    date: date.getDate(),
+    hour: date.getHours(),
+    min: date.getMinutes(),
+    sec: date.getSeconds()
+  };
+  if (now.month > 12) {
+    now.month = 1;
+  }
+  return now;
+}
+
+/**
+ *    View-related Functions
+ */
+
 function disableScreens() {
   /**
    *  Conditionally run to stop all streams and show posters.
@@ -26274,7 +26390,7 @@ function updateScreens() {
     fluid: true,
     loadingSpinner: false,
     muted: true,
-    poster: "images/poster-prim.jpg",
+    poster: "images/poster-subc.jpg",
     aspectRatio: "16:9",
     techOrder: ["html5", "youtube"]
   };
@@ -26291,6 +26407,13 @@ function updateScreens() {
     dataModel.prevLiveCams.subcSrcID = dataModel.liveCams.subc.srcID;
     this.play();
   });
+}
+function outputNews() {
+  //News section
+  if (dataModel.newsArr.lenght > 1) {
+    animateCSS('#newstext', 'fadeIn');
+  }
+  news.innerHTML = dataModel.newsArr[dataModel.newsKey].text;
 }
 
 /** 
