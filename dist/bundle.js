@@ -26270,12 +26270,21 @@ async function fetchNews() {
   const newsSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "News", "All"), querySnapshot => {
     let dataSet = querySnapshot.data();
     console.log("fetchNews()");
-    let arr = [],
+    let sdt,
+      edt,
+      obj,
+      arr = [],
       i,
       keys = Object.keys(dataSet);
     for (i = 0; i < keys.length; i++) {
-      if (keys[i] == "Priority") {
+      if (keys[i] == "Priority" || dataSet[keys[i].isActive == false]) {
         continue;
+      }
+      obj = dataSet[keys[i]];
+      if (obj.isDateControlled == true) {
+        sdt = new Date(obj.start);
+        edt = new Date(obj.end);
+        console.log(`Msg ${keys[i]} starts ${std.toString()} & ends ${edt.toString()}`);
       }
       arr.push(dataSet[keys[i]]);
     }
