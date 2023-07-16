@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="wcc.css">
+    <title>Webcam Control</title>
+<script defer src="../wcc.js"></script></head>
+<body>
+    <navigaton >
+        <div id="login-container">  
+          <h1>Login for Webcam Controls</h4><br />
+            <div class="input-field">
+              <input type="email" placeholder="Login Email" id="login-email" required size="40"/>
+              <label for="login-email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" placeholder="Login Password" id="login-password" required size="40" />
+              <label for="login-password">Password</label>
+            </div>
+            <button id="login-btn">Login</button>
+        </div>
+      </navigaton>
+      <section>
+        <h1 class="h1">Camera Control Switch</h1>
+        <div class="parentA">
+          <div class="div1A">
+            <h2>Instant Takes</h2>
+            <div class="parentB">
+                <div id="div1B">
+                </div>
+                <div id="div2B">
+                </div>
+                <div id="div3B">
+                </div>
+                <div id="div4B">
+                </div>
+            </div>
+         </div>
+          <div class="div2A">
+             <h2>Push To Queue</h2>
+             <div id="divQ"></div>
+          </div>
+        </div>
+      </section>
+
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <div class="nav-buttons">
+        <button type="submit" id="logout-btn" class="btn yellow darken-2 z-depth-0">Logout</button>
+    </div>
+</body>
+</html>

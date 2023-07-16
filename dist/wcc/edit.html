@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="edit.css">
+    <title>Webcam Edit</title>
+<script defer src="../wccedit.js"></script></head>
+<body>
+    <navigaton >
+        <div id="login-container">  
+          <h1>Login for Webcam Controls</h4><br />
+            <div class="input-field">
+              <input type="email" placeholder="Login Email" id="login-email" required size="40"/>
+              <label for="login-email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" placeholder="Login Password" id="login-password" required size="40" />
+              <label for="login-password">Password</label>
+            </div>
+            <button id="login-btn">Login</button>
+        </div>
+      </navigaton>
+      <section>
+        <h1 class="h1">Add or Edit Sources</h1>
+        <div class="parentA">
+            <div class="div1A">
+                <div class="parentB">
+                    <div id="div1B">
+                    </div>
+                    <div id="div2B">
+                        <h3>Camera ID</h3>
+                        <input class="editor" type="text" name="editSrcID" id="editSrcID">
+                        <p>The ID naming convention is</p>
+                        <ul>
+                            <li>Capital 2-letter state abbreviation</li>
+                            <li>A hyphen</li>
+                            <li>First letter capitalized city name (No spaces for 2-word names)</li>
+                        </ul> 
+                        <p>If a city has more than one camera add a second hyphen followed by a brief designator.</p>
+                        <br><br>
+                        <h3>Stream Type</h3>
+                        <select class="editor" name="editSrcType" id="editSrcType">
+                            <option value="video/youtube" selected="true">video/youtube</option>
+                            <option value="application/x-mpegURL">application/x-mpegURL</option>
+
+                        </select>
+                        <p>Keep this on "video/youtube" for YouTube streams.</p>
+                        <p>Use "application/x-mpegURL" for HLS streams managed by a .m3u8 playlist.</p>
+                    </div>
+                    <div id="div3B">
+                        <h3>Stream URL</h3>
+                        <input class="editor url" type="url" name="editSrcUrl" id="editSrcUrl">
+                        <p>Input the current live stream URL. It will be saved to the database as soon as you change focus to another field.</p>
+                        <div>
+                            <button id="btnEditDelete" style="visibility: hidden;">Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="btnAddSubmit" style="visibility: hidden;">Submit</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+      </section>
+
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <div class="nav-buttons">
+        <button type="submit" id="logout-btn" class="btn yellow darken-2 z-depth-0">Logout</button>
+    </div>
+</body>
+</html>

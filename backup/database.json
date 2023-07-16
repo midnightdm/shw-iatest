@@ -3,34 +3,30 @@
     "Controls": {
       "Flags": {
         "channelIsEnabled": true,
+        "adminUsers": [
+          "ma2vAm8KvrgKqqOjyuzQeFRtrkf1",
+          "KVvMtQG6lNMi0ECmbe9ytbNVqjc2"
+        ],
         "liveCams": {
+          "prim": {
+            "srcID": "IA-Clinton",
+            "srcUrl": "https://www.youtube.com/watch?v=Uz64iqF7E_0",
+            "srcType": "video/youtube"
+          },
           "suba": {
-            "isShowingPoster": false,
-            "srcUrl": "https://www.youtube.com/watch?v=WCf8F9Qkpq4",
-            "isMuted": false,
             "srcID": "IL-PortByron",
-            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-13.png"
+            "srcUrl": "https://www.youtube.com/watch?v=WCf8F9Qkpq4",
+            "srcType": "video/youtube"
           },
           "subb": {
-            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-11.png",
             "srcID": "IN-Griffith",
-            "isShowingPoster": false,
             "srcUrl": "https://www.youtube.com/watch?v=YMGLorDhw0w",
-            "isMuted": true
+            "srcType": "video/youtube"
           },
           "subc": {
-            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-08.png",
             "srcID": "MI-ThreeRivers",
-            "isShowingPoster": false,
             "srcUrl": "https://www.youtube.com/watch?v=YCWQh1MRqn0",
-            "isMuted": true
-          },
-          "prim": {
-            "srcUrl": "https://www.youtube.com/watch?v=Uz64iqF7E_0",
-            "srcID": "IA-Clinton",
-            "isMuted": false,
-            "isShowingPoster": false,
-            "posterUrl": "https://webcam.clintonrivertraffic.com/CRT_Approaching/slide-01.png"
+            "srcType": "video/youtube"
           }
         },
         "__collections__": {}
@@ -67,16 +63,21 @@
               "_nanoseconds": 874000000
             }
           },
+          "isDateControlled": true,
+          "isActive": true,
+          "text": "Welcome to the Best of Railcams channel.",
           "end": {
             "__datatype__": "timestamp",
             "value": {
-              "_seconds": 1690854341,
-              "_nanoseconds": 6000000
+              "_seconds": 1817084741,
+              "_nanoseconds": 246000000
             }
-          },
-          "text": "This is announcement A01",
-          "isDateControlled": true,
-          "isActive": true
+          }
+        },
+        "A02": {
+          "isDateControlled": false,
+          "isActive": true,
+          "text": "Our network includes <em>38</em> live webcams at <em>33</em> sites."
         },
         "__collections__": {}
       }
@@ -84,14 +85,194 @@
     "Sources": {
       "Cameras": {
         "IL-PortByron": {
-          "src": "https://www.youtube.com/watch?v=WCf8F9Qkpq4",
-          "name": "Port Byron, Illinois",
-          "type": "video/youtube"
+          "srcUrl": "https://www.youtube.com/watch?v=WCf8F9Qkpq4",
+          "srcID": "IL-PortByron",
+          "srcType": "video/youtube"
         },
         "IA-Clinton": {
-          "src": "https://www.youtube.com/watch?v=Uz64iqF7E_0",
-          "name": "Clinton County Historical  Society",
-          "type": "video/youtube"
+          "srcID": "IA-Clinton",
+          "srcType": "video/youtube",
+          "srcUrl": "https://www.youtube.com/watch?v=Uz64iqF7E_0"
+        },
+        "CO-Greeley": {
+          "srcID": "CO-Greeley",
+          "srcUrl": "https://www.youtube.com/watch?v=H9tj5PahO7I",
+          "srcType": "video/youtube"
+        },
+        "IA-Bellevue": {
+          "srcID": "IA-Bellevue",
+          "srcUrl": "https://www.youtube.com/watch?v=Ptm22hPT6ZI",
+          "srcType": "video/youtube"
+        },
+        "IA-Calmar": {
+          "srcID": "IA-Calmar",
+          "srcUrl": "https://www.youtube.com/watch?v=s0IebhXnRSQ",
+          "srcType": "video/youtube"
+        },
+        "IA-BellePlaine": {
+          "srcID": "IA-BellePlaine",
+          "srcUrl": "https://www.youtube.com/watch?v=zvnLYsibM40",
+          "srcType": "video/youtube"
+        },
+        "IA-Carroll": {
+          "srcID": "IA-Carroll",
+          "srcUrl": "https://www.youtube.com/watch?v=sMF0tsl0xGY",
+          "srcType": "video/youtube"
+        },
+        "IA-CedarFalls-E": {
+          "srcID": "IA-CedarFalls-E",
+          "srcUrl": "https://www.youtube.com/watch?v=007Y4KMmKIY",
+          "srcType": "video/youtube"
+        },
+        "IA-CedarFalls-W": {
+          "srcID": "IA-CedarFalls-W",
+          "srcUrl": "https://www.youtube.com/watch?v=-coR4hpWhEs",
+          "srcType": "video/youtube"
+        },
+        "IA-Dubuque-N": {
+          "srcID": "IA-Dubuque-N",
+          "srcUrl": "https://www.youtube.com/watch?v=AQHzGCtcsZk&t=0s",
+          "srcType": "video/youtube"
+        },
+        "IA-FortMadison": {
+          "srcID": "IA-FortMadison",
+          "srcUrl": "https://www.youtube.com/watch?v=bPI1iBzyLiQ",
+          "srcType": "video/youtube"
+        },
+        "IA-GrandMound": {
+          "srcID": "IA-GrandMound",
+          "srcUrl": "https://www.youtube.com/watch?v=RWra5n3U3_4",
+          "srcType": "video/youtube"
+        },
+        "IA-Grinnell": {
+          "srcID": "IA-Grinnell",
+          "srcUrl": "https://www.youtube.com/watch?v=ZbgUgSpdozw",
+          "srcType": "video/youtube"
+        },
+        "IA-Guttenberg": {
+          "srcID": "IA-Guttenberg",
+          "srcUrl": " https://www.youtube.com/watch?v=ki3pa4ktm8s",
+          "srcType": "video/youtube"
+        },
+        "IA-IowaFalls": {
+          "srcID": "IA-IowaFalls",
+          "srcUrl": "https://www.youtube.com/watch?v=A1BHYwVqA2M",
+          "srcType": "video/youtube"
+        },
+        "IA-Manly": {
+          "srcID": "IA-Manly",
+          "srcUrl": "https://www.youtube.com/watch?v=OLIiHzZtCDM",
+          "srcType": "video/youtube"
+        },
+        "IA-MountPleasant": {
+          "srcID": "IA-MountPleasant",
+          "srcUrl": "https://www.youtube.com/watch?v=fEXoH6dAlBY",
+          "srcType": "video/youtube"
+        },
+        "IA-Muscatine": {
+          "srcID": "IA-Muscatine",
+          "srcUrl": "https://www.youtube.com/watch?v=rnfmEvGQcEM",
+          "srcType": "video/youtube"
+        },
+        "IA-Ottumwa-BNSF": {
+          "srcID": "IA-Ottumwa-BNSF",
+          "srcUrl": "https://www.youtube.com/watch?v=X4jCWjP-ORE",
+          "srcType": "video/youtube"
+        },
+        "IA-Ottumwa-CP": {
+          "srcID": "IA-Ottumwa-CP",
+          "srcUrl": "https://www.youtube.com/watch?v=zcClbVejm_s",
+          "srcType": "video/youtube"
+        },
+        "IA-Washington": {
+          "srcID": "IA-Washington",
+          "srcUrl": "https://www.youtube.com/watch?v=5McAz7-k-Tg",
+          "srcType": "video/youtube"
+        },
+        "IA-WestLiberty": {
+          "srcID": "IA-WestLiberty",
+          "srcUrl": "https://www.youtube.com/watch?v=LKs_I-GLGxQ",
+          "srcType": "video/youtube"
+        },
+        "IL-Chicago": {
+          "srcID": "IL-Chicago",
+          "srcUrl": "https://www.youtube.com/watch?v=bV-UUO7Um58",
+          "srcType": "video/youtube"
+        },
+        "IL-EastDubuque-E": {
+          "srcID": "IL-EastDubuque-E",
+          "srcUrl": "https://www.youtube.com/watch?v=MPZExmTjPxQ",
+          "srcType": "video/youtube"
+        },
+        "IL-EastDubuque-W": {
+          "srcID": "IL-EastDubuque-W",
+          "srcUrl": "https://www.youtube.com/watch?v=lHAPCFe73jM",
+          "srcType": "video/youtube"
+        },
+        "IN-Griffith": {
+          "srcID": "IN-Griffith",
+          "srcUrl": "https://www.youtube.com/watch?v=YMGLorDhw0w",
+          "srcType": "video/youtube"
+        },
+        "MI-ThreeRivers": {
+          "srcID": "MI-ThreeRivers",
+          "srcUrl": "https://www.youtube.com/watch?v=YCWQh1MRqn0",
+          "srcType": "video/youtube"
+        },
+        "MN-Munger": {
+          "srcID": "MN-Munger",
+          "srcUrl": "https://www.youtube.com/watch?v=uvjbpSABwvU",
+          "srcType": "video/youtube"
+        },
+        "MO-Sedalia": {
+          "srcID": "MO-Sedalia",
+          "srcUrl": "https://www.youtube.com/watch?v=h62nn0ybGOs",
+          "srcType": "video/youtube"
+        },
+        "NJ-Bergenfield": {
+          "srcID": "NJ-Bergenfield",
+          "srcUrl": "https://www.youtube.com/watch?v=b1gf7Tks6b4",
+          "srcType": "video/youtube"
+        },
+        "WI-Neenah": {
+          "srcID": "WI-Neenah",
+          "srcUrl": "https://www.youtube.com/watch?v=uScRo_xKGj0",
+          "srcType": "video/youtube"
+        },
+        "WI-StevensPoint-N": {
+          "srcID": "WI-StevensPoint-N",
+          "srcUrl": "https://www.youtube.com/watch?v=M_LotBA4G1Y",
+          "srcType": "video/youtube"
+        },
+        "WI-StevensPoint-S": {
+          "srcID": "WI-StevensPoint-S",
+          "srcUrl": "https://www.youtube.com/watch?v=D9xpF8SxNMI",
+          "srcType": "video/youtube"
+        },
+        "WI-Trempealeau": {
+          "srcID": "WI-Trempealeau",
+          "srcUrl": "https://www.youtube.com/watch?v=wHB9PqAzA5k",
+          "srcType": "video/youtube"
+        },
+        "WI-Waupaca": {
+          "srcID": "WI-Waupaca",
+          "srcUrl": "https://www.youtube.com/watch?v=6HhEkZ7P3ro",
+          "srcType": "video/youtube"
+        },
+        "IA-Dubuque-S": {
+          "srcID": "IA-Dubuque-S",
+          "srcType": "video/youtube",
+          "srcUrl": "https://www.youtube.com/watch?v=XM5WiFgrsoQ"
+        },
+        "IL-Galesburg": {
+          "srcUrl": "https://www.youtube.com/watch?v=WiEy2tXJrQQ",
+          "srcType": "video/youtube",
+          "srcID": "IL-Galesburg"
+        },
+        "MI-Owosso": {
+          "srcUrl": "https://www.youtube.com/watch?v=LwcZ4x3yVYk",
+          "srcType": "video/youtube",
+          "srcID": "MI-Owosso"
         },
         "__collections__": {}
       },

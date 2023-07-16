@@ -3,27 +3,50 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, 'src', 'index'),
+  entry: {
+    bundle: './src/index.js',
+    wcc: './src/wcc.js',
+    wccedit: './src/wccedit.js',
+    wccnews: './src/wccnews.js'
+  },
   watch: true,
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/dist/',
-    filename: "bundle.js",
-    chunkFilename: '[name].js'
+    publicPath: '../',
+    filename: "[name].js",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: './src/index.html',
       inject: true,
       chunks: ['bundle'],
       filename: 'index.html'
     }),
+    new HtmlWebpackPlugin({
+        template: './src/wcc.html',
+        inject: true,
+        chunks: ['wcc'],
+        filename: 'wcc/index.html'
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/wccedit.html',
+        inject: true,
+        chunks: ['wccedit'],
+        filename: 'wcc/edit.html'
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/wccnews.html',
+        inject: true,
+        chunks: ['wccnews'],
+        filename: 'wcc/news.html'
+    })
   ],
   module: {
     rules: [{
       test: /.jsx?$/,
       include: [
         path.resolve(__dirname, 'src')
+        
       ],
       exclude: [
         path.resolve(__dirname, 'node_modules')
