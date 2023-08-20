@@ -154,7 +154,27 @@ select.editor  {
     height: .5 rem;
     padding: .5 rem;
 }
+
+.preview { 
+    top: 50px;
+    max-width: 40vw;;
+    position: relative; 
+}
+
+video#vt-preview_youtube_api {
+    position: absolute;
+    top: 250px;
+    right: 100px;
+    width: 20%;
+    height: 20%;
+    margin: 2px;
     
+}
+
+.vjs-hidden {
+    visibility: hidden
+ }
+
 .parentB p {
     background-color: rgb(161, 18, 49);
     text-align: left;

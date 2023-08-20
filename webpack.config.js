@@ -71,7 +71,7 @@ module.exports = {
     contentBase: path.join(__dirname, '/dist/'),
     inline: true,
     host: 'localhost',
-    port: 8080,
+    port: 8085,
   },
   watch: false
 };

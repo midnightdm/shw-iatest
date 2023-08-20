@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+	match /databases/{database}/documents {
+  
+    match /Controls/{document=**} {
+        allow read: if true;
+        allow write: if request.auth.token.email == 'steelhighwaywebcams@gmail.com' || request.auth.token.email == 'hogan.tom79@gmail.com'
+    }
+    match /News/{document=**} {
+        allow read: if true;
+        allow write: if request.auth.token.email == 'steelhighwaywebcams@gmail.com' || request.auth.token.email == 'hogan.tom79@gmail.com'
+    }
+    match /Sources/{document=**} {
+        allow read: if true; 
+        allow write: if request.auth.token.email == 'steelhighwaywebcams@gmail.com' || request.auth.token.email == 'hogan.tom79@gmail.com'
+    }
+    match /Cameras/{document=**} {
+        allow read: if true;
+        allow write: if request.auth.token.email == 'steelhighwaywebcams@gmail.com' || request.auth.token.email == 'hogan.tom79@gmail.com'
+    }
+    match /Motion/{document=**} {
+        allow read: if true;
+        allow write: if request.auth.token.email == 'steelhighwaywebcams@gmail.com' || request.auth.token.email == 'hogan.tom79@gmail.com'
+    }
+  }  
+}

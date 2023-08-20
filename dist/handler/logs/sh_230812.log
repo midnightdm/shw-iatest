@@ -1,0 +1,669 @@
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Undefined array key "EventNotificationAlert" in C:\Apache24\htdocs\handler.php on line 40 2023-08-13 02:25:31[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler.php on line 40 2023-08-13 02:25:31[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Undefined variable $now in C:\Apache24\htdocs\handler.php on line 35 2023-08-13 03:27:15[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:10[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:10[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:11[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:13[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:14[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:15[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:16[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:18[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:19[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:20[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:21[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:22[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:23[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:24[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:26[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:27[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:28[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:29[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:31[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:35[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:37[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:38[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:40[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:41[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:42[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:43[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:45[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:46[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:47[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:48[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:49[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:50[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:52[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:53[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:54[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:55[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:56[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:57[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:39:59[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:00[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:01[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:02[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:03[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:04[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:05[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:07[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:08[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:09[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:10[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:40:11[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+INIT: Firestore loading json from / 
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 43 2023-08-13 03:42:46[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 45 2023-08-13 03:42:46[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+Firestore::__construct() -> google cred: collection: Motion
+INIT: Firestore loading json from C:\Apache24\htdocs/serviceAccountKey.json 
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+[41m ERROR: 2: Trying to access array offset on value of type null in C:\Apache24\htdocs\handler\src\Firestore.class.php on line 45 2023-08-13 03:45:32[0m
+[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * [0m
+Firestore::__construct() -> google cred: collection: Motion
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php.
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+Loading vendor dependencies from C:\Apache24\htdocs
+Loading vendor dependencies from C:\Apache24\htdocs
+Loading vendor dependencies from C:\Apache24\htdocs
+Loading vendor dependencies from C:\Apache24\htdocs
+Loading vendor dependencies from C:\Apache24\htdocs
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler/vendor/autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion
+Loading vendor dependencies from C:\Apache24\htdocs\handler\vendor\autoload.php
+INIT: Firestore loading json from C:\Apache24\htdocs\handler/serviceAccountKey.json 
+Firestore::__construct() -> google cred:sh-railcam-tour collection: Motion

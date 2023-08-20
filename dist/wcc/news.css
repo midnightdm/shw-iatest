@@ -135,6 +135,7 @@ section.logged {
 
 input {
     font-size: 25pt;
+    width: 60vw;
     height: 2rem;
     padding: 1rem;
 }
@@ -236,3 +237,10 @@ section.logged {
     font-weight: 700;
     font-size: xxx-large;
 }      
+fieldset {
+    width: 60vw;
+}
+
+fieldset.on {
+    background-color: rgb(218, 32, 134);
+}

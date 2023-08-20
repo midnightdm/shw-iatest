@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="edit.css">
     <title>Webcam Edit</title>
 <script defer src="../wccedit.js"></script></head>
@@ -47,22 +48,41 @@
                         </select>
                         <p>Keep this on "video/youtube" for YouTube streams.</p>
                         <p>Use "application/x-mpegURL" for HLS streams managed by a .m3u8 playlist.</p>
+                        <br><br>
+                        <h3>View Is Enabled</h3>
+                        <select class="editor" name="editSrcType" id="editIsViewEnabled">
+                            <option value="false" selected="true">False</option>
+                            <option value="true">True</option>
+                        </select>
+                        <p>True sets this among the motion-triggered streams to be shown.</p>
+                        <p>False bypasses the site from automatic switching.</p>
+                        
                     </div>
                     <div id="div3B">
                         <h3>Stream URL</h3>
                         <input class="editor url" type="url" name="editSrcUrl" id="editSrcUrl">
-                        <p>Input the current live stream URL. It will be saved to the database as soon as you change focus to another field.</p>
+                        <p>Input the current live stream URL. It will be saved to the database as soon as you change focus to another field. (Just press tab)</p>
                         <div>
                             <button id="btnEditDelete" style="visibility: hidden;">Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;
                             <button id="btnAddSubmit" style="visibility: hidden;">Submit</button>
                         </div>
-                        
+                        <div class="preview">
+                            <video id="vt-preview">
+                                <source id="vs-preview" src="https://www.youtube.com/watch?v=Uz64iqF7E_0" type="video/youtube">
+                                <p class="vjs-no-js">
+                                  To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                  <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                    >supports HTML5 video</a>
+                                </p>
+                              </video>
+                        </div>
                     </div>
                 </div>
             </div>
       </section>
 
     <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.js"></script>
     <div class="nav-buttons">
         <button type="submit" id="logout-btn" class="btn yellow darken-2 z-depth-0">Logout</button>
     </div>

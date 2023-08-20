@@ -34037,6 +34037,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const DataModel = {
   channelIsEnabled: true,
+  alternates: {},
   liveCams: {},
   nextPromo: {},
   idTimes: [{
@@ -34046,10 +34047,26 @@ const DataModel = {
   }],
   refreshTimes: [],
   prevLiveCams: {
-    primSrcID: null,
-    subaSrcID: null,
-    subbSrcID: null,
-    subcSrcID: null
+    prim: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    },
+    suba: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    },
+    subb: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    },
+    subc: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    }
   },
   newsObj: {},
   newsArr: [],
@@ -34061,7 +34078,8 @@ const DataModel = {
     sec: 0
   },
   cameras: {},
-  camerasArr: []
+  camerasArr: [],
+  buffer: []
 };
 
 /***/ }),
@@ -54185,6 +54203,7 @@ const priorityText = document.getElementById('priorityText');
 const priorityIsDateControlled = document.getElementById('priorityIsDateControlled');
 const priorityStart = document.getElementById('priorityStart');
 const priorityEnd = document.getElementById('priorityEnd');
+const priorityFieldset = document.getElementById('priorityFieldset');
 const btnAddSubmit = document.getElementById('btnAddSubmit');
 const btnEditDelete = document.getElementById('btnEditDelete');
 const options = {
@@ -54204,65 +54223,66 @@ btnAddSubmit.addEventListener('click', () => {
 buttonLogin.addEventListener('click', () => {
   handleLogin();
 });
-newsIsActive.addEventListener('blur', e => {
+priorityIsActive.addEventListener('click', () => {
+  togglePriorityBackground();
+});
+newsIsActive.addEventListener('change', e => {
   console.log("newsIsActive event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handleNewsSubmit();
-  }
+  handleNewsSubmit();
 });
-newsText.addEventListener('blur', e => {
-  console.log("newsText event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handleNewsSubmit();
-  }
+newsText.addEventListener('change', e => {
+  // console.log("newsText event", e)
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handleNewsSubmit()
+  // }
+  handleNewsSubmit();
 });
-newsIsDateControlled.addEventListener('blur', e => {
+newsIsDateControlled.addEventListener('change', e => {
   console.log("newsIsDateControlled event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handleNewsSubmit();
-  }
+  handleNewsSubmit();
 });
-newsStart.addEventListener('blur', e => {
+newsStart.addEventListener('change', e => {
   console.log("newsStart event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handleNewsSubmit();
-  }
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handleNewsSubmit()
+  // }
+  handleNewsSubmit();
 });
-newsEnd.addEventListener('blur', e => {
+newsEnd.addEventListener('change', e => {
   console.log("newsEnd event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handleNewsSubmit();
-  }
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handleNewsSubmit()
+  // }
+  handleNewsSubmit();
 });
-priorityIsActive.addEventListener('blur', e => {
+priorityIsActive.addEventListener('change', e => {
   console.log("priorityIsActive event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handlePrioritySubmit();
-  }
+  handlePrioritySubmit();
 });
-priorityText.addEventListener('blur', e => {
+priorityText.addEventListener('change', e => {
   console.log("priorityText event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handlePrioritySubmit();
-  }
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handlePrioritySubmit()
+  // }
+  handlePrioritySubmit();
 });
-priorityIsDateControlled.addEventListener('blur', e => {
+priorityIsDateControlled.addEventListener('change', e => {
   console.log("priorityIsDateControlled event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handlePrioritySubmit();
-  }
+  handlePrioritySubmit();
 });
-priorityStart.addEventListener('blur', e => {
+priorityStart.addEventListener('change', e => {
   console.log("priorityStart event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handlePrioritySubmit();
-  }
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handlePrioritySubmit()
+  // }
+  handlePrioritySubmit();
 });
-priorityEnd.addEventListener('blur', e => {
+priorityEnd.addEventListener('change', e => {
   console.log("priorityEnd event", e);
-  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
-    handlePrioritySubmit();
-  }
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handlePrioritySubmit()
+  // }
+  handlePrioritySubmit();
 });
 
 /* * * * * * * * *
@@ -54312,36 +54332,39 @@ function monitorAuthState() {
 async function fetchNewsAll() {
   const newsSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "News", "All"), querySnapshot => {
     let dataSet = querySnapshot.data();
-    console.log("fetchNews()");
+    //console.log("fetchNewsAll()")
+    //console.log("newsObj is", dataSet)
+    //dataSet.Priority.start = new Date(dataSet.Priority.start.toDate())
+    //dataSet.Priority.end   = new Date(dataSet.Priority.end.toDate())
     let sdt,
       edt,
       obj,
       arr = [],
       i,
       keys = Object.keys(dataSet),
+      key,
       now = new Date(),
       skip;
     for (i = 0; i < keys.length; i++) {
-      obj = dataSet[keys[i]];
+      //console.log("keys", keys)
+      key = keys[i];
+      obj = dataSet[key];
+      //console.log("obj", obj)
+      obj.isActive = Boolean(obj.isActive);
+      obj.isDateControlled = Boolean(obj.isDateControlled);
+      obj.start = new Date(dataSet[key].start.toDate());
+      obj.end = new Date(dataSet[key].end.toDate());
       skip = false;
-      if (keys[i] == "Priority" || obj.isActive == false) {
-        skip = true;
-      }
-      if (obj.isDateControlled == true) {
-        sdt = new Date(obj.start.toDate());
-        edt = new Date(obj.end.toDate());
-        if (sdt.getTime() > now.getTime() || now.getTime() > edt.getTime()) {
-          console.log('Skipping not current message.');
-          skip = true;
-        }
-      }
-      if (!skip) {
+      if (key == "Priority") {
+        continue;
+      } else {
         arr.push(obj);
       }
     }
     dataModel.newsObj = dataSet;
     dataModel.newsArr = arr;
-    console.log("newsObj is", dataSet);
+    //console.log("newsArr is", dataModel.newsArr)
+    //console.log("amended newsObj is", dataSet)
     buildNewsButtons();
   });
 }
@@ -54359,9 +54382,8 @@ function buildNewsButtons() {
     i++;
   });
   const btnNewStr = '<h3>ADD ITEM</h3><button id="btnNew" class="news"><span id="btnNewLed" class="led"></span>&nbsp;&nbsp;NEW</button>';
-  const btnPriStr = `<h3>EDIT PRIORITY</h3><p><button id="btnPriority" data-><span id="ledPriority" class="led"></span>&nbsp;&nbsp;${dataModel.newsObj.Priority.text}</button></p><br><br>`;
   const div1B = document.getElementById("div1B");
-  div1B.innerHTML = btnNewStr + "<h3>EDIT ITEM</h3>" + btnSet + btnPriStr;
+  div1B.innerHTML = btnNewStr + "<h3>EDIT ITEM</h3>" + btnSet;
 
   //Set Event Handlers
   let btnNew = document.getElementById('btnNew');
@@ -54371,11 +54393,26 @@ function buildNewsButtons() {
     btn = clickableBtns[i];
     btn.onclick = handleEditSelection;
   }
-  priorityIsActive.value = dataModel.newsObj.Priority.isActive;
-  priorityIsDateControlled.value = dataModel.newsObj.Priority.isDateControlled;
+  priorityIsActive.checked = dataModel.newsObj.Priority.isActive;
+  togglePriorityBackground();
+  priorityIsDateControlled.checked = dataModel.newsObj.Priority.isDateControlled;
   priorityText.value = dataModel.newsObj.Priority.text;
-  priorityStart.value = dataModel.newsObj.Priority.start.toLocaleString();
-  priorityEnd.value = dataModel.newsObj.Priority.end.toLocaleString();
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  const sdt = new Date(dataModel.newsObj.Priority.start.getTime() - offset * 60 * 1000);
+  const edt = new Date(dataModel.newsObj.Priority.end.getTime() - offset * 60 * 1000);
+  priorityStart.value = sdt.toISOString().substring(16, 0);
+  priorityEnd.value = edt.toISOString().substring(16, 0);
+}
+function togglePriorityBackground() {
+  //Change color when check
+  if (priorityIsActive.checked == true) {
+    priorityFieldset.classList.add("on");
+  } else {
+    if (priorityFieldset.classList.contains('on')) {
+      priorityFieldset.classList.remove('on');
+    }
+  }
 }
 function handleEditDelete() {
   /* */
@@ -54403,21 +54440,29 @@ function handleEditSelection() {
   if (!userIsAdmin && !userIsLogged) {
     return alert("User not authorized for remote client refresh operation.");
   }
-  console.log("handleEditSelection this", this);
+  //console.log("handleEditSelection this", this)
   let sel = this;
-  // if(sel != "NEW") {
-  //     addModeIsOn = false
-  //     selectedForEdit = sel
-  // }
-  // console.log("selectedForEdit", selectedForEdit)
-  // newsID.value = selectedForEdit
-  // newsIsActive.value = dataModel.newsArr[selectedForEdit].isActive
-  // newsIsDateControlled.value = dataModel.newsArr[selectedForEdit].isDateControlled
-  // btnAddSubmit.style.visibilty = "hidden"
-  // btnEditDelete.style.visibilty = "visible"
-  // updateTallyLights()
+  //console.log("sel id is", sel.id)
+  if (sel.id != "NEW") {
+    addModeIsOn = false;
+    selectedForEdit = "";
+  }
+  selectedForEdit = this.getAttribute('data-id');
+  //console.log("selectedForEdit", selectedForEdit, dataModel.newsObj[selectedForEdit])
+  newsID.value = selectedForEdit;
+  newsText.value = dataModel.newsObj[selectedForEdit].text;
+  newsIsActive.checked = dataModel.newsObj[selectedForEdit].isActive;
+  newsIsDateControlled.checked = dataModel.newsObj[selectedForEdit].isDateControlled;
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  const sdt = new Date(dataModel.newsObj[selectedForEdit].start.getTime() - offset * 60 * 1000);
+  const edt = new Date(dataModel.newsObj[selectedForEdit].end.getTime() - offset * 60 * 1000);
+  newsStart.value = sdt.toISOString().substring(16, 0);
+  newsEnd.value = edt.toISOString().substring(16, 0);
+  btnAddSubmit.style.visibilty = "hidden";
+  btnEditDelete.style.visibilty = "visible";
+  updateTallyLights();
 }
-
 function handleAddSelection() {
   if (!userIsAdmin && !userIsLogged) {
     return alert("User not authorized for remote client refresh operation.");
@@ -54456,20 +54501,43 @@ function handleAddSubmit() {
   updateTallyLights();
 }
 function handlePrioritySubmit() {
+  console.log("isActive", priorityIsActive.value);
   addModeIsOn = false;
+  let sdt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(priorityStart.value));
+  let edt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(priorityEnd.value));
   let obj = {
     id: "Priority",
-    isActive: priorityIsActive.value,
-    isDateControlled: priorityIsDateControlled.value,
+    isActive: Boolean(priorityIsActive.checked),
+    isDateControlled: Boolean(priorityIsDateControlled.checked),
     text: priorityText.value,
-    start: priorityStart.value,
-    end: priorityEnd.value
+    start: sdt,
+    end: edt
   };
   (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(newsAllRef, {
     "Priority": obj
   }, {
     merge: true
   });
+  updateTallyLights();
+}
+function handleNewsSubmit() {
+  addModeIsOn = false;
+  let sdt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(newsStart.value));
+  let edt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(newsEnd.value));
+  let obj = {
+    id: selectedForEdit,
+    isActive: Boolean(newsIsActive.checked),
+    isDateControlled: Boolean(newsIsDateControlled.checked),
+    text: newsText.value,
+    start: sdt,
+    end: edt
+  };
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(newsAllRef, {
+    [selectedForEdit]: obj
+  }, {
+    merge: true
+  });
+  updateTallyLights();
 }
 function handleCameraSrcSubmit() {
   let id = editSrcID.value;
@@ -54497,60 +54565,6 @@ function handleCameraSrcSubmit() {
     });
     selectedForEdit = id;
   }
-}
-function handleCameraSelection() {
-  if (!userIsAdmin && !userIsLogged) {
-    return alert("User not authorized for remote client refresh operation.");
-  }
-  let screen = this.classList[0];
-  console.log("Selected Camera is", choice, "from column", screen);
-  //Write to database
-  let newSelection = dataModel.cameras[choice];
-  console.log("selected data from sources", newSelection.srcUrl, newSelection.srcID, newSelection.srcType);
-  let liveCams = Object.assign({}, dataModel.liveCams);
-  liveCams[screen].srcID = newSelection.srcID;
-  liveCams[screen].srcType = newSelection.srcType;
-  liveCams[screen].srcUrl = newSelection.srcUrl;
-  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
-    liveCams
-  }, {
-    merge: true
-  });
-  updateTallyLights();
-}
-function handleCameraRotation() {
-  if (!userIsAdmin && !userIsLogged) {
-    return alert("User not authorized for remote client refresh operation.");
-  }
-  //Find which choices are on currently
-  let choice = this.innerText.trim();
-  let screen = this.classList[0];
-  let liveCams = Object.assign({}, dataModel.liveCams);
-  console.log("Selected Camera is", choice, "from column", screen);
-  //change prim to old suba
-  liveCams["prim"].srcID = liveCams["suba"].srcID;
-  liveCams["prim"].srcType = liveCams["suba"].srcType;
-  liveCams["prim"].srcUrl = liveCams["suba"].srcUrl;
-  //change suba to old subb
-  liveCams["suba"].srcID = liveCams["subb"].srcID;
-  liveCams["suba"].srcType = liveCams["subb"].srcType;
-  liveCams["suba"].srcUrl = liveCams["subb"].srcUrl;
-  //Change subb to old subc
-  liveCams["subb"].srcID = liveCams["subc"].srcID;
-  liveCams["subb"].srcType = liveCams["subc"].srcType;
-  liveCams["subb"].srcUrl = liveCams["subc"].srcUrl;
-  //Change subc to new choice
-  let newSelection = dataModel.cameras[choice];
-  liveCams["subc"].srcID = newSelection.srcID;
-  liveCams["subc"].srcType = newSelection.srcType;
-  liveCams["subc"].srcUrl = newSelection.srcUrl;
-  //Push to database and update tally lights
-  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
-    liveCams
-  }, {
-    merge: true
-  });
-  updateTallyLights();
 }
 async function getAdminUsers() {
   const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Controls", "Flags");
@@ -54640,13 +54654,15 @@ function updateTallyLights() {
   let onLeds = document.querySelectorAll('.led.on');
   console.log("found on leds", onLeds);
   for (var i = 0; i < onLeds?.length; i++) {
+    if (onLeds[i].parentNode.getAttribute('data-id').value == selectedForEdit) {
+      continue;
+    }
     onLeds[i].classList.remove('on');
   }
-  //Set currently active cameras from the dataModel
-
-  let prim = document.querySelectorAll('[data-id="' + selectedForEdit + '"].prim span.led');
-  console.log("return for prim", prim);
-  prim[0].classList.add('on');
+  //Set currently active button from the dataModel
+  let news = document.querySelectorAll('[data-id="' + selectedForEdit + '"].news span.led');
+  console.log("return for news", news);
+  news[0].classList.add('on');
 }
 
 //Activated on page

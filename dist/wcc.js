@@ -34037,6 +34037,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const DataModel = {
   channelIsEnabled: true,
+  alternates: {},
   liveCams: {},
   nextPromo: {},
   idTimes: [{
@@ -34046,10 +34047,26 @@ const DataModel = {
   }],
   refreshTimes: [],
   prevLiveCams: {
-    primSrcID: null,
-    subaSrcID: null,
-    subbSrcID: null,
-    subcSrcID: null
+    prim: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    },
+    suba: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    },
+    subb: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    },
+    subc: {
+      srcID: null,
+      srcType: null,
+      srcUrl: null
+    }
   },
   newsObj: {},
   newsArr: [],
@@ -34061,7 +34078,8 @@ const DataModel = {
     sec: 0
   },
   cameras: {},
-  camerasArr: []
+  camerasArr: [],
+  buffer: []
 };
 
 /***/ }),
@@ -54210,7 +54228,7 @@ buttonLogin.addEventListener('click', function () {
 const initWcc = async function () {
   //Setup data model
   monitorAuthState();
-  fetchSourcesCameras();
+  fetchCameras();
   fetchControlsFlags();
 };
 function monitorAuthState() {
@@ -54249,19 +54267,31 @@ function monitorAuthState() {
     }
   });
 }
-async function fetchSourcesCameras() {
-  const camerasSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Sources", "Cameras"), querySnapshot => {
-    console.log("fetchSourcesCameras()");
-    let dataSet = querySnapshot.data();
-    let obj,
-      arr = [],
-      i,
-      keys = Object.keys(dataSet);
-    for (i = 0; i < keys.length; i++) {
-      obj = dataSet[keys[i]];
-      arr.push(obj);
-    }
-    dataModel.cameras = dataSet;
+async function fetchCameras() {
+  let arr = [],
+    data;
+  dataModel.cameras = {};
+  const q = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "Cameras"), (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.where)("srcID", "!=", ""));
+  const camerasSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(q, dataSet => {
+    console.log("fetchCameras()");
+    dataSet.docChanges().forEach(docChange => {
+      data = docChange.doc.data();
+      if (docChange.type === "added") {
+        // Only add new cameras to the arr array
+        if (!arr.some(x => x.srcID === data.srcID)) {
+          arr.push(data);
+          dataModel.cameras[data.srcID] = data;
+        }
+      } else if (docChange.type === "modified") {
+        // Update the existing camera in the arr array
+        let index = arr.findIndex(x => x.srcID === data.srcID);
+        arr[index] = data;
+      } else if (docChange.type === "removed") {
+        // Remove the duplicate camera from the arr array
+        let index = arr.findIndex(x => x.srcID === data.srcID);
+        arr.splice(index, 1);
+      }
+    });
     arr.sort((a, b) => {
       if (a.srcID.toLowerCase() < b.srcID.toLowerCase()) {
         return -1;
@@ -54274,8 +54304,27 @@ async function fetchSourcesCameras() {
     console.log("camerasArr", arr);
     dataModel.camerasArr = arr;
     buildCameraButtons();
+
+    // const camerasSnapshot = onSnapshot(doc(db, "Sources", "Cameras"), (querySnapshot) => {
+    //     console.log("fetchCameras()")
+    //     let dataSet = querySnapshot.data()
+    //     let obj, arr=[], i, keys = Object.keys(dataSet)
+    //     for(i=0; i<keys.length; i++) {
+    //         obj = dataSet[keys[i]]
+    //         arr.push(obj)
+    //     }
+    //     dataModel.cameras = dataSet
+    //     arr.sort( (a, b) => {
+    //         if(a.srcID.toLowerCase() < b.srcID.toLowerCase()) { return -1 }
+    //         if(a.srcID.toLowerCase() > b.srcID.toLowerCase()) { return  1 }
+    //         return 0
+    //     })
+    //     console.log("camerasArr", arr)
+    //     dataModel.camerasArr = arr
+    //     buildCameraButtons()
   });
 }
+
 async function fetchControlsFlags() {
   const flagsSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Controls", "Flags"), querySnapshot => {
     let dataSet = querySnapshot.data();
