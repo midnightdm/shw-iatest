@@ -175,12 +175,13 @@ class TrainDaemon {
         flog(" New Current: ");
         flog(print_a($this->inCurrent));
         flog("----------------------------------------------\n");
-        //Return true if inCurrent different from last loop
-        if(count($this->inCurrent) && count($last)) {
-            $isDifferent = $this->inCurrent[0] != $last[0];
-        } else {
+        //Return true if inCurrent is different from last loop
+        if(count($expired) || count($this->newCams)) {
             $isDifferent = true;
+        } else {
+            $isDifferent = false;
         }
+        
         $isDifferentString = $isDifferent ? "YES, change screens" : "NO, keep screens unchanged";
         flog("Are the sensed motion cameras different?  $isDifferentString\n\n");
 
