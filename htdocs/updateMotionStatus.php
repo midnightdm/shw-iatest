@@ -28,6 +28,7 @@ $day = $now->format("Ymd");
 $msTs = $now->getTimestamp()*1000; //millisecond Timestamp
 $allcams  = []; //Array of all cameras in Motion collection
 $enableds = []; //Array of enabled camera ids
+$fills    = []; //Array of fill camera ids
 $inmotion = []; //Array of inmotion camera ids
 $nomotion = []; //Array of idle camera ids
 
@@ -44,8 +45,13 @@ for($loopCount=0; $loopCount<count($motionCollection); $loopCount++) {
    $id = $motionCollection[$loopCount]['srcID'];
    /* Sync shared data from enabled cameras */
    $motionCollection[$loopCount]['isViewEnabled'] = $cameras[$id]['isViewEnabled'];
+   $motionCollection[$loopCount]['useAsFill']     = $cameras[$id]['useAsFill'];
    $motionCollection[$loopCount]['srcUrl']        = $cameras[$id]['srcUrl'];
    $motionCollection[$loopCount]['srcType']       = $cameras[$id]['srcType'];
+   //Increment count of fill cameras
+   if($motionCollection[$loopCount]['useAsFill']) {
+        $fills[] = $id;
+   }
    //Increment count of enabled cameras
    if($motionCollection[$loopCount]['isViewEnabled']) {
       $enableds[] = $id;
@@ -70,6 +76,7 @@ for($loopCount=0; $loopCount<count($motionCollection); $loopCount++) {
 //Tally counts
 $totalCams     = Count($allcams);
 $totalEnabled  = Count($enableds);
+$totalFills    = Count($fills);
 $totalInMotion = Count($inmotion); 
 $totalIdle     = Count($nomotion); //with ages
 
@@ -79,6 +86,8 @@ echo "<h3>Cameras in Collection</h3>";
 echo "<p>$totalCams</p>";
 echo "<h3>Enabled Cameras</h3>";
 echo "<p>$totalEnabled</p>";
+echo "<h3>Fill Cameras</h3>";
+echo "<p>$totalFills</p>";
 echo "<h3>Cameras With Motion</h3>";
 echo "<p>$totalInMotion</p><ul>";
 foreach($inmotion as $key => $cam) {

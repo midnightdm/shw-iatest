@@ -11,7 +11,7 @@ module.exports = {
   },
   watch: true,
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'htdocs'),
     publicPath: '../',
     filename: "[name].js",
   },
@@ -68,7 +68,7 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, '/dist/'),
+    contentBase: path.join(__dirname, '/htdocs/'),
     inline: true,
     host: 'localhost',
     port: 8085,

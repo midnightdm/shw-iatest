@@ -111,12 +111,13 @@ async function updateMotionDocumentTimestamp(macAddress) {
 
 async function updateStatus() {
     //Declare variables
-    let id, obj, now=Date.now(), loopCount=0, motionLessCount=0, viewEnabledCount=0, age;
+    let id, obj, now=Date.now(), loopCount=0, motionLessCount=0, viewEnabledCount=0, useAsFillCount=0, age;
     const motionCollection = [];
     const camerasCollection = [];
     const cameras = {};
     const ages = [];
     const enableds = [];
+    const fills = [];
 
     //Push camera collection in an array & object
     const camerasSnapshot = await db.collection('Cameras').get();
@@ -138,12 +139,17 @@ async function updateStatus() {
         id  = motionCollection[loopCount].srcID
         //Sync shared data from Cameras
         enableds.push({[id]:cameras[id].isViewEnabled})
+        fills.push({[id]:cameras[id].useAsFill})
         motionCollection[loopCount].isViewEnabled = cameras[id].isViewEnabled;
+        motionCollection[loopCount].useAsFill = cameras[id].useAsFill;
         motionCollection[loopCount].srcUrl        = cameras[id].srcUrl;
         motionCollection[loopCount].srcType       = cameras[id].srcType;
         //Increment count of enabled cameras
         if(motionCollection[loopCount].isViewEnabled) {
             viewEnabledCount++;
+        }
+        if(motoinCollection[loopCount].useAsFill) {
+            useAsFillCount++;
         }
         //Test for > 30 sec age of last motion detect
         age = now-motionCollection[loopCount].eventTS
@@ -156,7 +162,7 @@ async function updateStatus() {
         await db.collection('Motion').doc(motionCollection[loopCount].macAddress).update(motionCollection[loopCount])
     }
     //Return counts
-    return {viewEnabledCount, motionLessCount,'length': motionCollection.length,  'ages': ages }
+    return {viewEnabledCount, useAsFillCount, motionLessCount,'length': motionCollection.length,  'ages': ages }
 }
 
 function saveEventToBucketAsText(eventObject) {

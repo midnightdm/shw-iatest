@@ -99,10 +99,11 @@ video#vt-subc_youtube_api {
     object-fit: cover;
 }
 
+
 /* Text in newsbar */
 #newstext {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 6rem;
+    font-size: 4rem;
     color: gold;
     max-width: 75vw;
     margin: 5px;

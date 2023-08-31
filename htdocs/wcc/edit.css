@@ -50,7 +50,7 @@ a {
     grid-area: 1 / 1 / 2 / 2; 
     background-color: rgb(34, 29, 68);
     padding: 2rem;
-    
+    text-align: left;
     
 }
 .div2B { 
@@ -255,3 +255,7 @@ section.logged {
     font-weight: 700;
     font-size: xxx-large;
 }      
+
+span.column {
+    min-width: 25px;
+}

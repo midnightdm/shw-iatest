@@ -152,9 +152,21 @@ function objectQueue($arr, $add, $size=20) { //Returns updated $arr
   return $arr;
 }
 
+function print_a($array) {
+    $str = "";
+    $count = count($array);
+    if($count) {
+        for($i=0; $i<$count; $i++) {
+            $str .= "[$i] ".$array[$i].", ";
+        }
+    }
+    $str.= "\n";
+    return $str;
+}
+
 function errorHandler($type, $msg, $file=null, $line=null) {
   //Ignore warning socket timeout produces
-  if( str_contains($msg, "socket_recvfrom(): Unable to recvfrom") ) {
+  if( str_contains($msg, "Undefined array key 0 in C:\Apache24\protected\helper_functions.php on line 160") ) {
     return;
   }
   //Ignore clicksend version incompatibility with php 8

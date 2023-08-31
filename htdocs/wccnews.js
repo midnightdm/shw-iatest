@@ -34068,6 +34068,9 @@ const DataModel = {
       srcUrl: null
     }
   },
+  inBuffer: [],
+  inCurrent: [],
+  newCams: [],
   newsObj: {},
   newsArr: [],
   newsKey: 0,
@@ -54149,9 +54152,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!********************!*\
-  !*** ./src/wcc.js ***!
-  \********************/
+/*!************************!*\
+  !*** ./src/wccnews.js ***!
+  \************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/esm/index.esm.js");
 /* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ "./node_modules/firebase/firestore/dist/esm/index.esm.js");
@@ -54174,7 +54177,8 @@ let adminUsers = {};
 let user;
 let userIsLogged = false;
 let userIsAdmin = false;
-let showVideo, showVideoOn, webcamNum, webcamZoom;
+let selectedForEdit = "";
+let addModeIsOn = false;
 window.env = _environment__WEBPACK_IMPORTED_MODULE_4__.Environment;
 
 /*  Link Database */
@@ -54182,33 +54186,29 @@ const firebaseConfig = window.env.firebaseConfig;
 const firebaseApp = (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig);
 const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)(firebaseApp);
 const auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.getAuth)(firebaseApp);
-const controlsFlagsRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'Controls', 'Flags');
+const newsAllRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'News', 'All');
 
 /*  Document Object References */
-
-// const cameraA      = document.getElementById('cameraA');
-// const cameraB      = document.getElementById('cameraB');
-// const cameraC      = document.getElementById('cameraC');
-// const cameraD      = document.getElementById('cameraD');
-
-// const holderA      = document.getElementById('cam1');
-// const holderB      = document.getElementById('cam2');
-
-// const cam3         = document.getElementById('cam3');
-const iframeBtn = document.getElementById('iframe-btn');
 const loginCntr = document.getElementById('login-container');
 const section = document.querySelector('section');
 const loginEmail = document.getElementById('login-email');
 const loginPassword = document.getElementById('login-password');
 const buttonLogout = document.getElementById("logout-btn");
 const buttonLogin = document.getElementById("login-btn");
-
-// const buttonVideo  = document.getElementById("video-button");
-// const buttonVText  = document.getElementById("video-button-text");
-// const buttonDR     = document.getElementById("skip-downriver-button");
-// const buttonUR     = document.getElementById("skip-upriver-button");
-// const buttonSM     = document.getElementById("skip-sawmill-button");
-
+const newsID = document.getElementById('newsID');
+const newsIsActive = document.getElementById('newsIsActive');
+const newsText = document.getElementById('newsText');
+const newsIsDateControlled = document.getElementById('newsIsDateControlled');
+const newsStart = document.getElementById('newsStart');
+const newsEnd = document.getElementById('newsEnd');
+const priorityIsActive = document.getElementById('priorityIsActive');
+const priorityText = document.getElementById('priorityText');
+const priorityIsDateControlled = document.getElementById('priorityIsDateControlled');
+const priorityStart = document.getElementById('priorityStart');
+const priorityEnd = document.getElementById('priorityEnd');
+const priorityFieldset = document.getElementById('priorityFieldset');
+const btnAddSubmit = document.getElementById('btnAddSubmit');
+const btnEditDelete = document.getElementById('btnEditDelete');
 const options = {
   autoplay: "muted",
   preload: "auto",
@@ -54216,9 +54216,76 @@ const options = {
   loadingSpinner: false
 };
 
-//General Event Listeners
-buttonLogin.addEventListener('click', function () {
+//Event Listeners
+btnEditDelete.addEventListener('click', () => {
+  handleEditDelete();
+});
+btnAddSubmit.addEventListener('click', () => {
+  handleAddSubmit();
+});
+buttonLogin.addEventListener('click', () => {
   handleLogin();
+});
+priorityIsActive.addEventListener('click', () => {
+  togglePriorityBackground();
+});
+newsIsActive.addEventListener('change', e => {
+  console.log("newsIsActive event", e);
+  handleNewsSubmit();
+});
+newsText.addEventListener('change', e => {
+  // console.log("newsText event", e)
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handleNewsSubmit()
+  // }
+  handleNewsSubmit();
+});
+newsIsDateControlled.addEventListener('change', e => {
+  console.log("newsIsDateControlled event", e);
+  handleNewsSubmit();
+});
+newsStart.addEventListener('change', e => {
+  console.log("newsStart event", e);
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handleNewsSubmit()
+  // }
+  handleNewsSubmit();
+});
+newsEnd.addEventListener('change', e => {
+  console.log("newsEnd event", e);
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handleNewsSubmit()
+  // }
+  handleNewsSubmit();
+});
+priorityIsActive.addEventListener('change', e => {
+  console.log("priorityIsActive event", e);
+  handlePrioritySubmit();
+});
+priorityText.addEventListener('change', e => {
+  console.log("priorityText event", e);
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handlePrioritySubmit()
+  // }
+  handlePrioritySubmit();
+});
+priorityIsDateControlled.addEventListener('change', e => {
+  console.log("priorityIsDateControlled event", e);
+  handlePrioritySubmit();
+});
+priorityStart.addEventListener('change', e => {
+  console.log("priorityStart event", e);
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handlePrioritySubmit()
+  // }
+  handlePrioritySubmit();
+});
+priorityEnd.addEventListener('change', e => {
+  console.log("priorityEnd event", e);
+  // if(e.relatedTarget.value!=e.relatedTarget.defaultValue) {
+  //     handlePrioritySubmit()
+  // }
+  handlePrioritySubmit();
 });
 
 /* * * * * * * * *
@@ -54228,8 +54295,7 @@ buttonLogin.addEventListener('click', function () {
 const initWcc = async function () {
   //Setup data model
   monitorAuthState();
-  fetchCameras();
-  fetchControlsFlags();
+  fetchNewsAll();
 };
 function monitorAuthState() {
   (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.onAuthStateChanged)(auth, async u => {
@@ -54247,7 +54313,6 @@ function monitorAuthState() {
         buttonLogout.classList.add("logged");
         section.classList.add("logged");
         loginCntr.classList.add("logged");
-        fetchControlsFlags();
         addAdminEventListeners();
       } else if (adminUsers[0] == "No admin users") {
         userIsLogged = false;
@@ -54267,72 +54332,43 @@ function monitorAuthState() {
     }
   });
 }
-async function fetchCameras() {
-  let arr = [],
-    data;
-  dataModel.cameras = {};
-  const q = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "Cameras"), (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.where)("srcID", "!=", ""));
-  const camerasSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(q, dataSet => {
-    console.log("fetchCameras()");
-    dataSet.docChanges().forEach(docChange => {
-      data = docChange.doc.data();
-      if (docChange.type === "added") {
-        // Only add new cameras to the arr array
-        if (!arr.some(x => x.srcID === data.srcID)) {
-          arr.push(data);
-          dataModel.cameras[data.srcID] = data;
-        }
-      } else if (docChange.type === "modified") {
-        // Update the existing camera in the arr array
-        let index = arr.findIndex(x => x.srcID === data.srcID);
-        arr[index] = data;
-      } else if (docChange.type === "removed") {
-        // Remove the duplicate camera from the arr array
-        let index = arr.findIndex(x => x.srcID === data.srcID);
-        arr.splice(index, 1);
-      }
-    });
-    arr.sort((a, b) => {
-      if (a.srcID.toLowerCase() < b.srcID.toLowerCase()) {
-        return -1;
-      }
-      if (a.srcID.toLowerCase() > b.srcID.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    });
-    console.log("camerasArr", arr);
-    dataModel.camerasArr = arr;
-    buildCameraButtons();
-
-    // const camerasSnapshot = onSnapshot(doc(db, "Sources", "Cameras"), (querySnapshot) => {
-    //     console.log("fetchCameras()")
-    //     let dataSet = querySnapshot.data()
-    //     let obj, arr=[], i, keys = Object.keys(dataSet)
-    //     for(i=0; i<keys.length; i++) {
-    //         obj = dataSet[keys[i]]
-    //         arr.push(obj)
-    //     }
-    //     dataModel.cameras = dataSet
-    //     arr.sort( (a, b) => {
-    //         if(a.srcID.toLowerCase() < b.srcID.toLowerCase()) { return -1 }
-    //         if(a.srcID.toLowerCase() > b.srcID.toLowerCase()) { return  1 }
-    //         return 0
-    //     })
-    //     console.log("camerasArr", arr)
-    //     dataModel.camerasArr = arr
-    //     buildCameraButtons()
-  });
-}
-
-async function fetchControlsFlags() {
-  const flagsSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Controls", "Flags"), querySnapshot => {
+async function fetchNewsAll() {
+  const newsSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "News", "All"), querySnapshot => {
     let dataSet = querySnapshot.data();
-    let wasOutput = false; //Resets when screen updates
-    console.log("fetchControlsFlags() ", dataSet);
-    dataModel.channelIsEnabled = dataSet.chanelIsEnabled;
-    dataModel.liveCams = dataSet.liveCams;
-    updateTallyLights();
+    //console.log("fetchNewsAll()")
+    //console.log("newsObj is", dataSet)
+    //dataSet.Priority.start = new Date(dataSet.Priority.start.toDate())
+    //dataSet.Priority.end   = new Date(dataSet.Priority.end.toDate())
+    let sdt,
+      edt,
+      obj,
+      arr = [],
+      i,
+      keys = Object.keys(dataSet),
+      key,
+      now = new Date(),
+      skip;
+    for (i = 0; i < keys.length; i++) {
+      //console.log("keys", keys)
+      key = keys[i];
+      obj = dataSet[key];
+      //console.log("obj", obj)
+      obj.isActive = Boolean(obj.isActive);
+      obj.isDateControlled = Boolean(obj.isDateControlled);
+      obj.start = new Date(dataSet[key].start.toDate());
+      obj.end = new Date(dataSet[key].end.toDate());
+      skip = false;
+      if (key == "Priority") {
+        continue;
+      } else {
+        arr.push(obj);
+      }
+    }
+    dataModel.newsObj = dataSet;
+    dataModel.newsArr = arr;
+    //console.log("newsArr is", dataModel.newsArr)
+    //console.log("amended newsObj is", dataSet)
+    buildNewsButtons();
   });
 }
 function addAdminEventListeners() {
@@ -54340,104 +54376,198 @@ function addAdminEventListeners() {
     handleLogout();
   });
 }
-function buildCameraButtons() {
-  let i, bs, cam, btn;
-  const btnSets = {
-    prim: "",
-    suba: "",
-    subb: "",
-    subc: "",
-    queue: ""
-  };
-  for (bs in btnSets) {
-    i = 0;
-    if (bs == "queue") {
-      dataModel.camerasArr.forEach(cam => {
-        btnSets[bs] += `<button class="${bs} camswitch" id="${bs + i.toString() + 'btn'}" data-id="${cam.srcID}">${cam.srcID}</button><br>`;
-        i++;
-      });
-    } else {
-      dataModel.camerasArr.forEach(cam => {
-        btnSets[bs] += `<button class="${bs} camswitch" id="${bs + i.toString() + 'btn'}" data-id="${cam.srcID}"><span id="${bs + i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcID}</button><br>`;
-        i++;
-      });
-    }
-  }
+function buildNewsButtons() {
+  let i = 0,
+    btn;
+  let btnSet = "";
+  dataModel.newsArr.forEach(itm => {
+    btnSet += `<button class="news" id="news${i.toString()}btn" data-id="${itm.id}"><span id="led${i.toString()}" class="led"></span>&nbsp;&nbsp;${itm.text}</button><br>`;
+    i++;
+  });
+  const btnNewStr = '<h3>ADD ITEM</h3><button id="btnNew" class="news"><span id="btnNewLed" class="led"></span>&nbsp;&nbsp;NEW</button>';
   const div1B = document.getElementById("div1B");
-  const div2b = document.getElementById("div2B");
-  const div3b = document.getElementById("div3B");
-  const div4b = document.getElementById("div4B");
-  const divQ = document.getElementById("divQ");
-  div1B.innerHTML = "<h3>PRIMARY</h3>" + btnSets.prim;
-  div2b.innerHTML = "<h3>SUB-A</h3>" + btnSets.suba;
-  div3b.innerHTML = "<h3>SUB-B</h3>" + btnSets.subb;
-  div4b.innerHTML = "<h3>SUB-C</h3>" + btnSets.subc;
-  divQ.innerHTML = btnSets.queue;
+  div1B.innerHTML = btnNewStr + "<h3>EDIT ITEM</h3>" + btnSet;
+
   //Set Event Handlers
-  clickableBtns = document.getElementsByClassName('camswitch');
+  let btnNew = document.getElementById('btnNew');
+  btnNew.onclick = handleAddSelection;
+  clickableBtns = document.getElementsByClassName('news');
   for (i = 0; i < clickableBtns.length; i++) {
     btn = clickableBtns[i];
-    if (btn.classList.contains("queue")) {
-      btn.onclick = handleCameraRotation;
-    } else {
-      btn.onclick = handleCameraSelection;
+    btn.onclick = handleEditSelection;
+  }
+  priorityIsActive.checked = dataModel.newsObj.Priority.isActive;
+  togglePriorityBackground();
+  priorityIsDateControlled.checked = dataModel.newsObj.Priority.isDateControlled;
+  priorityText.value = dataModel.newsObj.Priority.text;
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  const sdt = new Date(dataModel.newsObj.Priority.start.getTime() - offset * 60 * 1000);
+  const edt = new Date(dataModel.newsObj.Priority.end.getTime() - offset * 60 * 1000);
+  priorityStart.value = sdt.toISOString().substring(16, 0);
+  priorityEnd.value = edt.toISOString().substring(16, 0);
+}
+function togglePriorityBackground() {
+  //Change color when check
+  if (priorityIsActive.checked == true) {
+    priorityFieldset.classList.add("on");
+  } else {
+    if (priorityFieldset.classList.contains('on')) {
+      priorityFieldset.classList.remove('on');
     }
   }
 }
-function handleCameraSelection() {
+function handleEditDelete() {
+  /* */
   if (!userIsAdmin && !userIsLogged) {
     return alert("User not authorized for remote client refresh operation.");
   }
-  let choice = this.innerText.trim();
-  let screen = this.classList[0];
-  console.log("Selected Camera is", choice, "from column", screen);
-  //Write to database
-  let newSelection = dataModel.cameras[choice];
-  console.log("selected data from sources", newSelection.srcUrl, newSelection.srcID, newSelection.srcType);
-  let liveCams = Object.assign({}, dataModel.liveCams);
-  liveCams[screen].srcID = newSelection.srcID;
-  liveCams[screen].srcType = newSelection.srcType;
-  liveCams[screen].srcUrl = newSelection.srcUrl;
-  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
-    liveCams
+  let isConfirmed = false;
+  if (selectedForEdit != "NEW") {
+    //addModeIsOn = false
+    isConfirmed = confirm("Are you sure you want to delete camera source " + selectedForEdit + "?");
+    if (isConfirmed) {
+      console.log("handleEditDelete()");
+      editSrcID.value = "";
+      editSrcUrl.value = "";
+      editSrcType.value = "";
+      (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.updateDoc)(controlsSourcesRef, {
+        [selectedForEdit]: (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.deleteField)()
+      });
+      btnEditDelete.style.visibility = "hidden";
+      selectedForEdit = "";
+    }
+  }
+}
+function handleEditSelection() {
+  if (!userIsAdmin && !userIsLogged) {
+    return alert("User not authorized for remote client refresh operation.");
+  }
+  //console.log("handleEditSelection this", this)
+  let sel = this;
+  //console.log("sel id is", sel.id)
+  if (sel.id != "NEW") {
+    addModeIsOn = false;
+    selectedForEdit = "";
+  }
+  selectedForEdit = this.getAttribute('data-id');
+  //console.log("selectedForEdit", selectedForEdit, dataModel.newsObj[selectedForEdit])
+  newsID.value = selectedForEdit;
+  newsText.value = dataModel.newsObj[selectedForEdit].text;
+  newsIsActive.checked = dataModel.newsObj[selectedForEdit].isActive;
+  newsIsDateControlled.checked = dataModel.newsObj[selectedForEdit].isDateControlled;
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  const sdt = new Date(dataModel.newsObj[selectedForEdit].start.getTime() - offset * 60 * 1000);
+  const edt = new Date(dataModel.newsObj[selectedForEdit].end.getTime() - offset * 60 * 1000);
+  newsStart.value = sdt.toISOString().substring(16, 0);
+  newsEnd.value = edt.toISOString().substring(16, 0);
+  btnAddSubmit.style.visibilty = "hidden";
+  btnEditDelete.style.visibilty = "visible";
+  updateTallyLights();
+}
+function handleAddSelection() {
+  if (!userIsAdmin && !userIsLogged) {
+    return alert("User not authorized for remote client refresh operation.");
+  }
+  addModeIsOn = true;
+  selectedForEdit = "";
+  editSrcID.value = "";
+  editSrcUrl.value = "";
+  editSrcType.value = "";
+  updateTallyLights();
+  //remove all current lights
+  let onLeds = document.querySelectorAll('.led.on');
+  console.log("found on leds", onLeds);
+  for (var i = 0; i < onLeds?.length; i++) {
+    onLeds[i].classList.remove('on');
+  }
+  document.getElementById('btnNewLed').classList.add('on');
+  btnAddSubmit.style.visibility = "visible";
+  btnEditDelete.style.visibility = "hidden";
+}
+function handleAddSubmit() {
+  addModeIsOn = false;
+  let id = editSrcID.value;
+  btnAddSubmit.style.visibilty = "hidden";
+  let camSrc = {
+    srcID: id,
+    srcType: editSrcType.value,
+    srcUrl: editSrcUrl.value
+  };
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsSourcesRef, {
+    [id]: camSrc
+  }, {
+    merge: true
+  });
+  selectedForEdit = id;
+  updateTallyLights();
+}
+function handlePrioritySubmit() {
+  console.log("isActive", priorityIsActive.value);
+  addModeIsOn = false;
+  let sdt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(priorityStart.value));
+  let edt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(priorityEnd.value));
+  let obj = {
+    id: "Priority",
+    isActive: Boolean(priorityIsActive.checked),
+    isDateControlled: Boolean(priorityIsDateControlled.checked),
+    text: priorityText.value,
+    start: sdt,
+    end: edt
+  };
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(newsAllRef, {
+    "Priority": obj
   }, {
     merge: true
   });
   updateTallyLights();
 }
-function handleCameraRotation() {
-  if (!userIsAdmin && !userIsLogged) {
-    return alert("User not authorized for remote client refresh operation.");
-  }
-  //Find which choices are on currently
-  let choice = this.innerText.trim();
-  let screen = this.classList[0];
-  let liveCams = Object.assign({}, dataModel.liveCams);
-  console.log("Selected Camera is", choice, "from column", screen);
-  //change prim to old suba
-  liveCams["prim"].srcID = liveCams["suba"].srcID;
-  liveCams["prim"].srcType = liveCams["suba"].srcType;
-  liveCams["prim"].srcUrl = liveCams["suba"].srcUrl;
-  //change suba to old subb
-  liveCams["suba"].srcID = liveCams["subb"].srcID;
-  liveCams["suba"].srcType = liveCams["subb"].srcType;
-  liveCams["suba"].srcUrl = liveCams["subb"].srcUrl;
-  //Change subb to old subc
-  liveCams["subb"].srcID = liveCams["subc"].srcID;
-  liveCams["subb"].srcType = liveCams["subc"].srcType;
-  liveCams["subb"].srcUrl = liveCams["subc"].srcUrl;
-  //Change subc to new choice
-  let newSelection = dataModel.cameras[choice];
-  liveCams["subc"].srcID = newSelection.srcID;
-  liveCams["subc"].srcType = newSelection.srcType;
-  liveCams["subc"].srcUrl = newSelection.srcUrl;
-  //Push to database and update tally lights
-  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
-    liveCams
+function handleNewsSubmit() {
+  addModeIsOn = false;
+  let sdt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(newsStart.value));
+  let edt = firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.Timestamp.fromDate(new Date(newsEnd.value));
+  let obj = {
+    id: selectedForEdit,
+    isActive: Boolean(newsIsActive.checked),
+    isDateControlled: Boolean(newsIsDateControlled.checked),
+    text: newsText.value,
+    start: sdt,
+    end: edt
+  };
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(newsAllRef, {
+    [selectedForEdit]: obj
   }, {
     merge: true
   });
   updateTallyLights();
+}
+function handleCameraSrcSubmit() {
+  let id = editSrcID.value;
+  console.log("handleCameraSrcSubmit()", id);
+  let camSrc = {
+    srcID: id,
+    srcType: editSrcType.value,
+    srcUrl: editSrcUrl.value
+  };
+  if (id == selectedForEdit) {
+    (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsSourcesRef, {
+      [id]: camSrc
+    }, {
+      merge: true
+    });
+  } else {
+    //Remove item from document if id changed
+    (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.updateDoc)(controlsSourcesRef, {
+      [selectedForEdit]: (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.deleteField)()
+    });
+    (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsSourcesRef, {
+      [id]: camSrc
+    }, {
+      merge: true
+    });
+    selectedForEdit = id;
+  }
 }
 async function getAdminUsers() {
   const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Controls", "Flags");
@@ -54514,24 +54644,28 @@ function testLoggeduserIsAdmin(uid) {
   }
 }
 function updateTallyLights() {
-  console.log("updateTallyLights()");
+  btnEditDelete.style.visibility = "hidden";
+  //Ignore if nothing clicked
+  if (selectedForEdit == "") {
+    return;
+  } else {
+    btnEditDelete.style.visibility = "visible";
+  }
+  btnAddSubmit.style.visibility = "hidden";
+  console.log("updateTallyLights() selectedForEdit", selectedForEdit);
   //remove all current lights
   let onLeds = document.querySelectorAll('.led.on');
   console.log("found on leds", onLeds);
   for (var i = 0; i < onLeds?.length; i++) {
+    if (onLeds[i].parentNode.getAttribute('data-id').value == selectedForEdit) {
+      continue;
+    }
     onLeds[i].classList.remove('on');
   }
-  //Set currently active cameras from the dataModel
-  console.log("prim id", dataModel.liveCams.prim.srcID);
-  let prim = document.querySelectorAll('[data-id="' + dataModel.liveCams.prim.srcID + '"].prim span.led');
-  let suba = document.querySelectorAll('[data-id="' + dataModel.liveCams.suba.srcID + '"].suba span.led');
-  let subb = document.querySelectorAll('[data-id="' + dataModel.liveCams.subb.srcID + '"].subb span.led');
-  let subc = document.querySelectorAll('[data-id="' + dataModel.liveCams.subc.srcID + '"].subc span.led');
-  //console.log("return for prim", prim)
-  prim[0].classList.add('on');
-  suba[0].classList.add('on');
-  subb[0].classList.add('on');
-  subc[0].classList.add('on');
+  //Set currently active button from the dataModel
+  let news = document.querySelectorAll('[data-id="' + selectedForEdit + '"].news span.led');
+  console.log("return for news", news);
+  news[0].classList.add('on');
 }
 
 //Activated on page
@@ -54540,4 +54674,4 @@ initWcc();
 
 /******/ })()
 ;
-//# sourceMappingURL=wcc.js.map
+//# sourceMappingURL=wccnews.js.map

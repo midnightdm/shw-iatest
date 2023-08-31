@@ -13,18 +13,6 @@ use Google\Cloud\Firestore\FieldValue;
  *   public exposure.                                  *
  *                                                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-//define constant below should be obsolete because of putenv() use on main page.
-
-
-// if(!isset($strJsonFileContents)) {
-//   $path = 'C:\Apache24\protected\serviceAccountKey.json';
-//   //flog("INIT: Firestore loading json from $path \n\n"); 
-//   $strJsonFileContents = file_get_contents($path);
-//   //echo $strJsonFileContents;
-//   //Convert into array & Put into CONSTANT
-//   define('GOOGLE_APPLICATION_CREDENTIALS', json_decode($strJsonFileContents, true));
-// }
-
 
 
 /**

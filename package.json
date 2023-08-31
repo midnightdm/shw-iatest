@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "deploy": "npm run build && firebase deploy",
+    "deploy": "npm run build && npm run deploy-htdocs && npm run deploy-protected",
     "package": "npm run build && zip-build src",
-    "dbbackup": "firestore-export -a serviceAccountKey.json -b backup/database.json --prettyPrint"
+    "dbbackup": "firestore-export -a protected/serviceAccountKey.json -b backup/database.json --prettyPrint",
+    "deploy-htdocs": "node deploy-htdocs.js",
+    "deploy-protected": "node deploy-protected.js"
   },
   "repository": {
     "type": "git",
@@ -44,6 +46,7 @@
     "@babel/preset-env": "^7.22.5",
     "firebase": "^9.23.0",
     "lodash": "^4.17.21",
-    "node-firestore-import-export": "^1.1.0"
+    "node-firestore-import-export": "^1.1.0",
+    "ssh2-sftp-client": "^9.1.0"
   }
 }

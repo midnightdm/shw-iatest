@@ -34064,6 +34064,9 @@ const DataModel = {
       srcUrl: null
     }
   },
+  inBuffer: [],
+  inCurrent: [],
+  newCams: [],
   newsObj: {},
   newsArr: [],
   newsKey: 0,
@@ -36941,6 +36944,7 @@ const editSrcID = document.getElementById('editSrcID');
 const editSrcUrl = document.getElementById('editSrcUrl');
 const editSrcType = document.getElementById('editSrcType');
 const editIsViewEnabled = document.getElementById('editIsViewEnabled');
+const editUseAsFill = document.getElementById('editUseAsFill');
 const btnAddSubmit = document.getElementById('btnAddSubmit');
 const btnEditDelete = document.getElementById('btnEditDelete');
 let playerPrim = null;
@@ -36966,6 +36970,15 @@ editIsViewEnabled.addEventListener('change', e => {
     return;
   }
   console.log("editIsViewEnabled event", e);
+  handleCameraSrcSubmit();
+  //buildCameraButtons()
+});
+
+editUseAsFill.addEventListener('change', e => {
+  if (addModeIsOn) {
+    return;
+  }
+  console.log("editUseAsFill event", e);
   handleCameraSrcSubmit();
   //buildCameraButtons()
 });
@@ -37094,11 +37107,19 @@ function buildCameraButtons() {
     btn;
   let btnSet = "";
   let enableStatus = "";
+  let fillStatus = "";
   dataModel.camerasArr.forEach(cam => {
     if (cam.isViewEnabled == true) {
-      enableStatus = "<span>Enabled</span>";
+      enableStatus = "<span class=\"column\"> View </span>";
+    } else {
+      enableStatus = "<span class=\"column\">  </span>";
     }
-    btnSet += `<button class="prim camswitch" id="prim${i.toString()}btn" data-id="${cam.srcID}"><span id="${i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcID}</button>${enableStatus}<br>`;
+    if (cam.useAsFill == true) {
+      fillStatus = "<span class=\"column\"> Fill </span>";
+    } else {
+      fillStatus = "<span class=\"column\">  </span>";
+    }
+    btnSet += `<span class="column">${i + 1}</span>&nbsp;<button class="prim camswitch" id="prim${i.toString()}btn" data-id="${cam.srcID}"><span id="${i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcID}</button>${enableStatus} ${fillStatus}<br>`;
     i++;
     enableStatus = "";
   });
@@ -37134,6 +37155,12 @@ async function handleEditDelete() {
         btnEditDelete.style.visibility = "hidden";
         selectedForEdit = "";
       });
+      //Flag database as changes made
+      (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+        "areCameraUpdates": true
+      }, {
+        merge: true
+      });
     }
   }
 }
@@ -37151,6 +37178,7 @@ function handleEditSelection() {
   editSrcUrl.value = dataModel.cameras[selectedForEdit].srcUrl;
   editSrcType.value = dataModel.cameras[selectedForEdit].srcType;
   editIsViewEnabled.value = dataModel.cameras[selectedForEdit].isViewEnabled;
+  editUseAsFill.value = dataModel.cameras[selectedForEdit].useAsFill;
   btnAddSubmit.style.visibilty = "hidden";
   btnEditDelete.style.visibilty = "visible";
   updateTallyLights();
@@ -37166,6 +37194,7 @@ function handleAddSelection() {
   editSrcUrl.value = "";
   editSrcType.value = "";
   editIsViewEnabled.value = "false";
+  editUseAsFill.value = "false";
   updateTallyLights();
   //remove all current lights
   let onLeds = document.querySelectorAll('.led.on');
@@ -37191,15 +37220,23 @@ function handleAddSubmit() {
   selectedForEdit = id;
   updatePrim();
   updateTallyLights();
+  //Flag database as changes made
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    "areCameraUpdates": true
+  }, {
+    merge: true
+  });
 }
 async function handleCameraSrcSubmit() {
   let id = editSrcID.value;
-  let boolVal = editIsViewEnabled.value == "true" ? true : false;
-  console.log("handleCameraSrcSubmit()", id, "editIsViewEnabled:", boolVal);
+  let veVal = editIsViewEnabled.value == "true" ? true : false;
+  let ufVal = editUseAsFill.value == "true" ? true : false;
+  console.log("handleCameraSrcSubmit()", id, "editIsViewEnabled:", veVal);
   let camSrc = {
     srcID: id,
     srcType: editSrcType.value,
-    isViewEnabled: boolVal,
+    isViewEnabled: veVal,
+    useAsFill: ufVal,
     srcUrl: editSrcUrl.value
   };
   if (id == selectedForEdit) {
@@ -37226,6 +37263,12 @@ async function handleCameraSrcSubmit() {
       });
     });
   }
+  //Flag database as changes made
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    "areCameraUpdates": true
+  }, {
+    merge: true
+  });
 }
 function handleCameraRotation() {
   if (!userIsAdmin && !userIsLogged) {
