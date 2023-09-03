@@ -251,7 +251,7 @@ class TrainDaemon {
         flog("Are the sensed motion cameras different?  $isDifferentString\n\n");
 
         return $isDifferent;
-    
+    }
 
     public function assignCameras() {
         $keys = ['prim', 'suba', 'subb', 'subc']; $k=0;
