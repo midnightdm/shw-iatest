@@ -35,6 +35,7 @@ class TrainDaemon {
   public $newCams;
   public $rotationArray;
   public $rotationPointer;
+  protected $loopCount;
 
   public $screenNames; 
   
@@ -44,7 +45,13 @@ class TrainDaemon {
   }
 
 
-
+  public function __destruct() {
+    //Run when program exits
+    $dt = new DateTime('now', new DateTimeZone('America/Chicago'));
+    
+    $dtPrn = $dt->format("Y-m-d H:i:s");
+    flog("Destructor executed $dtPrn\n");
+  }
 
 
   public function setup() {
@@ -63,7 +70,10 @@ class TrainDaemon {
     $this->rotationPointer = 0;
     $this->screenNames = ['prim'=>4, 'suba'=> 3, 'subb'=>2, 'subc'=>1, 'off'=>0];
     $this->mapLiveCams();
+
     
+    $this->loopCount           = 9
+    ;
     $this->lastCleanUp         = $now-50; //Used to increment cleanup routine
     $this->lastCameraSwitch    = $now-50; //Prevents rapid camera switching if 2 vessels near
     $this->lastJsonSave        = $now-10; //Used to increment liveScan.json save
@@ -76,19 +86,23 @@ class TrainDaemon {
 
   public function start() {
     flog( " Starting shw-railcam-server\n\n");  
-    flog( "\t\t >>>     Type CTRL+C at any time to quit.    <<<\r\n\n\n");
+    flog( "\t\t >>>     Type 'q' at any time to quit.    <<<\r\n\n\n");
     
     $this->setup();
     $this->run = true;
     //$this->reloadSavedScans();
     //sleep(3);
     $this->run();
+    $dt = new DateTime('now', new DateTimeZone('America/Chicago'));
+    $dtPrn = $dt->format("Y-m-d H:i:s");
+    flog("Application terminated by keypress $dtPrn\n");
+    exit();
   }
 
   protected function run() {
     //Runtime initialization
-    
-    //A run once message for Brian at start up to enable companion app
+    stream_set_blocking(STDIN, 0); // Set STDIN to non-blocking mode
+
     flog( "\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n"); 
     flog( "\033[41m *                       A T T E N T I O N,                     * \033[0m\r\n");
     flog( "\033[41m *                          T H O M A S                         * \033[0m\r\n");
@@ -103,15 +117,26 @@ class TrainDaemon {
     
     
     while($this->run==true) {
+       
         //*********************************************************************** 
         //*                                                                     *
         //*                  This is MAIN LOOP of this server                   * 
         //*                                                                     *
+        if($this->loopCount==9) {
+            $this->loopCount = 0;
+            echo $this->flags['updateUrl'];
+            $result = grab_page($this->flags['updateUrl']);
+            flog("Local run of {$this->flags['updateUrl']} every 3 min");
+            flog($result);
+        }
         $this->testForCameraUpdates();
         $this->getControlsFlags(); 
+        $this->showSceenCamStats();
         if($this->processMotionUpdates()) {
             $this->assignCameras();
         };
+        $this->testForTerminationSignal();
+        $this->loopCount++;
         sleep(20);
 
       //*                                                                      *
@@ -121,6 +146,24 @@ class TrainDaemon {
     }
     
   }
+
+ public function testForTerminationSignal() {
+     // Check for key press
+     $read   = array(STDIN);
+     $write  = null;
+     $except = null;
+
+     // Check the streams (in this case, just STDIN) and see if any have data to be read
+     if (stream_select($read, $write, $except, 0) > 0) {
+         // Read a single character
+         $input = fgetc(STDIN);
+
+         // If the character is 'q', exit the loop
+         if ($input === 'q') {
+             $this->run = false;
+         }
+     }
+ }
 
 
   public function processMotionUpdates() {//:boolean
@@ -190,6 +233,12 @@ class TrainDaemon {
 
   public function assignCameras() {
     $keys = ['prim', 'suba', 'subb', 'subc']; $k=0;
+    $lastAssignment = [
+        $this->flags['liveCams']['prim']['srcID'],
+        $this->flags['liveCams']['suba']['srcID'],
+        $this->flags['liveCams']['subb']['srcID'],
+        $this->flags['liveCams']['subc']['srcID']
+    ];
     $num = count($this->inCurrent);
     $fill = 4 - $num;
     $returnString = "\n============== SCREEN ASSIGNMENTS =============\n";
@@ -198,6 +247,10 @@ class TrainDaemon {
         if($k==4) { return; } 
         if(count($this->inCurrent)>$n+1) {
             $result = $this->descriminateCamera($this->inCurrent[$n], $this->inCurrent[$n+1], $keys[$k]);
+            //In case $n+1 was choice, skip 1 place to avoid duplicate
+            if($result[0] == $this->inCurrent[$n+1]) {
+                $n++;
+            }
             $this->handleCameraSelection($keys[$k], $result[0]);
             //Provide screenID of both winner and loser to the switch function.
             $this->liveCams[$result[0]]->recordScreenSwitch($this->screenNames[$keys[$k]]);
@@ -225,7 +278,7 @@ class TrainDaemon {
         //Get new fill camera choice from rotation
         $srcID = $this->getRotationCamera();
         //skip choice if current
-        if(in_array($srcID, $this->inCurrent)) {
+        if(in_array($srcID, $lastAssignment) || in_array($srcID, $this->inCurrent)) {
             continue;
         }
         $this->handleCameraSelection($keys[$k], $srcID);
@@ -354,6 +407,74 @@ class TrainDaemon {
         }
     }
   }
+
+  public function showSceenCamStats() {
+        $primID = $this->flags['liveCams']['prim']['srcID'];
+        $subaID = $this->flags['liveCams']['suba']['srcID'];
+        $subbID = $this->flags['liveCams']['subb']['srcID'];
+        $subcID = $this->flags['liveCams']['subc']['srcID'];
+
+        $primSecOnScrn = $this->liveCams[$primID]->screenAge;
+        $subaSecOnScrn = $this->liveCams[$subaID]->screenAge;
+        $subbSecOnScrn = $this->liveCams[$subbID]->screenAge;
+        $subcSecOnScrn = $this->liveCams[$subcID]->screenAge;
+
+        $primSecAsPrim = $this->liveCams[$primID]->primeAge;
+        $subaSecAsPrim = $this->liveCams[$subaID]->primeAge;
+        $subbSecAsPrim = $this->liveCams[$subbID]->primeAge;
+        $subcSecAsPrim = $this->liveCams[$subcID]->primeAge;
+
+        $primPrimToday = $this->liveCams[$primID]->primeCume;
+        $subaPrimToday = $this->liveCams[$subaID]->primeCume;
+        $subbPrimToday = $this->liveCams[$subbID]->primeCume;
+        $subcPrimToday = $this->liveCams[$subcID]->primeCume;
+
+        $primScrnToday = $this->liveCams[$primID]->screenCume;
+        $subaScrnToday = $this->liveCams[$subaID]->screenCume;
+        $subbScrnToday = $this->liveCams[$subbID]->screenCume;
+        $subcScrnToday = $this->liveCams[$subcID]->screenCume;
+
+        $str = "======================================  ACTIVE SCREENS  ===================================\n";
+        $str .= sprintf(
+            "Screen    Camera              Seconds-On-Screen  Seconds-As-Prime  Prime-Time-Today  Screen-Time-Today\n\n"
+        );
+        $str .= sprintf(
+            " Prime  %-20s %10d %20d %10d %10d\n",
+            $primID,
+            $primSecOnScrn,
+            $primSecAsPrim,
+            $primPrimToday,
+            $primScrnToday
+        );
+        $str .= sprintf(
+            " Sub-A  %-20s %10d %20d %10d %10d\n",
+            $subaID,
+            $subaSecOnScrn,
+            $subaSecAsPrim,
+            $subaPrimToday,
+            $subaScrnToday
+        );
+        $str .= sprintf(
+            " Sub-B  %-20s %10d %20d %10d %10d\n",
+            $subbID,
+            $subbSecOnScrn,
+            $subbSecAsPrim,
+            $subbPrimToday,
+            $subbScrnToday
+        );
+        $str .= sprintf(
+            " Sub-C  %-20s %10d %20d %10d %10d\n",
+            $subcID,
+            $subcSecOnScrn,
+            $subcSecAsPrim,
+            $subcPrimToday,
+            $subcScrnToday
+        );
+        $str .= "--------------------------------------------------------------------------------------------\n";
+
+        flog($str);
+    }
+
       
 }
 

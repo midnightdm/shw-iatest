@@ -166,7 +166,7 @@ function print_a($array) {
 
 function errorHandler($type, $msg, $file=null, $line=null) {
   //Ignore warning socket timeout produces
-  if( str_contains($msg, "Undefined array key 0 in C:\Apache24\protected\helper_functions.php on line 160") ) {
+  if( str_contains($msg, 'Undefined array key 0 in C:\Apache24\protected\helper_functions.php on line 160') ) {
     return;
   }
   //Ignore clicksend version incompatibility with php 8
