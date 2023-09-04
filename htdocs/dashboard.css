@@ -115,3 +115,43 @@ video#vt-subc_youtube_api {
     color:aqua;
     text-shadow: 2px 2px rgb(9, 29, 182);
   }
+
+  /* Animate video screens moving */
+  @keyframes slideAndResize {
+    0% {
+      width: 70vw;
+      height: 80vh;
+      left: 0;
+      top: 0;
+    }
+    100% {
+      width: 30vw;
+      height: 26.66vh;
+      left: 70vw;
+      top: 53.32vh;
+    }
+  }
+  
+  @keyframes revertPosition {
+    0% {
+      width: 30vw;
+      height: 26.66vh;
+      left: 70vw;
+      top: 53.32vh;
+    }
+    100% {
+      width: 70vw;
+      height: 80vh;
+      left: 0;
+      top: 0;
+    }
+  }
+  
+  .animate-transition {
+    animation: slideAndResize 1s ease-in-out forwards;
+  }
+  
+  .animate-revert {
+    animation: revertPosition 1s ease-in-out forwards;
+  }
+  

@@ -47,8 +47,8 @@ class TrainDaemon {
 
     public function __destruct() {
         //Run when program exits
-        $dt = new DateTime('now', new DateTimeZone('America/Chicago'));
-        
+        $dt = new DateTime('now', new DateTimeZone('America/Chicago'));    
+        $this->saveTimestampsOfCurrentCams();
         $dtPrn = $dt->format("Y-m-d H:i:s");
         flog("Destructor executed $dtPrn\n");
     }
@@ -127,8 +127,8 @@ class TrainDaemon {
                 $this->loopCount = 0;
                 echo $this->flags['updateUrl'];
                 $result = grab_page($this->flags['updateUrl']);
-                flog("Local run of {$this->flags['updateUrl']} every 3 min");
-                flog($result);
+                flog("\nLocal run of {$this->flags['updateUrl']} every 3 min\n");                
+                flog($this->fixHtmlString($result));
             }
         
             //Every 20 seconds
@@ -169,8 +169,9 @@ class TrainDaemon {
         $this->getControlsFlags(); 
         $this->showSceenCamStats();
         if($this->processMotionUpdates()) {
-            $this->assignCameras();
-        };
+            $this->assignAllScreens();
+        }
+        $this->saveTimestampsOfCurrentCams();
         echo "\033[44m To quit type \"q\" and press ENTER\033[0m\r\n";
     }
 
@@ -181,6 +182,15 @@ class TrainDaemon {
             flog("Camera source was data revised\n");
             $this->mapLiveCams();
             $this->MotionModel->resetAreCameraUpdates();
+        }
+    }
+
+    public function testForControlUpdates() {
+        $report = $this->MotionModel->areThereControlUpdates()
+        if($report[0]) {
+            flog("Screen {$report[1]} switched remotely\n");
+            $this->assignScreen($report[1], $lastAssignment);
+            $this->MotionModel->resetAreControlUpdates();
         }
     }
 
@@ -253,7 +263,7 @@ class TrainDaemon {
         return $isDifferent;
     }
 
-    public function assignCameras() {
+    public function assignAllScreens() {
         $keys = ['prim', 'suba', 'subb', 'subc']; $k=0;
         $lastAssignment = [
             $this->flags['liveCams']['prim']['srcID'],
@@ -273,15 +283,18 @@ class TrainDaemon {
                 if($result[0] == $this->inCurrent[$n+1]) {
                     $n++;
                 }
+                //Switch current camera off
+                $this->liveCams[$lastAssignment[$k]]->recordScreenSwitch(0);
+                //and new camera on
                 $this->handleCameraSelection($keys[$k], $result[0]);
-                //Provide screenID of both winner and loser to the switch function.
                 $this->liveCams[$result[0]]->recordScreenSwitch($this->screenNames[$keys[$k]]);
-                $this->liveCams[$result[1]]->recordScreenSwitch(0);
                 $returnString .= "     ".$keys[$k]."->".$result[0]." (Motion)\n";
             } else {
+                //Switch current camera off
+                $this->liveCams[$lastAssignment[$k]]->recordScreenSwitch(0);
+                //and new camera on
                 $this->handleCameraSelection($keys[$k], $this->inCurrent[$n]);
                 $this->liveCams[$this->inCurrent[$n]]->recordScreenSwitch($this->screenNames[$keys[$k]]);
-                $this->liveCams[$this->inCurrent[$n]]->saveTimestamps();
                 $returnString .= "     ".$keys[$k]."->".$this->inCurrent[$n]." (Motion)\n";
             }
             $k++;
@@ -303,15 +316,30 @@ class TrainDaemon {
             if(in_array($srcID, $lastAssignment) || in_array($srcID, $this->inCurrent)) {
                 continue;
             }
+            //Switch current camera off
+            $this->liveCams[$lastAssignment[$k]]->recordScreenSwitch(0);
+            //and new camera on
             $this->handleCameraSelection($keys[$k], $srcID);
             $this->liveCams[$srcID]->recordScreenSwitch($this->screenNames[$keys[$k]]);
-            $this->liveCams[$srcID]->saveTimestamps();
             $returnString .= "     ".$keys[$k]."->".$srcID." (New Fill)\n";
             $k++;
         }
         flog($returnString."\n");
         //Now send to database
         $this->MotionModel->setControlsFlags($this->flags);
+    }
+
+    public function assignScreen($screenName) {
+        //Buffer the currently assigned camera's srcID
+        $lastAssignment = $this->flags['liveCams'][$report[1]]['srcID'];
+        //Update the control array with the new choice
+        $this->getControlsFlags();
+        $srcID = $this->flags['liveCams'][$screenID]['srcID'];
+        //Switch current camera off
+        $this->liveCams[$lastAssignment]->recordScreenSwitch(0);
+        //and new camera on
+        $this->handleCameraSelection($screenName, $srcID);
+        $this->liveCams[$srcID]->recordScreenSwitch($this->screenNames[$screenName]);
     }
 
     public function shouldKeepFillCamera($srcID) :bool {
@@ -411,7 +439,7 @@ class TrainDaemon {
         $subbScrnToday = $this->liveCams[$subbID]->screenCume;
         $subcScrnToday = $this->liveCams[$subcID]->screenCume;
 
-        $str = "======================================  ACTIVE SCREENS  ===================================\n";
+        $str = "\n===========================================  ACTIVE SCREENS  =========================================\n";
         $str .= sprintf(
             "Screen    Camera              Seconds-On-Screen  Seconds-As-Prime  Prime-Time-Today  Screen-Time-Today\n\n"
         );
@@ -447,7 +475,7 @@ class TrainDaemon {
             $subcPrimToday,
             $subcScrnToday
         );
-        $str .= "--------------------------------------------------------------------------------------------\n";
+        $str .= "-------------------------------------------------------------------------------------------------------\n";
 
         flog($str);
     }
@@ -481,6 +509,25 @@ class TrainDaemon {
                 $this->liveCams[$camera['srcID']] = new LiveCam($camera, $this);
             }
         }
+    }
+
+    public function saveTimestampsOfCurrentCams() {
+        $lastAssignment = [
+            $this->flags['liveCams']['prim']['srcID'],
+            $this->flags['liveCams']['suba']['srcID'],
+            $this->flags['liveCams']['subb']['srcID'],
+            $this->flags['liveCams']['subc']['srcID']
+        ];
+        foreach($lastAssignment as $srcID) {
+            $this->liveCams[$srcID]->calculateScreenCounters();
+        }
+    }
+
+    public function fixHtmlString(string $html) {
+        $pattern = '/<\/\w+>/';
+        $replacement = "$0\n"; // $0 represents the matched text
+        $updatedHtml = preg_replace($pattern, $replacement, $html);
+        return $updatedHtml;
     }
 }
 

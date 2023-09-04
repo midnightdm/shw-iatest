@@ -98,6 +98,15 @@ class MotionModel extends Firestore {
     return null;
   }
 
+  public function areThereControlUpdates() {
+    $snapshot = $this->controlsFlagsRef->snapshot();
+    if($snapshot->exists()) {
+        $data = $snapshot->data();
+        return $data['areControlUpdates']; 
+    }
+    return null;
+  }
+
   public function getControlsFlags() {
     $snapshot = $this->controlsFlagsRef->snapshot();
     if($snapshot->exists()) {
@@ -121,6 +130,10 @@ class MotionModel extends Firestore {
 
   public function resetAreCameraUpdates() {
     $this->controlsFlagsRef->set( ['areCameraUpdates' => false],['merge'=>true]);
+  }
+
+  public function resetAreControlUpdates() {
+    $this->controlsFlagsRef->set( ['areControlUpdates' => false],['merge'=>true]);
   }
 
 }

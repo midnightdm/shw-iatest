@@ -40,7 +40,7 @@ final class LiveCam {
   //Callback
   public TrainDaemon $trainDaemon; 
 
-  private static $timing_properties = array('offTS', 'primeTS', 'screenTS', 'eventAge', 'primeAge', 'screenAge', 'primeCume', 'currentDay', 'currentScreenID');
+  private static $timing_properties = array('offTS', 'primeTS', 'screenTS', 'eventAge', 'primeAge', 'screenAge', 'primeCume', 'screenCume','currentDay', 'currentScreenID');
   
   public function __construct(array $array, TrainDaemon $trainDaemon) {
     $this->map($array);
@@ -101,6 +101,28 @@ public function map(array $array): void {
             $this->currentScreenID = $screenID;
             break;
     } 
+  }
+
+  public function calculateScreenCounters() {
+    $timestamp = time();
+    $today = getdate(); 
+    $dayOfWeek = $today['wday'];
+    //Reset cume values on new day
+    if($dayOfWeek != $this->currentDay) {
+        $this->primeCume = 0;
+        $this->screenCume = 0;
+        $this->currentDay = $dayOfWeek;
+    }    
+    switch($this->currentScreenID) {
+        case 4:
+            $this->primeAge = $timestamp-$this->primeTS;
+            $this->primeCume = $this->primeAge+$this->primeCume;
+        case 3: case 2: case 1:
+            $this->screenAge = $timestamp-$this->screenTS;
+            $this->screenCume = $this->screenAge+$this->screenCume;
+            $this->saveTimestamps();
+            break;
+    }
   }
 
   public function saveTimestamps() {
