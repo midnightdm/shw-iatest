@@ -35,16 +35,21 @@ final class LiveCam {
   public int $primeCume  = 0;
   public int $screenCume = 0;
   public int $currentDay = 0;
-  public int $currentScreenID = 0; 
+  public int $currentScreenID = 0;
+  public int $screenType; 
 
   //Callback
   public TrainDaemon $trainDaemon; 
 
-  private static $timing_properties = array('offTS', 'primeTS', 'screenTS', 'eventAge', 'primeAge', 'screenAge', 'primeCume', 'screenCume','currentDay', 'currentScreenID');
+  private static $timing_properties = array('offTS', 'primeTS', 'screenTS', 'eventAge', 'primeAge', 'screenAge', 'primeCume', 'screenCume','currentDay', 'currentScreenID', 'screenType');
   
   public function __construct(array $array, TrainDaemon $trainDaemon) {
     $this->map($array);
-    $this->trainDaemon = $trainDaemon;    
+    $this->trainDaemon = $trainDaemon;
+    //Set starting time values to midnight
+    $this->offTS     = $this->trainDaemon->todayMidnight;
+    $this->primeTS   = $this->trainDaemon->todayMidnight;
+    $this->screenTS  = $this->trainDaemon->todayMidnight;    
   }
 
 /**
@@ -59,6 +64,9 @@ public function map(array $array): void {
         }
         $this->$key = $value;
     }
+    if(!isset($array['timestamps']['screenType'])) {
+        $this->screenType = 0;
+    }
   }
 
 
@@ -68,7 +76,9 @@ public function map(array $array): void {
    *      0=off           4=prime
    *      3=suba, 2=subb, 1=subc
    */
-  public function recordScreenSwitch(int $screenID) {
+  public function recordScreenSwitch(int $screenID, int $screenType) {
+    $this->currentScreenID = $screenID;
+    $this->screenType = $screenType;
     $timestamp = time();
     $today = getdate(); 
     $dayOfWeek = $today['wday'];
@@ -104,6 +114,7 @@ public function map(array $array): void {
   }
 
   public function calculateScreenCounters() {
+    //echo "calculateScreenCounters() ".$this->srcID." , screenID ".$this->currentScreenID."\n";
     $timestamp = time();
     $today = getdate(); 
     $dayOfWeek = $today['wday'];
@@ -126,6 +137,7 @@ public function map(array $array): void {
   }
 
   public function saveTimestamps() {
+    //echo "     saveTimestamps() for ".$this->srcID." \n";
     $cameraTimestamps = [];
     foreach(self::$timing_properties as $key) {
         $cameraTimestamps[] = [$key=>$this->$key];

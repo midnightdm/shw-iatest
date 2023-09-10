@@ -81,7 +81,7 @@ $totalInMotion = Count($inmotion);
 $totalIdle     = Count($nomotion); //with ages
 
 //Output to page
-echo "<html><h1>updateMotionStatus()<h1>";
+echo "<html><h1>updateMotionStatus()</h1>";
 echo "<h3>Cameras in Collection</h3>";
 echo "<p>$totalCams</p>";
 echo "<h3>Enabled Cameras</h3>";

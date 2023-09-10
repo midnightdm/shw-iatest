@@ -37112,6 +37112,11 @@ function handleCameraSelection() {
   liveCams[screen].srcType = newSelection.srcType;
   liveCams[screen].srcUrl = newSelection.srcUrl;
   (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    areControlUpdates: [true, screen]
+  }, {
+    merge: true
+  });
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
     liveCams
   }, {
     merge: true
@@ -37145,6 +37150,11 @@ function handleCameraRotation() {
   liveCams["subc"].srcType = newSelection.srcType;
   liveCams["subc"].srcUrl = newSelection.srcUrl;
   //Push to database and update tally lights
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    areControlUpdates: [true, screen]
+  }, {
+    merge: true
+  });
   (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
     liveCams
   }, {

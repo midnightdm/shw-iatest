@@ -166,7 +166,7 @@ function print_a($array) {
 
 function errorHandler($type, $msg, $file=null, $line=null) {
   //Ignore warning socket timeout produces
-  if( str_contains($msg, 'Undefined array key 0 in C:\Apache24\protected\helper_functions.php on line 160') ) {
+  if( str_contains($msg, 'Undefined array key 0') ) {
     return;
   }
   //Ignore clicksend version incompatibility with php 8
@@ -177,7 +177,7 @@ function errorHandler($type, $msg, $file=null, $line=null) {
   if( str_contains($msg, "Google\\Cloud\\Firestore\\WriteBatch")) {
     return;
   } 
-  flog("\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n");
+  flog("\n\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n");
   flog("\033[41m ERROR: ".$type.": ".$msg." in ".$file." on line ".$line." ".getNow()."\033[0m\r\n");
   flog("\033[41m *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  * \033[0m\r\n");
 }
