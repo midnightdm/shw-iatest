@@ -124,6 +124,22 @@ class MotionModel extends Firestore {
     return $controlsFlags['liveCams'];
   }
 
+  public function testExit() {
+    $controlsFlags = $this->getControlsFlags();
+    if(!$controlsFlags) {
+        error_log("Can't reach Controls/Flags to test for exit.\n");
+        return false;
+    }
+    if($controlsFlags["exit"]==true) {
+        return true;
+    }
+    return false;
+  }
+
+  public function resetExit() {
+    $this->controlsFlagsRef->set(["exit"=> true],["merge"=>true]);
+  }
+
   public function setControlsFlags($document) {
     $this->controlsFlagsRef->set($document, ["merge=>true"]);
   }

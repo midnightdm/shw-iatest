@@ -37214,6 +37214,7 @@ function handleAddSubmit() {
     srcID: id,
     srcType: editSrcType.value,
     isViewEnabled: editIsViewEnabled.value === "true",
+    useAsFill: editUseAsFill.value,
     srcUrl: editSrcUrl.value
   };
   (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Cameras", id), camSrc);

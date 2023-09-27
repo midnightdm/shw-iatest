@@ -1,11 +1,10 @@
 <?php
-//Alarm STOP handler for IL-Galesburg
-$mac = "IL-Galesburg";
+//Handler for MO-Sedalia
+$mac = "MO-Sedalia";
 $base = "C:\\Apache24\\htdocs\\";
-$location = "IL-Galesburg";
+$location = "MO-Sedalia";
 
 
 include_once($base.'../protected/stop_handler_core.php');
-
 
 ?>

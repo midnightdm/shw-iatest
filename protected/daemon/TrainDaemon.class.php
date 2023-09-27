@@ -56,7 +56,7 @@ class TrainDaemon {
 
     public function start() {
         flog( " Starting shw-railcam-server\n\n");  
-        flog( "\t\t >>>     Type 'q' and ENTER at any time to quit.    <<<\r\n\n\n");
+        //flog( "\t\t >>>     Type 'q' and ENTER at any time to quit.    <<<\r\n\n\n");
         
         $this->setup();
         $this->run = true;
@@ -142,7 +142,7 @@ class TrainDaemon {
             }
         
             //Every 1 sec
-            $this->testForTerminationSignal();
+            //$this->testForTerminationSignal();
             $this->loopCount++;
             sleep(1);
 
@@ -169,7 +169,18 @@ class TrainDaemon {
         }
     }
 
+    public function checkDbForDaemonReset() {
+        flog("     * checkDbForDaemonReset()   ");
+        if($this->MotionModel->testExit()) {
+            flog( " = \033[41mTRUE -> Train Daemon stopped per database command.\033[0m\n");
+            $this->run = false;
+        } else {
+            flog(" = NONE\n");
+        }
+    }
+
     public function doLoopActions() {
+        $this->checkDbForDaemonReset();
         $this->testForCameraUpdates();
         $this->testForControlUpdates();
         $this->getControlsFlags(); 
@@ -181,7 +192,7 @@ class TrainDaemon {
             $this->assignAllScreens();
         }
         
-        echo "\033[44m To quit without causing data loss type \"q\" and press ENTER\033[0m\r\n";
+        //echo "\033[44m To quit without causing data loss type \"q\" and press ENTER\033[0m\r\n";
     }
 
     public function testForCameraUpdates() {
@@ -290,17 +301,17 @@ class TrainDaemon {
             $this->flags['liveCams']['subc']['srcID']
         ];
         $num = count($this->inCurrent);
-        $fill = 4 - $num;
+        $fill = 3 - $num;
         $returnString = "\n============== SCREEN ASSIGNMENTS =============\n";
         
         
         //1st loop assigns cameras with motion
         for($n=0; $n<$num; $n++) { 
             //Test screen age, don't change if last switch < 50 sec old
-            if($k < 4 && $this->screenSwitchIsRecent($keys[$k])) {
+            if($k < 3 && $this->screenSwitchIsRecent($keys[$k])) {
                 $k++;
             }
-            if($k==4) { 
+            if($k==3) { 
                 flog($returnString."\n");
                 return; 
             } 
@@ -333,7 +344,7 @@ class TrainDaemon {
                 flog($returnString."\n");
                 return; 
             }
-            if($k < 4 && $this->screenSwitchIsRecent($keys[$k])) {
+            if($k < 3 && $this->screenSwitchIsRecent($keys[$k])) {
                 $k++;
             }
             

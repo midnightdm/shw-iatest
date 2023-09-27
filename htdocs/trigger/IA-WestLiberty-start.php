@@ -1,8 +1,8 @@
 <?php
-//Handler for IL-Galesburg
-$mac = "IL-Galesburg";
+//Handler for IA-WestLiberty
+$mac = "IA-WestLiberty";
 $base = "C:\\Apache24\\htdocs\\";
-$location = "IL-Galesburg";
+$location = "IA-WestLiberty";
 
 
 include_once($base.'../protected/start_handler_core.php');
