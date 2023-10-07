@@ -53,7 +53,7 @@ if($cam===false || !array_key_exists('srcID', $cam) || !array_key_exists('eventT
     fclose($file);
 
     //Output to page
-    echo "<html><h1>$when -> $srcID -> 0<h1></html>";
+    echo "<html><h1>$when -> $srcID START-> 0<h1></html>";
     
 }
 ?>
