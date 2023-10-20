@@ -38,7 +38,9 @@ class MotionModel extends Firestore {
      $documents = $this->motionRef->documents();
      foreach($documents as $document) {
         if($document['hasMotion']==true) {
-            $this->hasMotionArray[] = $document->data();
+            $data = $document->data();
+            $data['isAssignedAsFillCam'] = false;
+            $this->hasMotionArray[] = $data;
         }
      }
      return $this->hasMotionArray;

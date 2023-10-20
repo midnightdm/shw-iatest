@@ -22,6 +22,8 @@ final class LiveCam {
   public string $srcID;
   public string $srcType;
   public string $srcUrl;
+  public bool $isAssignedAsFillCam = false;
+  public string $viewAssignment;
   public bool $useAsFill;
   public string $when;
   
@@ -35,13 +37,13 @@ final class LiveCam {
   public int $primeCume  = 0;
   public int $screenCume = 0;
   public int $currentDay = 0;
-  public int $currentScreenID = 0;
+  public string $currentScreenView = 'off';
   public int $screenType; 
 
   //Callback
   public TrainDaemon $trainDaemon; 
 
-  private static $timing_properties = array('offTS', 'primeTS', 'screenTS', 'eventAge', 'primeAge', 'screenAge', 'primeCume', 'screenCume','currentDay', 'currentScreenID', 'screenType');
+  private static $timing_properties = array('offTS', 'primeTS', 'screenTS', 'eventAge', 'primeAge', 'screenAge', 'primeCume', 'screenCume','currentDay', 'currentScreenView', 'screenType');
   
   public function __construct(array $array, TrainDaemon $trainDaemon) {
     $this->map($array);
@@ -71,12 +73,58 @@ public function map(array $array): void {
 
 
 
+
+
+  public function recordScreenSwitch(string $screenName, bool $isFill=false, bool $isOff=false) {
+    $this->isAssignedAsFillCam = $isFill;
+    $timestamp = time();
+    $today = getdate(); 
+    $dayOfWeek = $today['wday'];
+    //Reset cume values on new day
+    if($dayOfWeek != $this->currentDay) {
+        $this->primeCume = 0;
+        $this->screenCume = 0;
+        $this->currentDay = $dayOfWeek;
+    }
+    //Tally counters on screen off
+    if($isOff) {
+        $this->offTS = $timestamp;
+        $this->currentScreenView = 'off';
+        switch($screenName) {
+            case 'prim':
+                $this->primeAge = $timestamp-$this->primeTS;
+                $this->primeCume = $this->primeAge+$this->primeCume;
+            case 'suba': case 'subb': case 'subc':
+                $this->screenAge = $timestamp-$this->screenTS;
+                $this->screenCume = $this->screenAge+$this->screenCume;
+                $this->saveTimestamps();
+                break;
+            default: log_error($screenName." is invalid screen name");
+        } 
+        return;
+    }
+    //Record timestamp of screen on 
+    switch($screenName) {
+        case 'prim':
+            $this->primeTS = $timestamp;
+        case 'suba':  case 'subb':  case 'subc':
+            $this->screenTS = $timestamp;
+            $this->currentScreenView = $screenName;
+            break;
+    } 
+  }
+
+
+
   /**
    * Record switch to new screen. screenID values are
    *      0=off           4=prime
    *      3=suba, 2=subb, 1=subc
+   * 
+   *      screenType values are 
+   *      0=Off, 1=Motion, 2=Fill, 3=Controled
    */
-  public function recordScreenSwitch(int $screenID, int $screenType) {
+  public function recordScreenSwitchOld(int $screenID, int $screenType) {
     $this->currentScreenID = $screenID;
     $this->screenType = $screenType;
     $timestamp = time();
@@ -114,7 +162,6 @@ public function map(array $array): void {
   }
 
   public function calculateScreenCounters() {
-    //echo "calculateScreenCounters() ".$this->srcID." , screenID ".$this->currentScreenID."\n";
     $timestamp = time();
     $today = getdate(); 
     $dayOfWeek = $today['wday'];
@@ -124,11 +171,11 @@ public function map(array $array): void {
         $this->screenCume = 0;
         $this->currentDay = $dayOfWeek;
     }    
-    switch($this->currentScreenID) {
-        case 4:
+    switch($this->currentScreenView) {
+        case 'prim':
             $this->primeAge = $timestamp-$this->primeTS;
             $this->primeCume = $this->primeAge+$this->primeCume;
-        case 3: case 2: case 1:
+        case 'suba': case 'subb': case 'subc':
             $this->screenAge = $timestamp-$this->screenTS;
             $this->screenCume = $this->screenAge+$this->screenCume;
             $this->saveTimestamps();

@@ -133,9 +133,16 @@ class TrainDaemon {
             if($this->loopCount==180) {
                 $this->loopCount = 0;
                 $this->updateMotionStatus();
+                
+                
             }
-        
-            //Every 20 seconds
+
+            // //Every 30 seconds
+            // if($this->loopCount%30==0) {
+            //     //Refresh fill screens even if no motion lately
+            //     $this->assignAllScreens();
+            // }        
+            //Every 10 seconds
             if($this->loopCount%10==0) {
                 //echo "doLoopActions()\n";
                 $this->doLoopActions();
@@ -188,9 +195,11 @@ class TrainDaemon {
             $this->showScreenCamStats();
             $this->saveTimestampsOfCurrentCams();
         }
-        if($this->processMotionUpdates()) {
-            $this->assignAllScreens();
-        }
+        // if($this->processMotionUpdates()) {
+        //     $this->assignAllScreens();
+        // }
+        $this->processMotionUpdates();
+        $this->assignAllScreens();
         
         //echo "\033[44m To quit without causing data loss type \"q\" and press ENTER\033[0m\r\n";
     }
@@ -292,108 +301,161 @@ class TrainDaemon {
         return $isDifferent;
     }
 
+
     public function assignAllScreens() {
-        //flog("   assignAllScreens()  ");
-        $keys = ['prim', 'suba', 'subb', 'subc']; $k=0;
+        $keys = ['prim', 'suba', 'subb', 'subc'];
+        $k = 0;
+        $num = count($this->inCurrent);
+        $fill = 4 - $num;
         $lastAssignment = [
             $this->flags['liveCams']['prim']['srcID'],
             $this->flags['liveCams']['suba']['srcID'],
             $this->flags['liveCams']['subb']['srcID'],
             $this->flags['liveCams']['subc']['srcID']
         ];
-        $assigned = [];
-        $filled = [];
-        $num = count($this->inCurrent);
-        $fill = 4 - $num;
+        $newAssignment = [];
+        $tracer = "TRACER: assignAllScreens() ->  num=$num, k=$k, fill=$fill\n";
         $returnString = "\n============== SCREEN ASSIGNMENTS =============\n";
-        
-        
-        //1st loop assigns cameras with motion
-        for($n=0; $n<$num; $n++) { 
-            //flog("n=$n ");
-            //Test screen age, don't change if last switch < 50 sec old
-            if($k < 3 && $this->screenSwitchIsRecent($keys[$k])) {
-                //flog($keys[$k]." was was recent\n");
-                $k++;
-            }
-            if($k==4) { 
+
+        // 1st loop assigns cameras with motion
+        for ($n = 0; $n < $num; $n++) {
+            $tracer .= "     Motion loop n=$n, k=$k \n";
+            $srcID = $this->inCurrent[$n];
+            $consideredCamera = $this->liveCams[$srcID];
+            
+            if ($k >= 4) {
+                // Screen limit reached. Write results to db.
+                $this->MotionModel->setControlsFlags($this->flags);
                 flog($returnString."\n");
-                return; 
-            } 
-            if(count($this->inCurrent)>$n+1) {
-                //flog("  ...Doing 2 cam comparison with descriminateCamera()\n");
-                $result = $this->descriminateCamera($this->inCurrent[$n], $this->inCurrent[$n+1], $keys[$k]);
-                //Test for camera already assigned to a view.
-                if(in_array($result[0], $assigned)) {
-                    //$k--;     //Reset to current view  on next loop
-                    continue; //Skip duplicate assignment
-                }
-                array_push($assigned, $result[0]);
-                //In case $n+1 was choice, skip 1 place to avoid duplicate
-                // if($result[0] == $this->inCurrent[$n+1]) {
-                //     $n++;
-                // }
-                //Switch current camera off
-                $this->liveCams[$lastAssignment[$k]]->recordScreenSwitch(0,0);
-                //and new camera on
-                $this->handleCameraSelection($keys[$k], $result[0]);
-                $this->liveCams[$result[0]]->recordScreenSwitch($this->screenNames[$keys[$k]],1);
-                $returnString .= "     ".$keys[$k]."->".$result[0]." (Motion)\n";
-            } else {
-                //flog("  ...Single camera ".$this->inCurrent[$n]);
-                //Test for camera already assigned to a view.
-                if(in_array($this->inCurrent[$n], $assigned)) {
-                    //flog( "was in assigned array.\n");
-                    continue; //Skip duplicate assignment
-                }
-                array_push($assigned, $this->inCurrent[$n]);
-                //Switch current camera off
-                $this->liveCams[$lastAssignment[$k]]->recordScreenSwitch(0,0);
-                //and new camera on
-                $this->handleCameraSelection($keys[$k], $this->inCurrent[$n]);
-                $this->liveCams[$this->inCurrent[$n]]->recordScreenSwitch($this->screenNames[$keys[$k]],1);
-                $returnString .= "     ".$keys[$k]."->".$this->inCurrent[$n]." (Motion)\n";
+                flog($tracer."   Stopped by k >= 4\n");
+                return;
             }
-            $k++;
-        }
-        //2nd loop assigns fill cameras
-        for($f=0; $f<$fill; $f++) {
-            //Stop loop when all 4 views have been assigned
-            if($k==4) { 
-                flog($returnString."\n");
-                return; 
-            }
-            //Test screen age, don't change if last switch < 50 sec old
-            $currentFillSrcID = $this->flags['liveCams'][$keys[$k]]['srcID'];
-            if($k < 4 && !in_array($currentFillSrcID, $assigned) && $this->screenSwitchIsRecent($keys[$k])) {
-                $returnString .= "     ".$keys[$k]."-> $currentFillSrcID (Skipped Fill)\n";
+
+            // Don't switch away from a view if it was activated within the last 50 seconds
+            $activeCamera = $this->liveCams[$lastAssignment[$k]];
+            $timeSinceActivated = time() - $activeCamera->screenTS;
+            if ($timeSinceActivated < 50) {
+                $newAssignment[] = $activeCamera->srcID;
+                $tracer .= "    {$keys[$k]} switched recently. Keeping {$activeCamera->srcID}.\n";
                 $k++;
+                //If assigned camera was fill, upgrade it's status to motion
+                if($srcID == $activeCamera->srcID && $activeCamera->isAssignedAsFillCam) {
+                    $n++;
+                    $activeCamera->recordScreenSwitch($keys[$k],false,false);
+                    $tracer .= "Fill cam ".$activeCamera->srcID." status  is now motion cam.\n";
+                    continue;
+                }
+                $tracer .= "     Motion loop n=$n, k=$k \n"; 
             }
             
-            //test to keep or kill current fill camera
-            $shouldKeep = $this->shouldKeepFillCamera($currentFillSrcID, $assigned);
-            if($shouldKeep) {
-                array_push($assigned, $currentFillSrcID);
-                $this->liveCams[$currentFillSrcID]->screenType = 2;
-                $returnString .= "     ".$keys[$k]."->".$currentFillSrcID." (Kept Fill)\n";
+            // Prioritize an active motion camera for the prim screen
+            if ($k === 0) {
+                $tracer .= "    Assign active motion from $srcID to prime screen\n";
+                $returnString .= "     ".$keys[$k]."->".$srcID." (Motion)\n";
+                $this->handleCameraSelection('prim', $srcID);
+                $newAssignment[] = $srcID;
+                $activeCamera->recordScreenSwitch('prim', false, true);
+                $consideredCamera->recordScreenSwitch('prim', false, false);
+                $k++;
+                
+            } else {
+                if ($k >= 4) {
+                    // Screen limit reached. Write results to db.
+                    $this->MotionModel->setControlsFlags($this->flags);
+                    flog($returnString."\n");
+                    flog($tracer."   Stopped by k >= 4\n");
+                    return;
+                }
+                /* When more cameras have motion than there are screens... */
+                if($num>2 && $n==0) {
+                    $tracer .= "Starting numerous motion source comparison.\n";
+                }
+                $i=0; //Counter for keeping last choice if space 
+                foreach ($this->inCurrent as $testID) {
+                    $skip = 0;
+                    $testCamera = $this->liveCams[$testID];
+                    $tracer .= "    Testing $testID ";
+                    //Skip when testCamera is the consideredCamera already
+                    if(count($this->inCurrent)>1 && $testID==$srcID) {
+                        $tracer .= "-> Skipped because its the considered camera already.\n";
+                        $skip++;
+                    }
+                    /* Skip when test camera is already assigned to a view */
+                    if($testID == $lastAssignment[$k]) {
+                        $tracer .= "-> Skipped because its the active screen.\n";
+                    }
+                    if(in_array($testID, $newAssignment) || in_array($testID, $lastAssignment) ) {
+                        $tracer .= "-> Skipped because its assigned to a screen already.\n";
+                        $skip++;
+                    }
+                    if($skip>0) {
+                        $i++;
+                        $tracer .= " ** Skipping now. **\n";
+                        continue 2;
+                    }
+                     /* prioritize sources with less accumulated screen time and greater time since last seen. */
+                    if (($i<$num-1) && ($testCamera->offTS < $consideredCamera->offTS) && ($testCamera->screenCume < $consideredCamera->screenCume)) {
+                        $tracer .= " chosen over {$srcID}\n";
+                        $srcID = $testID;
+                        $consideredCamera = $this->liveCams[$srcID];
+                    } else {
+                        //Keep other choice
+                        $tracer .= " rejected for $srcID\n";
+                    }
+                    $i++;
+                    //Repeating loop leaves the most eligible one for handling below
+                }
+                $this->handleCameraSelection($keys[$k], $srcID);
+                $newAssignment[] = $srcID;
+                $tracer .= "    Motion choice for {$keys[$k]} was {$srcID}\n";
+                $returnString .= "     ".$keys[$k]."->".$srcID." (Motion)\n";
+                $activeCamera->recordScreenSwitch($keys[$k], false, true);
+                $consideredCamera->recordScreenSwitch($keys[$k],false, false);
+                $k++;
+                
+            }
+        }
+        // 2nd loop assigns fill cameras
+        for ($f = 0; $f < $fill; $f++) {
+            $tracer .= "      Fill loop f=$f, k=$k \n";
+             //Stop loop when all 4 views have been assigned
+            if ($k >= 4) {
+                // Screen limit reached. Write results to db.
+                $this->MotionModel->setControlsFlags($this->flags);
+                flog($returnString."\n");
+                flog($tracer."   Stopped by k >= 4\n");
+                return;
+            }
+            $srcID = $this->getRotationCamera(); 
+            $consideredCamera = $this->liveCams[$srcID];
+
+            /* Replace a fill camera with another fill only if its been on >3 minues */
+            $activeCamera = $this->liveCams[$lastAssignment[$k]];
+            $timeSinceActivated = time() - $activeCamera->screenTS;
+            if ($activeCamera->isAssignedAsFillCam && $timeSinceActivated < 180) {
+                $tracer .= "    Keeping {$keys[$k]} fill view {$activeCamera->srcID}.\n";
+                $returnString .= "     ".$keys[$k]."-> ".$activeCamera->srcID." (Kept Fill)\n";
                 $k++;
                 continue;
             }
-            //Get new fill camera choice from rotation
-            $srcID = $this->getRotationCamera();
-            //skip choice if current
-            if(in_array($srcID, $assigned) || in_array($srcID, $lastAssignment) || in_array($srcID, $this->inCurrent)) {
-                continue;
+            // Check that the new fill camera is not assigned already
+            if (in_array($srcID, $newAssignment) || in_array($srcID, $lastAssignment) ) {
+                continue; //Consider another for this spot
             }
-            //Switch current camera off
-            $this->liveCams[$lastAssignment[$k]]->recordScreenSwitch(0,0);
-            //and new camera on
+            //Accepted: Now switch to consideredCamera.
             $this->handleCameraSelection($keys[$k], $srcID);
-            $this->liveCams[$srcID]->recordScreenSwitch($this->screenNames[$keys[$k]],2);
+            $newAssignment[] = $srcID;
+            $tracer .= "      Fill choice for {$keys[$k]} was {$srcID}\n";
             $returnString .= "     ".$keys[$k]."->".$srcID." (New Fill)\n";
+            $tracer .= "    Turning off active camera {$activeCamera->srcID}\n";
+            $activeCamera->recordScreenSwitch($keys[$k],true,true); //Turning off current cam
+            $tracer .= "    Turning on considered camera {$consideredCamera->srcID}\n";
+            $consideredCamera->recordScreenSwitch($keys[$k],true,false);
             $k++;
+           
         }
-        flog($returnString."\n");
+        flog($returnString."\n\n");
+        flog($tracer."   END OF LOOP\n");
         //Now send to database
         $this->MotionModel->setControlsFlags($this->flags);
     }
@@ -422,85 +484,21 @@ class TrainDaemon {
         return $duration < 120;
     }
 
-    public function descriminateCamera($srcID1, $srcID2, $screenName) {
-        //Compares stats of 2 screens to pick priority
-        $screenID = $this->screenNames[$screenName];
-        $cams = [ $this->liveCams[$srcID1], $this->liveCams[$srcID2]];
-        $scores = [5,5];
-        $now    = time();
-        for($i=0; $i<count($cams); $i++) {
-            $cam = $cams[$i];
-            //Is the submitted screen the present screen for this camera? 
-            if($cam->currentScreenID != $screenID) {
-                // Yes, bias neutral. Has it been on > 2 min?
-                $duration = !isset($cam->screenTS) ? 0 : $now-$cam->screenTS;
-                if($duration > 120) {
-                    // Yes bias negative
-                    $scores[$i]--;
-                } else {
-                    //  No bias positive
-                    $scores[$i]++;
-                }
-                
-            } else {
-                //  No, bias positive
-                $scores[$i]++;
-            }
-        }    
-        //Is this for the prime screen?
-        if($screenID==4) {
-            // Yes, calculate primeAge & primeCume
-            $cams[0]->primeAge = $cams[0]->primeTS===0 ? 0 : $now-$cams[0]->primeTS;
-            $cams[0]->primeCume = $cams[0]->primeAge + $cams[0]->primeCume;
-            //Error check for null on 1st run
-            $cams[1]->primeAge = $cams[1]->primeTS===0 ? 0 : $now-$cams[0]->primeTS;
-            
-            $cams[1]->primeCume = $cams[1]->primeAge + $cams[1]->primeCume;
-            //Does todays primeCume exceed competitor?
-            if($cams[0]->primeCume > $cams[1]->primeCume) {
-                // Yes bias negative to the winner, positive to loser
-                $scores[0]--;  
-                $scores[1]++;
-            } else {
-                $scores[0]++;
-                $scores[1]--;
-            } 
-        }  
-        //Calculate screenAge & screenCume
-        $cams[0]->screenAge =  $cams[0]->screenTS===0 ? 0 : $now-$cams[0]->screenTS;
-        $cams[0]->screenCume = $cams[0]->screenAge + $cams[0]->screenCume;
-        $cams[1]->screenAge =  $cams[1]->screenTS===0 ? 0 : $now-$cams[1]->screenTS;
-        $cams[1]->screenCume = $cams[1]->screenAge + $cams[1]->screenCume;
-        //Does todays screenCume exceed competitor?
-        if($cams[0]->screenCume > $cams[1]->screenCume) {
-            // Yes bias negative to the winner, positive to loser
-            $scores[0]--;  
-            $scores[1]++;
-        } else {
-            $scores[0]++;
-            $scores[1]--;
-        } 
-        //Return array with winning srcID in 0, loser in 1
-        $result = $scores[0] > $scores[1] ? [$srcID1, $srcID2, $scores[0], $scores[1]] : [$srcID2, $srcID1, $scores[1], $scores[0]];
-        flog("Screen choice $screenName: ".$result[0]." beat ".$result[1]." ".$result[2]."-".$result[3]."\n");
-        return $result;
-    }
-
     public function showScreenCamStats() {
         $primID = $this->flags['liveCams']['prim']['srcID'];
         $subaID = $this->flags['liveCams']['suba']['srcID'];
         $subbID = $this->flags['liveCams']['subb']['srcID'];
         $subcID = $this->flags['liveCams']['subc']['srcID'];
 
-        $primScrnTp = $this->screenTypes[ $this->liveCams[$primID]->screenType ];
-        $subaScrnTp = $this->screenTypes[$this->liveCams[$subaID]->screenType];
-        $subbScrnTp = $this->screenTypes[$this->liveCams[$subbID]->screenType];
-        $subcScrnTp = $this->screenTypes[$this->liveCams[$subcID]->screenType];
+        $primScrnTp = $this->screenTypes[$this->liveCams[$primID]->isAssignedAsFillCam]==true ? 'F' : 'M';
+        $subaScrnTp = $this->screenTypes[$this->liveCams[$subaID]->isAssignedAsFillCam]==true ? 'F' : 'M';
+        $subbScrnTp = $this->screenTypes[$this->liveCams[$subbID]->isAssignedAsFillCam]==true ? 'F' : 'M';
+        $subcScrnTp = $this->screenTypes[$this->liveCams[$subcID]->isAssignedAsFillCam]==true ? 'F' : 'M';
 
-        $primScrnID = $this->liveCams[$primID]->currentScreenID;
-        $subaScrnID = $this->liveCams[$subaID]->currentScreenID;
-        $subbScrnID = $this->liveCams[$subbID]->currentScreenID;
-        $subcScrnID = $this->liveCams[$subcID]->currentScreenID;
+        // $primScrnID = $this->liveCams[$primID]->currentScreenID;
+        // $subaScrnID = $this->liveCams[$subaID]->currentScreenID;
+        // $subbScrnID = $this->liveCams[$subbID]->currentScreenID;
+        // $subcScrnID = $this->liveCams[$subcID]->currentScreenID;
 
         $primSecOnScrn = $this->liveCams[$primID]->screenAge;
         $subaSecOnScrn = $this->liveCams[$subaID]->screenAge;
@@ -524,9 +522,8 @@ class TrainDaemon {
 
         $str = "\n===========================================  ACTIVE SCREENS  =========================================\n";
         $str .= sprintf(
-            "%-10s  %-10s  %-18s  %-10s %-8s  %-10s   %-10s %-10s\n",
+            "%-10s   %-18s  %-10s %-8s  %-10s   %-10s %-10s\n",
             "ScreenName",
-            "ScreenID",
             "Camera",
             "Type",
             "Seconds",
@@ -535,9 +532,8 @@ class TrainDaemon {
             "Screen"
         );
         $str .= sprintf(
-            "%-10s  %-10s  %-20s  %-4s    %-5s  %-10s   %-10s  %-10s\n",
-            "",
-            "",
+            "%-10s   %-18s  %-4s    %-5s  %-10s   %-10s  %-10s\n",
+            "",  
             "",
             "",
             "On Screen",
@@ -546,8 +542,7 @@ class TrainDaemon {
             "Today"
         );
         $str .= sprintf(
-            " Prime         %-6s  %-20s  %-7s    %5d      %5d     %5d        %5d \n",
-            $primScrnID,
+            "  Prime      %-18s  %-7s    %5d      %5d     %5d        %5d \n",
             $primID,
             $primScrnTp,
             $primSecOnScrn,
@@ -556,8 +551,7 @@ class TrainDaemon {
             $primScrnToday
         );
         $str .= sprintf(
-            " Sub-A         %-6s  %-20s  %-7s    %5d      %5d     %5d        %5d \n",
-            $subaScrnID,
+            "  Sub-A      %-18s  %-7s    %5d      %5d     %5d        %5d \n",
             $subaID,
             $subaScrnTp,
             $subaSecOnScrn,
@@ -566,8 +560,7 @@ class TrainDaemon {
             $subaScrnToday
         );
         $str .= sprintf(
-            " Sub-B         %-6s  %-20s  %-7s    %5d      %5d     %5d        %5d \n",
-            $subbScrnID,
+            "  Sub-B      %-18s  %-7s    %5d      %5d     %5d        %5d \n",
             $subbID,
             $subbScrnTp,
             $subbSecOnScrn,
@@ -576,8 +569,7 @@ class TrainDaemon {
             $subbScrnToday
         );
         $str .= sprintf(
-            " Sub-C         %-6s  %-20s  %-7s    %5d      %5d     %5d        %5d \n",
-            $subcScrnID,
+            "  Sub-C      %-18s  %-7s    %5d      %5d     %5d        %5d \n",
             $subcID,
             $subcScrnTp,
             $subcSecOnScrn,
@@ -607,17 +599,18 @@ class TrainDaemon {
         $this->flags['liveCams'][$screen]['srcID']   = $newSelection['srcID'];
         $this->flags['liveCams'][$screen]['srcType'] = $newSelection['srcType'];
         $this->flags['liveCams'][$screen]['srcUrl']  = $newSelection['srcUrl'];
+        //$this->MotionModel->setControlsFlags($this->flags);
     }
 
     public function getRotationCamera() {
         $count = count($this->rotationArray);
-        echo "getRotationCamera() count: $count,";
-        if($this->rotationPointer > count($this->rotationArray)) {
-            $this->rotationPointer = 0;
-        }
-        echo " pointer: ".$this->rotationPointer."\n";
+        //flog(        "getRotationCamera() count: $count,");
+        //flog(" pointer: ".$this->rotationPointer."\n");
         $srcID = $this->rotationArray[$this->rotationPointer];
         $this->rotationPointer++;
+        if($this->rotationPointer >= $count) {
+            $this->rotationPointer = 0;
+        }
         return $srcID;
     }
 
