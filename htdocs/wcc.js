@@ -37036,6 +37036,7 @@ async function fetchCameras() {
     console.log("camerasArr", arr);
     dataModel.camerasArr = arr;
     buildCameraButtons();
+    updateTallyLights();
   });
 }
 async function fetchControlsFlags() {
@@ -37059,42 +37060,29 @@ function buildCameraButtons() {
     prim: "",
     suba: "",
     subb: "",
-    subc: "",
-    queue: ""
+    subc: ""
   };
   for (bs in btnSets) {
     i = 0;
-    if (bs == "queue") {
-      dataModel.camerasArr.forEach(cam => {
-        btnSets[bs] += `<span>${i + 1}</span>&nbsp;<button class="${bs} camswitch" id="${bs + i.toString() + 'btn'}" data-id="${cam.srcID}">${cam.srcID}</button><br>`;
-        i++;
-      });
-    } else {
-      dataModel.camerasArr.forEach(cam => {
-        btnSets[bs] += `<button class="${bs} camswitch" id="${bs + i.toString() + 'btn'}" data-id="${cam.srcID}"><span id="${bs + i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcID}</button><br>`;
-        i++;
-      });
-    }
+    dataModel.camerasArr.forEach(cam => {
+      btnSets[bs] += `<button class="${bs} camswitch" id="${bs + i.toString() + 'btn'}" data-id="${cam.srcID}"><span id="${bs + i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcID}</button><br>`;
+      i++;
+    });
   }
   const div1B = document.getElementById("div1B");
   const div2b = document.getElementById("div2B");
   const div3b = document.getElementById("div3B");
   const div4b = document.getElementById("div4B");
-  const divQ = document.getElementById("divQ");
   div1B.innerHTML = "<h3>PRIMARY</h3>" + btnSets.prim;
   div2b.innerHTML = "<h3>SUB-A</h3>" + btnSets.suba;
   div3b.innerHTML = "<h3>SUB-B</h3>" + btnSets.subb;
   div4b.innerHTML = "<h3>SUB-C</h3>" + btnSets.subc;
-  divQ.innerHTML = btnSets.queue;
+
   //Set Event Handlers
   clickableBtns = document.getElementsByClassName('camswitch');
   for (i = 0; i < clickableBtns.length; i++) {
     btn = clickableBtns[i];
-    if (btn.classList.contains("queue")) {
-      btn.onclick = handleCameraRotation;
-    } else {
-      btn.onclick = handleCameraSelection;
-    }
+    btn.onclick = handleCameraSelection;
   }
 }
 function handleCameraSelection() {

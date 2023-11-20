@@ -7,38 +7,50 @@ module.exports = {
     bundle: './src/index.js',
     wcc: './src/wcc.js',
     wccedit: './src/wccedit.js',
-    wccnews: './src/wccnews.js'
+    wccnews: './src/wccnews.js',
+    upmap: './src/upmap.js'
   },
   watch: true,
   output: {
     path: path.join(__dirname, 'htdocs'),
-    publicPath: '../',
     filename: "[name].js",
+    chunkFilename: '[id].[chunkhash].js'
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: true,
       chunks: ['bundle'],
-      filename: 'index.html'
+      filename: 'index.html',
+      publicPath: './'
     }),
     new HtmlWebpackPlugin({
         template: './src/wcc.html',
         inject: true,
         chunks: ['wcc'],
-        filename: 'wcc/index.html'
+        filename: 'wcc/index.html',
+        publicPath: '../'
     }),
     new HtmlWebpackPlugin({
         template: './src/wccedit.html',
         inject: true,
         chunks: ['wccedit'],
-        filename: 'wcc/edit.html'
+        filename: 'wcc/edit.html',
+        publicPath: '../'
     }),
     new HtmlWebpackPlugin({
         template: './src/wccnews.html',
         inject: true,
         chunks: ['wccnews'],
-        filename: 'wcc/news.html'
+        filename: 'wcc/news.html',
+        publicPath: '../'
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/upmap.html',
+        inject: true,
+        chunks: ['upmap'],
+        filename: 'upmap.html',
+        publicPath: './'
     })
   ],
   module: {

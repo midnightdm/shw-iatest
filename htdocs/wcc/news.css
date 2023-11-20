@@ -15,14 +15,36 @@ a {
 
 /* Grid */
 
-/* .parentA {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    
-} */
+.navbar { 
+    top: 0px; 
+  
+/*it specifies the mouse cursor to be displayed 
+    when it is pointed over the element */ 
+    cursor: pointer; 
+} 
+  
+.nav-list { 
+    width: 50%; 
+    display: flex; 
+} 
+  
+.nav-list li { 
+    list-style: none; 
+    padding: 5px 30px; 
+} 
+  
+.nav-list li a { 
+    text-decoration: none; 
+    color: white; 
+} 
+  
+.nav-list li a.selected {
+    color: yellow;
+}
+
+.nav-list li a:hover { 
+    color: gray; 
+} 
     
 .div1A { 
     grid-area: 1 / 1 / 2 / 2; 
@@ -73,17 +95,6 @@ button:has(> span.on) {
     background-color: aqua;
 }
 
-section {
-    display: grid;
-    visibility: hidden;
-    grid-template-columns: 50vw 50;
-    grid-gap: 0px;
-      
-}
-  
-section.logged {
-    visibility: visibile;
-}
 
 .red {
     color: red;
@@ -206,8 +217,8 @@ label {
 }
 
 section {
+    text-align: center;;
     visibility: hidden;
-    text-align: center;
 }
 
 section.logged {
@@ -234,9 +245,10 @@ section.logged {
 }
     
 .h1 {
-    font-weight: 700;
-    font-size: xxx-large;
-}      
+    font-weight: bold;
+    font-size: 3rem;
+    margin: 1rem;
+}     
 fieldset {
     width: 60vw;
 }

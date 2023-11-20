@@ -55,12 +55,13 @@ if($cam===false || !array_key_exists('srcID', $cam) || !array_key_exists('eventT
     $mm->updateMotion($mac, $updated);
 
     //Write to log 
-    $string = "\n".$when.",".$srcID.",".$duration;
+    $string = "\n".$when.",".$srcID.",".$duration.",--";
     fwrite($file, $string);
     fclose($file);
 
     //Output to page
-    echo "<html><h1>$when -> $srcID STOP -> $duration<h1></html>";   
+    $output = '<html><h1>'. $when. ' -> '. $srcID.' STOP -> '.$duration.'</h1></html>';  
+    echo $output; 
 }
 
 ?>

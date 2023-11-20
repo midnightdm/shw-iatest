@@ -17,7 +17,7 @@ a {
 
 .parentA {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr;
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -30,13 +30,36 @@ a {
     padding: 1rem;
     text-align: center;
 }
-.div2A { 
-    grid-area: 1 / 2 / 2 / 3; 
-    background-color: rgb(34, 29, 68);
-    padding: 1rem;
-    text-align: center; 
-}
 
+.navbar { 
+    top: 0px; 
+  
+/*it specifies the mouse cursor to be displayed 
+    when it is pointed over the element */ 
+    cursor: pointer; 
+} 
+  
+.nav-list { 
+    width: 50%; 
+    display: flex; 
+} 
+  
+.nav-list li { 
+    list-style: none; 
+    padding: 5px 30px; 
+} 
+  
+.nav-list li a { 
+    text-decoration: none; 
+    color: white; 
+} 
+  
+.nav-list li a.selected {
+    color: yellow;
+}
+.nav-list li a:hover { 
+    color: gray; 
+} 
 
 .parentB {
     display: grid;
@@ -73,17 +96,6 @@ button:has(> span.on) {
     background-color: aqua;
 }
 
-section {
-    display: grid;
-    visibility: hidden;
-    grid-template-columns: 50vw 50;
-    grid-gap: 0px;
-      
-}
-  
-section.logged {
-    visibility: visibile;
-}
 
 .red {
     color: red;
@@ -231,6 +243,7 @@ section.logged {
 }
     
 .h1 {
-    font-weight: 700;
-    font-size: xxx-large;
-}      
+    font-weight: bold;
+    font-size: 3rem;
+    margin: 1rem;
+}       
