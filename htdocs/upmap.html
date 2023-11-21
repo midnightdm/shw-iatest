@@ -8,58 +8,63 @@
     <title>UP Map</title>
 <script defer src="./upmap.js"></script></head>
 <body>
-    <div class="outerBox">
-        <div class="dir left">WEST</div>
-        <div class="center">
-            <div class="boxContainer">
-                <div class="box">
-                    <h2>Carroll</h2>
-                    <ul>
-                        <li><span id="caLedL" class="led"></span> <span id="caMotion" >MOTION</span> <span id="caLedR" class="led"></span></li>
-                        <li><span class="arrow" id="caLeft">←</span>Heading<span class="arrow" id="caRight">→</span></li>
-                        <li><span id="caTime">Time</span></li>
-                        <li><span id="caAgo"></span></li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <h2>Belle Plaine</h2>
-                    <ul>
-                        <li><span id="bpLedL" class="led"></span> <span id="bpMotion">MOTION</span> <span id="bpLedR" class="led"></span></li>
-                        <li><span id="bpLeft" class="arrow">←</span>Heading<span id="bpRight" class="arrow">→</span></li>
-                        <li><span id="bpTime">Time</span></li>
-                        <li><span id="bpAgo"></span></li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <h2>Mount Vernon</h2>
-                    <ul>
-                        <li><span id="mvLedL" class="led"></span> <span id="mvMotion">MOTION</span> <span id="mvLedR" class="led"></span></li>
-                        <li><span id="mvLeft" class="arrow">←</span>Heading<span id="mvRight" class="arrow">→</span></li>
-                        <li><span id="mvTime">Time</span></li>
-                        <li><span id="mvAgo"></span></li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <h2>Clarence</h2>
-                    <ul>
-                        <li><span id="clLedL" class="led"></span> <span id="clMotion">MOTION</span> <span id="clLedR" class="led"></span></li>
-                        <li><span id="clLeft" class="arrow">←</span><span class="heading">Heading</span><span id="clRight" class="arrow">→</span></li>
-                        <li><span id="clTime">Time</span></li>
-                        <li><span id="clAgo"></span></li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <h2>Grand Mound</h2>
-                    <ul>
-                        <li><span id="gmLedL" class="led"> </span> <span id="gmMotion">MOTION</span> <span id="gmLedR" class="led"></span></li>
-                        <li><span id="gmLeft" class="arrow">←</span>Heading<span id="gmRight" class="arrow">→</span></li>
-                        <li><span id="gmTime">Time</span></li>
-                        <li><span id="gmAgo"></span></li>
-                    </ul>
-                </div>    
-            </div>
+    <section class="image_wrapper">
+        <picture>
+            <source srcset="images/upmap-1920w.png" media="(max-width: 3000px)">
+            <source srcset="images/upmap-img3440w.jpg" media="(min-width: 3001px)">
+            <img src="images/upmap-1920w.png" alt="">
+          </picture>
+        <div class="overlay box0">
+            <h2>Carroll</h2>
+            <ul>
+                <li><span id="caLedL" class="led"></span> <span id="caMotion" >MOTION</span> <span id="caLedR" class="led"></span></li>
+                <li><span class="arrow" id="caLeft">←</span>Heading<span class="arrow" id="caRight">→</span></li>
+                <li><span id="caTime">Time</span></li>
+                <li><span id="caAgo"></span></li>
+            </ul>
+            <span class="triangle"></span>
         </div>
-        <div class="dir right">EAST</div>
-    </div>
+        <div class="overlay box1">
+            <h2>Belle Plaine</h2>
+            <ul>
+                <li><span id="bpLedL" class="led"></span> <span id="bpMotion">MOTION</span> <span id="bpLedR" class="led"></span></li>
+                <li><span id="bpLeft" class="arrow">←</span>Heading<span id="bpRight" class="arrow">→</span></li>
+                <li><span id="bpTime">Time</span></li>
+                <li><span id="bpAgo"></span></li>
+            </ul>
+            <span class="triangle"></span>
+        </div>
+        <div class="overlay box2">
+            <h2>Mount Vernon</h2>
+            <ul>
+                <li><span id="mvLedL" class="led"></span> <span id="mvMotion">MOTION</span> <span id="mvLedR" class="led"></span></li>
+                <li><span id="mvLeft" class="arrow">←</span>Heading<span id="mvRight" class="arrow">→</span></li>
+                <li><span id="mvTime">Time</span></li>
+                <li><span id="mvAgo"></span></li>
+            </ul>
+            <span class="triangle"></span>
+        </div>
+        <div class="overlay box3">
+            <span class="triangleup"></span>
+            <h2>Clarence</h2>
+            <ul>
+                <li><span id="clLedL" class="led"></span> <span id="clMotion">MOTION</span> <span id="clLedR" class="led"></span></li>
+                <li><span id="clLeft" class="arrow">←</span><span class="heading">Heading</span><span id="clRight" class="arrow">→</span></li>
+                <li><span id="clTime">Time</span></li>
+                <li><span id="clAgo"></span></li>
+            </ul>
+        </div>
+        <div class="overlay box4">
+            <h2>Grand Mound</h2>
+            <ul>
+                <li><span id="gmLedL" class="led"> </span> <span id="gmMotion">MOTION</span> <span id="gmLedR" class="led"></span></li>
+                <li><span id="gmLeft" class="arrow">←</span>Heading<span id="gmRight" class="arrow">→</span></li>
+                <li><span id="gmTime">Time</span></li>
+                <li><span id="gmAgo"></span></li>
+            </ul>
+            <span class="triangle"></span>
+        </div>        
+    </section>
+    
 </body>
 </html>

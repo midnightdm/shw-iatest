@@ -30213,11 +30213,19 @@ function outputTime(timestamp) {
   let output = fd.month + ' ' + fd.day + ', ' + fd.year + ' ' + fd.hour + ':' + fd.minute + fd.dayPeriod;
   return output;
 }
+function updateAgoTimes() {
+  gmAgo.innerHTML = timeAgo.format(dm.grandMound.date, 'round-minute');
+  clAgo.innerHTML = timeAgo.format(dm.clarence.date, 'round-minute');
+  mvAgo.innerHTML = timeAgo.format(dm.mountVernon.date, 'round-minute');
+  bpAgo.innerHTML = timeAgo.format(dm.bellePlaine.date, 'round-minute');
+  //caAgo.innerHTML = timeAgo.format(dm.carroll.date, 'round-minute')
+}
 
 /**
  *         Run the app here 
  */
 initApp();
+setInterval(updateAgoTimes, 60000);
 })();
 
 /******/ })()
