@@ -30000,6 +30000,7 @@ const dm = {
  *                    Set Document Object References
  */
 const caMotion = document.getElementById("caMotion");
+const caLink = document.getElementById("caLink");
 const caLedL = document.getElementById("caLedL");
 const caLedR = document.getElementById("caLedR");
 const caLeft = document.getElementById("caLeft");
@@ -30007,6 +30008,7 @@ const caRight = document.getElementById("caRight");
 const caTime = document.getElementById("caTime");
 const caAgo = document.getElementById("caAgo");
 const bpMotion = document.getElementById("bpMotion");
+const bpLink = document.getElementById("bpLink");
 const bpLedL = document.getElementById("bpLedL");
 const bpLedR = document.getElementById("bpLedR");
 const bpLeft = document.getElementById("bpLeft");
@@ -30014,6 +30016,7 @@ const bpRight = document.getElementById("bpRight");
 const bpTime = document.getElementById("bpTime");
 const bpAgo = document.getElementById("bpAgo");
 const mvMotion = document.getElementById("mvMotion");
+const mvLink = document.getElementById("mvLink");
 const mvLedL = document.getElementById("mvLedL");
 const mvLedR = document.getElementById("mvLedR");
 const mvLeft = document.getElementById("mvLeft");
@@ -30021,6 +30024,7 @@ const mvRight = document.getElementById("mvRight");
 const mvTime = document.getElementById("mvTime");
 const mvAgo = document.getElementById("mvAgo");
 const clMotion = document.getElementById("clMotion");
+const clLink = document.getElementById("clLink");
 const clLedL = document.getElementById("clLedL");
 const clLedR = document.getElementById("clLedR");
 const clLeft = document.getElementById("clLeft");
@@ -30028,6 +30032,7 @@ const clRight = document.getElementById("clRight");
 const clTime = document.getElementById("clTime");
 const clAgo = document.getElementById("clAgo");
 const gmMotion = document.getElementById("gmMotion");
+const gmLink = document.getElementById("gmLink");
 const gmLedL = document.getElementById("gmLedL");
 const gmLedR = document.getElementById("gmLedR");
 const gmLeft = document.getElementById("gmLeft");
@@ -30044,6 +30049,7 @@ async function fetchCarrollMotion() {
   const flagsSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Motion", "IA-Carroll"), querySnapshot => {
     let dataSet = querySnapshot.data();
     dm.carroll = dataSet;
+    dm.carroll.date = new Date(dataSet.eventTS);
     updateCarrollView();
   });
 }
@@ -30091,6 +30097,7 @@ function updateCarrollView() {
   }
   caTime.innerHTML = outputTime(dm.carroll.eventTS);
   caAgo.innerHTML = timeAgo.format(dm.carroll.date, 'round-minute');
+  caLink.setAttribute("href", dm.carroll.srcUrl);
   if (dm.carroll.heading === "east") {
     caRight.classList.add("on");
     caLeft.classList.remove("on");
@@ -30111,6 +30118,7 @@ function updateBellePlaineView() {
   }
   bpTime.innerHTML = outputTime(dm.bellePlaine.eventTS);
   bpAgo.innerHTML = timeAgo.format(dm.bellePlaine.date, 'round-minute');
+  bpLink.setAttribute("href", dm.bellePlaine.srcUrl);
   if (dm.bellePlaine.heading === "east") {
     bpRight.classList.add("on");
     bpLeft.classList.remove("on");
@@ -30131,6 +30139,7 @@ function updateMountVernonView() {
   }
   mvTime.innerHTML = outputTime(dm.mountVernon.eventTS);
   mvAgo.innerHTML = timeAgo.format(dm.mountVernon.date, 'round-minute');
+  mvLink.setAttribute("href", dm.mountVernon.srcUrl);
   if (dm.mountVernon.heading === "east") {
     mvRight.classList.add("on");
     mvLeft.classList.remove("on");
@@ -30151,6 +30160,7 @@ function updateClarenceView() {
   }
   clTime.innerHTML = outputTime(dm.clarence.eventTS);
   clAgo.innerHTML = timeAgo.format(dm.clarence.date, 'round-minute');
+  clLink.setAttribute("href", dm.clarence.srcUrl);
   if (dm.clarence.heading === "east") {
     clRight.classList.add("on");
     clLeft.classList.remove("on");
@@ -30171,6 +30181,7 @@ function updateGrandMoundView() {
   }
   gmTime.innerHTML = outputTime(dm.grandMound.eventTS);
   gmAgo.innerHTML = timeAgo.format(dm.grandMound.date, 'round-minute');
+  gmLink.setAttribute("href", dm.grandMound.srcUrl);
   if (dm.grandMound.heading === "east") {
     gmRight.classList.add("on");
     gmLeft.classList.remove("on");
@@ -30180,7 +30191,7 @@ function updateGrandMoundView() {
   }
 }
 function initApp() {
-  //fetchCarrollMotion()
+  fetchCarrollMotion();
   fetchBellePlaineMotion();
   fetchMountVernonMotion();
   fetchClarenceMotion();

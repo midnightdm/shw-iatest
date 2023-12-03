@@ -132,12 +132,17 @@ public function map(array $array): void {
 
   public function motionTimeoutValueExpired() :bool {
     $timeSinceActivated = time() - $this->screenTS;
-    return $timeSinceActivated < $this->motionTimeoutValue;
+    return $timeSinceActivated > $this->motionTimeoutValue;
   }
 
-  public function fillTimeoutValueExpired() :bool {
+  public function fillTimeoutValueExpired() :array {
     $timeSinceActivated = time() - $this->screenTS;
-    return $timeSinceActivated < $this->fillTimeoutValue;
+    $ret = [
+        ($timeSinceActivated > $this->fillTimeoutValue),
+        $timeSinceActivated,
+        $this->fillTimeoutValue
+    ];
+    return $ret;
   }
 
   public function assignMotionScreen($screenKey) {

@@ -239,7 +239,13 @@ class TrainDaemon {
         }
     }
 
-
+    public function getScreenContainingId($srcID) {
+        foreach($this->screens as $key => $obj) {
+            if($obj->srcID == $srcID) {
+                return $key;
+            }
+        }
+    }
 
     public function processMotionUpdates() {//:boolean
         $dt = new DateTime('now', new DateTimeZone('America/Chicago'));
@@ -309,50 +315,190 @@ class TrainDaemon {
 
     public function assignAllScreens() {
         $keys = ['prim', 'suba', 'subb', 'subc'];
+        $motionTotal = count($this->inCurrent);
         $screenKey = 0;
+        $motionIncrement = 0;
+        $tracer = "\nassignAllScreens()\n* Begin Motion Loop\n";
+        /* a different version */
+        foreach($this->inCurrent as $id) { //Outer loop: IDs of cams with motion
+            $tracer .= "   screenKey->".$screenKey." ".$keys[$screenKey].", id with motion is $id\n";
+            for($m=0; $screenKey<4; $m++, $screenKey++) {       //Inner loop: check existing screens status
+                if($motionIncrement>=$motionTotal) {
+                    $tracer .= "   Motion count reached.\n";
+                    $this->MotionModel->setControlsFlags($this->flags);
+                    break 2;
+                }
+                $obj = $this->screens[$keys[$m]];
+                $tracer .= "   currentScreenView {$obj->currentScreenView} ";
+                //Is ID on screen already?
+                if (in_array($id, array_column($this->screens, 'srcID'))) {
+                    //Yes, then is the on-screen ID of this iteration?
+                    if($obj->srcID == $id) {
+                        //Yes, then is it the prime screen?
+                        if($screenKey==0) {
+                            //Yes, then does the set screen have motion status already?
+                            if ($obj->viewAssignment === "motion") {
+                                //Yes, then keep this ID on the tested screen. Break inner loop.
+                                $tracer .=  " keeping motion assignment ".$obj->srcID." (343) \n";
+                                //$motionIncrement++;
+                                continue;
+                            } else {
+                                //No, then change obj status from fill to motion
+                                $tracer .= " Keeping assignment ".$obj->srcID." changing to motion. (348)\n";
+                                $this->assignMotionScreen($keys[$screenKey], $id);
+                                $motionIncrement++;
+                            }   
+                        } else {
+                            //No, then does the prime screen have a motion cam already?
+                            if($this->screens[$keys[0]]->viewAssignment == "motion") {
+                                //Yes, then has it reached timeout value?
+                                if($obj->motionTimeoutValueExpired()) {
+                                    //Yes, then replace old motion cam with this one...
+                                     $tracer .= " Replacing ".$obj->srcID . " with $id (358)\n";
+                                    $this->assignMotionScreen($keys[$screenKey], $id);
+                                    //...and break this inner loop
+                                    $motionIncrement++;
+        
+                                } else {
+                                    //No, then leave it alone. Does the set screen have motion status already?
+                                    if ($obj->viewAssignment === "motion") {
+                                        //Yes, then keep this ID on the tested screen. Break inner loop.
+                                        $tracer .=  " keeping assignment ".$obj->srcID." (367)\n";
+                                        //$motionIncrement++;
+                                        continue;
+                                    } else {
+                                        //No, then change obj status from fill to motion
+                                        $tracer .= " Keeping assignment ".$obj->srcID." changing to motion. (372)\n";
+                                        $this->assignMotionScreen($keys[$screenKey], $id);
+                                        //$motionIncrement++;
+                                    }   
+                                }
+                            } else {
+                                //No, then swap prime fill with this motion cam
+                                $primeID = $this->screens[$keys[0]->srcID];
+                                $this->assignMotionScreen($keys[$screenKey], $primeID);
+                                $this->assignMotionScreen($keys[0], $id);
+                                $tracer .=  "   Swapped prime fill $primeID with motion assignment $id (382)\n";
+                                //...and break this inner loop
+                                break;
+                            }
+                        }
+                    } else {
+                        //No, then is it the prime screen?
+                        if($screenKey==0) {
+                            //Yes, then does the set screen have motion status?
+                            if ($obj->viewAssignment === "motion") {
+                                //Yes, then has it reached timeout value?
+                                if($obj->motionTimeoutValueExpired()) {
+                                    //Yes, then which screen shows ID now?
+                                    $idScreen = $this->getScreenContainingId($id);
+                                    //Swap idScreen with prime
+                                    $this->assignMotionScreen($keys[0], $id);
+                                    //and make the cam formerly on prime status fill
+                                    $this->assignFillScreen($keys[$idScreen], $obj->srcID);
+                                    $tracer .=  "   Swapped $id on $idScreen with {$obj->srcID} on prime (400)\n";
+                                    $motionIncrement++;
+                                    break;
+                                } else {
+                                    //No, then leave it assigned and proceed with inner loop.
+                                    $tracer .=  " keeping assignment ".$obj->srcID.". It has not timed out yet. (405)\n";
+                                    continue;
+                                }
+                            } else {
+                                //No, then change obj status from fill to motion
+                                $tracer .= " Keeping assignment ".$obj->srcID." changing to motion. (410)\n";
+                                $this->assignMotionScreen($keys[$screenKey], $id);
+                                //$screenKey++;
+                            }   
+                        } else {
+                            //No, then does the set screen have motion status?
+                            if ($obj->viewAssignment === "motion") {
+                                //Yes, then has it reached timeout value?
+                                if($obj->motionTimeoutValueExpired()) {
+                                    //Yes, then assign a fill camera
+                                    $srcID = $this->getRotationCamera();
+                                    // Check that the new fill camera is not assigned already
+                                    while (in_array($srcID, array_column($this->screens, 'srcID'))) {
+                                        $srcID = $this->getRotationCamera();
+                                    }
+                                    $tracer .= "   Random fill choice is $srcID (425)\n";
+                                    $this->assignFillScreen($keys[$m], $srcID);
+                                } else {
+                                    //No, then keep this ID on the tested screen. Break inner loop.
+                                        $tracer .=  " keeping motion assignment ".$obj->srcID." (429)\n";
+                                        //$motionIncrement++;
+                                        break;
+                                }
+                            } else {
+                                //No, then has it reached timeout value?
+                                if($obj->fillTimeoutValueExpired()[0]) {
+                                    $srcID = $this->getRotationCamera();
+                                    // Check that the new fill camera is not assigned already
+                                    while (in_array($srcID, array_column($this->screens, 'srcID'))) {
+                                        $srcID = $this->getRotationCamera();
+                                    }
+                                    $tracer .= "   Random fill choice is $srcID (441)\n";
+                                    $this->assignFillScreen($keys[$m], $srcID);
 
-        foreach ($this->inCurrent as $id) {
-            foreach ($this->screens as $obj) {
-                if ($obj->viewAssignment === "motion") {
-                    if ($obj->srcID === $id) {
-                        // Keep current motion screen assignment
-                        $screenKey++;
-                        continue;
-                    } elseif ($obj->motionTimeoutValueExpired()) {
-                        // Replace current motion screen assignment
-                        $this->assignMotionScreen($keys[$screenKey], $id);
-                        $screenKey++;
-                        continue;
+                                } else {
+                                    //No then keep this ID on screen. Break inner loop.
+                                    $tracer .=  " keeping fill assignment ".$obj->srcID." (446)\n";
+                                    break;
+                                }
+                            }
+                        }
                     }
                 } else {
-                    if ($obj->srcID === $id) {
-                        // Change screen's LiveCam object status from fill to motion
-                        $this->assignMotionScreen($keys[$screenKey], $id);
-                        $screenKey++;
-                        continue;
+                    //No, ID is not on screen already.  
+                    //      Does the test screen have motion status already?
+                    if ($obj->viewAssignment === "motion") {
+                        //Yes, then has it reached timeout value?
+                        if($obj->motionTimeoutValueExpired()) {
+                            //Yes, then replace old motion cam with this one...
+                            $tracer .= " Replacing ".$obj->srcID . " with $id (459)\n";
+                            $this->assignMotionScreen($keys[$screenKey], $id);
+                            //...and break this inner loop
+                            $motionIncrement++;
+                            break;
+                        } else {
+                            //No, the keep current screen assignment.
+                            $tracer .=  " keeping assignment ".$obj->srcID." (466)\n";
+                        }
                     } else {
-                        // Replace current fill screen assignment
+                        //No, then put new motion cam in its place
+                        $tracer .= " Replacing ".$obj->srcID . " with $id (472)\n";
                         $this->assignMotionScreen($keys[$screenKey], $id);
-                        $screenKey++;
-                        continue;
+                        //...and break this inner loop
+                        $motionIncrement++;
+                        //$screenKey++;
+                        break;
                     }
-                }
+                }  
             }
         }
-
+        
         // Assign remaining screens with fill cameras when their timeout values are expired
+        $tracer .= "* Begin Fill Loop.\n";
         for ($f=$screenKey; $f < 4; $f++) {
+            $formattedID = sprintf("%-15s", $this->screens[$keys[$f]]->srcID );
+            $timeOut = $this->screens[$keys[$f]]->fillTimeoutValueExpired()[0] ? "true":"false"; 
+            $tracer .= "   screenKey-> ".$f." ".$keys[$f].", $formattedID timeout? $timeOut, tsa ".$this->screens[$keys[$f]]->fillTimeoutValueExpired()[1]. ", toa ".$this->screens[$keys[$f]]->fillTimeoutValueExpired()[2]."\n";
+
             if($this->screens[$keys[$f]]->viewAssignment === "off" ||
-                $this->screens[$keys[$f]]->fillTimeoutValueExpired()) {
+                $this->screens[$keys[$f]]->fillTimeoutValueExpired()[0]) {
                 $srcID = $this->getRotationCamera();
                 // Check that the new fill camera is not assigned already
                 while (in_array($srcID, array_column($this->screens, 'srcID'))) {
                     $srcID = $this->getRotationCamera();
                 }
+                $tracer .= "      Random fill choice is $srcID to replace {$this->screens[$keys[$f]]->srcID}\n";
                 $this->assignFillScreen($keys[$f], $srcID);
             }
         }
+        $this->eliminateDuplicateScreenAssignments();
         //Now send to database
+        $tracer .= "Motion and fill loops completed.  Sending choices to db.\n";
+        flog($tracer);
         $this->MotionModel->setControlsFlags($this->flags);
     }
 
@@ -533,6 +679,28 @@ class TrainDaemon {
         //Now send to database
         $this->MotionModel->setControlsFlags($this->flags);
     }
+
+    public function eliminateDuplicateScreenAssignments() {
+        $tracer = "eliminateDuplicateScreenAssignments() ";
+        $keys = ['prim', 'suba', 'subb', 'subc'];
+        $a=[0,0,0,1,1,2];
+        $b=[1,2,3,2,3,3];
+        $i=0;
+        while($i<5) {
+            if($this->screens[$keys[$a[$i]]]->srcID == $this->screens[$keys[$b[$i]]]->srcID) {    
+                $srcID = $this->getRotationCamera();
+                // Check that the new fill camera is not assigned already
+                while (in_array($srcID, array_column($this->screens, 'srcID'))) {
+                    $srcID = $this->getRotationCamera();
+                }
+                $tracer .= "      $srcID to replace fill duplicate {$this->screens[$keys[$b[$i]]]->srcID} on screen {$keys[$b[$i]] }\n";
+                $this->assignFillScreen($keys[$b[$i]], $srcID);
+            }
+            $i++;
+        }
+        flog($tracer);
+    }
+
 
     public function assignScreen($screenName) {
         //Manual switch made as fill
