@@ -34078,7 +34078,20 @@ const DataModel = {
   },
   cameras: {},
   camerasArr: [],
-  buffer: []
+  buffer: [],
+  screenLocks: {
+    prim: false,
+    suba: false,
+    subb: false,
+    subc: false
+  },
+  screenMutes: {
+    prim: false,
+    suba: true,
+    subb: true,
+    subc: true
+  },
+  cams: []
 };
 
 /***/ }),
@@ -34101,7 +34114,8 @@ const Environment = {
     storageBucket: "sh-railcam-tour.appspot.com",
     messagingSenderId: "277445216183",
     appId: "1:277445216183:web:e20d1414fb212e04128a32"
-  }
+  },
+  fetchUrl: 'https://us-central1-sh-railcam-tour.cloudfunctions.net/getMotionCams'
 };
 
 /***/ }),
@@ -36941,6 +36955,7 @@ const loginPassword = document.getElementById('login-password');
 const buttonLogout = document.getElementById("logout-btn");
 const buttonLogin = document.getElementById("login-btn");
 const editSrcID = document.getElementById('editSrcID');
+const editSrcName = document.getElementById('editSrcName');
 const editSrcUrl = document.getElementById('editSrcUrl');
 const editSrcType = document.getElementById('editSrcType');
 const editIsViewEnabled = document.getElementById('editIsViewEnabled');
@@ -36989,6 +37004,15 @@ editSrcID.addEventListener('blur', e => {
   }
   if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
     console.log("editSrcID event", e);
+    handleCameraSrcSubmit();
+  }
+});
+editSrcName.addEventListener('blur', e => {
+  if (addModeIsOn) {
+    return;
+  }
+  if (e.relatedTarget.value != e.relatedTarget.defaultValue) {
+    console.log("editSrcName event", e);
     handleCameraSrcSubmit();
   }
 });
@@ -37073,10 +37097,10 @@ async function fetchCameras() {
       }
     });
     dataModel.camerasArr.sort((a, b) => {
-      if (a.srcID.toLowerCase() < b.srcID.toLowerCase()) {
+      if (a.srcName.toLowerCase() < b.srcName.toLowerCase()) {
         return -1;
       }
-      if (a.srcID.toLowerCase() > b.srcID.toLowerCase()) {
+      if (a.srcName.toLowerCase() > b.srcName.toLowerCase()) {
         return 1;
       }
       return 0;
@@ -37104,7 +37128,9 @@ function buildCameraButtons() {
   let i = 0,
     bs,
     cam,
-    btn;
+    btn,
+    il,
+    il0;
   let btnSet = "";
   let enableStatus = "";
   let fillStatus = "";
@@ -37119,11 +37145,13 @@ function buildCameraButtons() {
     } else {
       fillStatus = "<span class=\"column\">  </span>";
     }
-    btnSet += `<span class="column">${i + 1}</span>&nbsp;<button class="prim camswitch" id="prim${i.toString()}btn" data-id="${cam.srcID}"><span id="${i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcID}</button>${enableStatus} ${fillStatus}<br>`;
+    il = i + 1;
+    il0 = il < 10 ? '0' + il : il;
+    btnSet += `<span class="column">${il0}</span>&nbsp;<button class="prim camswitch" id="prim${i.toString()}btn" data-id="${cam.srcID}"><span id="${i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcName}</button>${enableStatus} ${fillStatus}<br>`;
     i++;
     enableStatus = "";
   });
-  const btnNewStr = '<h3>ADD</h3><button id="btnNew" class="prim"><span id="btnNewLed" class="led"></span>&nbsp;&nbsp;NEW</button>';
+  const btnNewStr = '<h3>ADD</h3><button id="btnNew" class="prim" data-id="NEW"><span id="btnNewLed" class="led"></span>&nbsp;&nbsp;NEW</button>';
   const div1B = document.getElementById("div1B");
   div1B.innerHTML = btnNewStr + "<h3>EDIT</h3>" + btnSet;
 
@@ -37148,6 +37176,7 @@ async function handleEditDelete() {
     if (isConfirmed) {
       console.log("handleEditDelete()");
       editSrcID.value = "";
+      editSrcName.value = "";
       editSrcUrl.value = "";
       editSrcType.value = "";
       editIsViewEnabled.value = "";
@@ -37168,7 +37197,8 @@ function handleEditSelection() {
   if (!userIsAdmin && !userIsLogged) {
     return alert("User not authorized for remote client refresh operation.");
   }
-  let sel = this.innerText.trim();
+  let sel = this.dataset.id;
+  console.log("handleEditSelection() id pulled is ", sel);
   if (sel != "NEW") {
     addModeIsOn = false;
     selectedForEdit = sel;
@@ -37176,6 +37206,7 @@ function handleEditSelection() {
   console.log("selectedForEdit", selectedForEdit);
   editSrcID.value = selectedForEdit;
   editSrcUrl.value = dataModel.cameras[selectedForEdit].srcUrl;
+  editSrcName.value = dataModel.cameras[selectedForEdit].srcName;
   editSrcType.value = dataModel.cameras[selectedForEdit].srcType;
   editIsViewEnabled.value = dataModel.cameras[selectedForEdit].isViewEnabled;
   editUseAsFill.value = dataModel.cameras[selectedForEdit].useAsFill;
@@ -37191,6 +37222,7 @@ function handleAddSelection() {
   addModeIsOn = true;
   selectedForEdit = "";
   editSrcID.value = "";
+  editSrcName.value = "";
   editSrcUrl.value = "";
   editSrcType.value = "";
   editIsViewEnabled.value = "false";
@@ -37212,6 +37244,7 @@ function handleAddSubmit() {
   btnAddSubmit.style.visibilty = "hidden";
   let camSrc = {
     srcID: id,
+    srcName: editSrcName.value,
     srcType: editSrcType.value,
     isViewEnabled: editIsViewEnabled.value === "true",
     useAsFill: editUseAsFill.value,
@@ -37235,6 +37268,7 @@ async function handleCameraSrcSubmit() {
   console.log("handleCameraSrcSubmit()", id, "editIsViewEnabled:", veVal);
   let camSrc = {
     srcID: id,
+    srcName: editSrcName.value,
     srcType: editSrcType.value,
     isViewEnabled: veVal,
     useAsFill: ufVal,

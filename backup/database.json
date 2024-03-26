@@ -1,182 +1,274 @@
 {
   "__collections__": {
     "Cameras": {
-      "IA-BellePlaine": {
-        "srcID": "IA-BellePlaine",
+      "CA-Placentia": {
+        "srcID": "CA-Placentia",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=jgfL5xNldP8",
+        "useAsFill": false,
         "isViewEnabled": true,
-        "useAsFill": true,
         "timestamps": [
           {
-            "offTS": 1696988117
+            "offTS": 1705906449
           },
           {
-            "primeTS": 1696987343
-          },
-          {
-            "screenTS": 1696988701
+            "screenTS": 1705906438
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 129
+            "screenAge": 11
           },
           {
-            "screenAge": 129
+            "screenCume": 22
           },
           {
-            "primeCume": 838
+            "currentDay": 1
           },
           {
-            "screenCume": 3332
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
+            "viewAssignment": "off"
+          }
+        ],
+        "srcUrl": "https://www.youtube.com/watch?v=BDcLnkcTSR4",
+        "__collections__": {}
+      },
+      "IA-BellePlaine": {
+        "srcID": "IA-BellePlaine",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=leE4RuZ052s",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706226204
           },
           {
-            "currentScreenID": 2
+            "screenTS": 1706225906
           },
           {
-            "screenType": 2
+            "eventAge": 0
+          },
+          {
+            "screenAge": 298
+          },
+          {
+            "screenCume": 4262
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "IA-Bellevue": {
         "srcID": "IA-Bellevue",
-        "srcUrl": "https://www.youtube.com/watch?v=Ptm22hPT6ZI",
         "srcType": "video/youtube",
-        "isViewEnabled": false,
-        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=PUHXeIV26ac",
+        "useAsFill": false,
+        "isViewEnabled": true,
         "timestamps": [
           {
-            "offTS": 1696988117
+            "offTS": 1705906471
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988701
+            "screenTS": 1705906449
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 22
           },
           {
-            "screenAge": 129
+            "screenCume": 33
           },
           {
-            "primeCume": 0
+            "currentDay": 1
           },
           {
-            "screenCume": 2495
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-Calmar": {
+        "srcID": "IA-Calmar",
+        "srcType": "video/youtube",
+        "useAsFill": false,
+        "srcUrl": "https://www.youtube.com/watch?v=JGUnjx4GiRQ",
+        "isViewEnabled": true,
+        "timestamps": [
+          {
+            "offTS": 1706227749
           },
           {
-            "currentScreenID": 1
+            "screenTS": 1706227415
           },
           {
-            "screenType": 2
+            "eventAge": 0
+          },
+          {
+            "screenAge": 334
+          },
+          {
+            "screenCume": 5125
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "IA-Carroll": {
-        "isViewEnabled": false,
         "srcID": "IA-Carroll",
         "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=M-x6RKRTsu8",
+        "isViewEnabled": true,
         "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=5wKQjqIC5c8",
-        "__collections__": {}
-      },
-      "IA-CedarFalls": {
-        "isViewEnabled": false,
-        "srcID": "IA-CedarFalls",
-        "srcUrl": "https://www.youtube.com/watch?v=TU3mpAgY64s",
-        "srcType": "video/youtube",
-        "useAsFill": true,
         "timestamps": [
           {
-            "offTS": 1696988117
+            "offTS": 1705906506
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988830
+            "screenTS": 1705906493
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 13
           },
           {
-            "screenAge": 119
+            "screenCume": 13
           },
           {
-            "primeCume": 0
+            "currentDay": 1
           },
           {
-            "screenCume": 3148
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-CedarFalls": {
+        "srcID": "IA-CedarFalls",
+        "srcUrl": "https://www.youtube.com/watch?v=TU3mpAgY64s",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706227148
           },
           {
-            "currentScreenID": 2
+            "screenTS": 1706226982
           },
           {
-            "screenType": 2
+            "eventAge": 0
+          },
+          {
+            "screenAge": 166
+          },
+          {
+            "screenCume": 1372
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-Clarence": {
+        "srcID": "IA-Clarence",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=qz_MYFPu4L8",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706209649
+          },
+          {
+            "screenTS": 1706209459
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 190
+          },
+          {
+            "screenCume": 1675
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "IA-Clinton": {
         "srcID": "IA-Clinton",
-        "srcType": "video/youtube",
-        "useAsFill": true,
         "srcUrl": "https://www.youtube.com/watch?v=3e-IRzOVbvI",
+        "srcType": "video/youtube",
         "isViewEnabled": true,
+        "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1696988928
+            "offTS": 1706175087
           },
           {
-            "primeTS": 1696988755
-          },
-          {
-            "screenTS": 1696988928
+            "screenTS": 1706174920
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 64
+            "screenAge": 167
           },
           {
-            "screenAge": 21
+            "screenCume": 10720
           },
           {
-            "primeCume": 342
+            "currentDay": 4
           },
           {
-            "screenCume": 2397
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 3
-          },
-          {
-            "screenType": 0
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
@@ -184,85 +276,67 @@
       "IA-Dubuque": {
         "srcID": "IA-Dubuque",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=R_bXYWvHDCg",
-        "useAsFill": true,
         "isViewEnabled": true,
+        "srcUrl": "https://www.youtube.com/watch?v=qmqZef__YmI",
+        "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1696988312
+            "offTS": 1705897378
           },
           {
-            "primeTS": 1696988117
-          },
-          {
-            "screenTS": 1696988830
+            "screenTS": 1705897368
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 54
+            "screenAge": 10
           },
           {
-            "screenAge": 119
+            "screenCume": 6337
           },
           {
-            "primeCume": 163
+            "currentDay": 0
           },
           {
-            "screenCume": 6210
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 1
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "IA-FortMadison": {
-        "isViewEnabled": false,
         "srcID": "IA-FortMadison",
-        "srcUrl": "https://www.youtube.com/watch?v=z7VVmi78sSM",
         "srcType": "video/youtube",
         "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=0V632IsT8o4",
+        "isViewEnabled": true,
         "timestamps": [
           {
-            "offTS": 1696987687
+            "offTS": 1706227200
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988117
+            "screenTS": 1706229021
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 88
           },
           {
-            "screenAge": 183
+            "screenCume": 396
           },
           {
-            "primeCume": 0
+            "currentDay": 5
           },
           {
-            "screenCume": 2306
+            "currentScreenView": "suba"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 3
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "fill"
           }
         ],
         "__collections__": {}
@@ -271,333 +345,408 @@
         "srcID": "IA-GrandMound",
         "srcType": "video/youtube",
         "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=E7fx2DFN4Y8",
+        "isViewEnabled": true,
+        "srcUrl": "https://www.youtube.com/watch?v=6bpI_KlhjBM",
         "timestamps": [
           {
-            "offTS": 1696214314
+            "offTS": 1706226414
           },
           {
-            "primeTS": 1696215470
-          },
-          {
-            "screenTS": 1696215470
+            "screenTS": 1706226059
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 379
+            "screenAge": 355
           },
           {
-            "screenAge": 379
+            "screenCume": 8298
           },
           {
-            "primeCume": 14940
+            "currentDay": 4
           },
           {
-            "screenCume": 15107
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 1
-          },
-          {
-            "currentScreenID": 4
-          },
-          {
-            "screenType": 1
+            "viewAssignment": "off"
           }
         ],
-        "isViewEnabled": false,
         "__collections__": {}
       },
       "IA-Grinnell": {
         "srcID": "IA-Grinnell",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=gFjxKw3vMHo",
         "isViewEnabled": true,
-        "useAsFill": true,
+        "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1696987687
+            "offTS": 1705906848
           },
           {
-            "primeTS": 1696987526
-          },
-          {
-            "screenTS": 1696988117
+            "screenTS": 1705906605
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 243
           },
           {
-            "screenAge": 183
+            "screenCume": 2947
           },
           {
-            "primeCume": 0
+            "currentDay": 1
           },
           {
-            "screenCume": 2013
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 2
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "off"
           }
         ],
+        "srcUrl": "https://www.youtube.com/watch?v=iELYokBniUU",
         "__collections__": {}
       },
       "IA-Guttenberg": {
-        "isViewEnabled": false,
         "srcID": "IA-Guttenberg",
         "srcType": "video/youtube",
-        "useAsFill": true,
         "srcUrl": "https://www.youtube.com/watch?v=ki3pa4ktm8s",
-        "timestamps": [
-          {
-            "offTS": 1696987687
-          },
-          {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988117
-          },
-          {
-            "eventAge": 0
-          },
-          {
-            "primeAge": 0
-          },
-          {
-            "screenAge": 183
-          },
-          {
-            "primeCume": 0
-          },
-          {
-            "screenCume": 2942
-          },
-          {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 1
-          },
-          {
-            "screenType": 2
-          }
-        ],
-        "__collections__": {}
-      },
-      "IA-IowaFalls": {
-        "srcID": "IA-IowaFalls",
-        "srcUrl": "https://www.youtube.com/watch?v=7cQi62x8wLk",
-        "srcType": "video/youtube",
-        "useAsFill": false,
-        "isViewEnabled": true,
-        "__collections__": {}
-      },
-      "IA-Manly": {
         "isViewEnabled": false,
-        "srcID": "IA-Manly",
-        "srcUrl": "https://www.youtube.com/watch?v=OLIiHzZtCDM",
-        "srcType": "video/youtube",
-        "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1694217600
+            "offTS": 1705905345
           },
           {
-            "primeTS": 1694217600
-          },
-          {
-            "screenTS": 1694217600
+            "screenTS": 1705905323
           },
           {
             "eventAge": 0
-          },
-          {
-            "primeAge": 0
-          },
-          {
-            "screenAge": 12189
-          },
-          {
-            "primeCume": 0
-          },
-          {
-            "screenCume": 12189
-          },
-          {
-            "currentDay": 6
-          },
-          {
-            "currentScreenID": 3
-          },
-          {
-            "screenType": 2
-          }
-        ],
-        "__collections__": {}
-      },
-      "IA-MountPleasant-DT": {
-        "isViewEnabled": false,
-        "srcID": "IA-MountPleasant-DT",
-        "srcType": "video/youtube",
-        "useAsFill": true,
-        "srcUrl": "https://www.youtube.com/watch?v=yVy5ei3gW6U",
-        "timestamps": [
-          {
-            "offTS": 1696982400
-          },
-          {
-            "primeTS": 1696988312
-          },
-          {
-            "screenTS": 1696988312
-          },
-          {
-            "eventAge": 0
-          },
-          {
-            "primeAge": 97
-          },
-          {
-            "screenAge": 97
-          },
-          {
-            "primeCume": 486
-          },
-          {
-            "screenCume": 486
-          },
-          {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 4
-          },
-          {
-            "screenType": 2
-          }
-        ],
-        "__collections__": {}
-      },
-      "IA-MountPleasant-W": {
-        "isViewEnabled": false,
-        "srcID": "IA-MountPleasant-W",
-        "srcType": "video/youtube",
-        "useAsFill": true,
-        "srcUrl": "https://www.youtube.com/watch?v=uangKS35Z98",
-        "timestamps": [
-          {
-            "offTS": 1696982400
-          },
-          {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988312
-          },
-          {
-            "eventAge": 0
-          },
-          {
-            "primeAge": 0
           },
           {
             "screenAge": 22
           },
           {
-            "primeCume": 0
+            "screenCume": 55068
           },
           {
-            "screenCume": 33
+            "currentDay": 1
           },
           {
-            "currentDay": 3
+            "currentScreenView": "off"
           },
           {
-            "currentScreenID": 3
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "off"
           }
         ],
+        "useAsFill": false,
         "__collections__": {}
       },
-      "IA-Muscatine": {
-        "isViewEnabled": false,
-        "srcID": "IA-Muscatine",
-        "srcUrl": "https://www.youtube.com/watch?v=gnJcuXuZua8",
+      "IA-IowaFalls": {
+        "srcID": "IA-IowaFalls",
         "srcType": "video/youtube",
-        "useAsFill": true,
+        "isViewEnabled": true,
+        "srcUrl": "https://www.youtube.com/watch?v=sOgJp66LkGs",
+        "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1696987806
+            "offTS": 1706226106
           },
           {
-            "primeTS": 1696987687
-          },
-          {
-            "screenTS": 1696988312
+            "screenTS": 1706225859
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 108
+            "screenAge": 247
           },
           {
-            "screenAge": 182
+            "screenCume": 7272
           },
           {
-            "primeCume": 551
+            "currentDay": 4
           },
           {
-            "screenCume": 2199
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-Manly": {
+        "srcID": "IA-Manly",
+        "srcUrl": "https://www.youtube.com/watch?v=OLIiHzZtCDM",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706228604
           },
           {
-            "currentScreenID": 2
+            "screenTS": 1706228371
           },
           {
-            "screenType": 2
+            "eventAge": 0
+          },
+          {
+            "screenAge": 233
+          },
+          {
+            "screenCume": 2671
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-MountPleasant-DT": {
+        "srcID": "IA-MountPleasant-DT",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "srcUrl": "https://www.youtube.com/watch?v=MNu8WPMgEIc",
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706006309
+          },
+          {
+            "screenTS": 1706005957
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 352
+          },
+          {
+            "screenCume": 26693
+          },
+          {
+            "currentDay": 2
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-MountPleasant-W": {
+        "srcID": "IA-MountPleasant-W",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "srcUrl": "https://www.youtube.com/watch?v=OgzExfGNv8s",
+        "timestamps": [
+          {
+            "offTS": 1706224858
+          },
+          {
+            "screenTS": 1706224637
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 221
+          },
+          {
+            "screenCume": 7042
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-MountVernon": {
+        "srcID": "IA-MountVernon",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=tZyQgxl_cgw",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706226516
+          },
+          {
+            "screenTS": 1706226494
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 22
+          },
+          {
+            "screenCume": 4113
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IA-Muscatine": {
+        "srcID": "IA-Muscatine",
+        "srcUrl": "https://www.youtube.com/watch?v=gnJcuXuZua8",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706189487
+          },
+          {
+            "screenTS": 1706189288
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 199
+          },
+          {
+            "screenCume": 2020
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "IA-Ottumwa-BNSF": {
-        "isViewEnabled": false,
         "srcID": "IA-Ottumwa-BNSF",
         "srcType": "video/youtube",
         "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=soTfD5YI44A",
+        "srcUrl": "https://youtube.com/live/iVWH4P1CGfk",
+        "isViewEnabled": true,
+        "timestamps": [
+          {
+            "offTS": 1705876926
+          },
+          {
+            "screenTS": 1705876694
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 232
+          },
+          {
+            "screenCume": 243
+          },
+          {
+            "currentDay": 0
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
         "__collections__": {}
       },
       "IA-Ottumwa-CP": {
-        "isViewEnabled": false,
         "srcID": "IA-Ottumwa-CP",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=8CECHMa9ij4",
+        "srcUrl": "https://www.youtube.com/watch?v=EYSalhvPdFo",
+        "isViewEnabled": true,
         "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706228360
+          },
+          {
+            "screenTS": 1706227993
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 367
+          },
+          {
+            "screenCume": 6190
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
         "__collections__": {}
       },
       "IA-Washington": {
-        "isViewEnabled": false,
         "srcID": "IA-Washington",
         "srcUrl": "https://www.youtube.com/watch?v=Ps18m-X-mow",
         "srcType": "video/youtube",
+        "isViewEnabled": true,
         "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706213514
+          },
+          {
+            "screenTS": 1706213303
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 211
+          },
+          {
+            "screenCume": 4285
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
         "__collections__": {}
       },
       "IA-WestLiberty": {
@@ -608,37 +757,62 @@
         "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1696953301
+            "offTS": 1706206302
           },
           {
-            "primeTS": 1696981309
-          },
-          {
-            "screenTS": 1696981309
+            "screenTS": 1706206123
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 54
+            "screenAge": 179
           },
           {
-            "screenAge": 54
+            "screenCume": 9588
           },
           {
-            "primeCume": 30938
+            "currentDay": 4
           },
           {
-            "screenCume": 3571
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 2
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IL-Chicago-CTA": {
+        "isViewEnabled": false,
+        "srcID": "IL-Chicago-CTA",
+        "srcType": "video/youtube",
+        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=gC5Y5c3luqQ",
+        "timestamps": [
+          {
+            "offTS": 1706229032
           },
           {
-            "currentScreenID": 4
+            "screenTS": 1706229021
           },
           {
-            "screenType": 0
+            "eventAge": 0
+          },
+          {
+            "screenAge": 11
+          },
+          {
+            "screenCume": 22
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
@@ -647,65 +821,168 @@
         "isViewEnabled": false,
         "srcID": "IL-Chicago-E",
         "srcType": "video/youtube",
-        "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=YxwPaNWKc1c",
+        "srcUrl": "https://www.youtube.com/watch?v=Wfgul0tzOWg",
+        "useAsFill": true,
+        "timestamps": [
+          {
+            "offTS": 1706227200
+          },
+          {
+            "screenTS": 1706229022
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 87
+          },
+          {
+            "screenCume": 388
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "subc"
+          },
+          {
+            "viewAssignment": "fill"
+          }
+        ],
         "__collections__": {}
       },
       "IL-Chicago-N": {
         "isViewEnabled": false,
         "srcID": "IL-Chicago-N",
         "srcType": "video/youtube",
-        "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=exabKvv7MYo",
+        "srcUrl": "https://www.youtube.com/watch?v=Y7hN3oveIo0",
+        "useAsFill": true,
+        "timestamps": [
+          {
+            "offTS": 1706228772
+          },
+          {
+            "screenTS": 1706228604
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 168
+          },
+          {
+            "screenCume": 1908
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
         "__collections__": {}
       },
       "IL-Chicago-S": {
         "isViewEnabled": false,
         "srcID": "IL-Chicago-S",
         "srcType": "video/youtube",
-        "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=4RDGptx-wXg",
-        "__collections__": {}
-      },
-      "IL-EastDubuque": {
-        "isViewEnabled": true,
-        "srcID": "IL-EastDubuque",
-        "srcUrl": "https://www.youtube.com/watch?v=lHAPCFe73jM",
-        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=UdRZ1tBP0zY",
         "useAsFill": true,
         "timestamps": [
           {
-            "offTS": 1696987922
+            "offTS": 1706228794
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988312
+            "screenTS": 1706228604
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 190
           },
           {
-            "screenAge": 97
+            "screenCume": 1911
           },
           {
-            "primeCume": 0
+            "currentDay": 5
           },
           {
-            "screenCume": 551
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IL-EastDubuque": {
+        "isViewEnabled": true,
+        "srcID": "IL-EastDubuque",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=BP0syXojZL8",
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706227200
           },
           {
-            "currentScreenID": 1
+            "screenTS": 1706229021
           },
           {
-            "screenType": 2
+            "eventAge": 0
+          },
+          {
+            "screenAge": 88
+          },
+          {
+            "screenCume": 396
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "prim"
+          },
+          {
+            "viewAssignment": "motion"
+          }
+        ],
+        "__collections__": {}
+      },
+      "IL-Flossmoor": {
+        "srcID": "IL-Flossmoor",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=qCl-WYvdxAA",
+        "timestamps": [
+          {
+            "offTS": 1706229077
+          },
+          {
+            "screenTS": 1706229032
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 45
+          },
+          {
+            "screenCume": 3797
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
@@ -713,85 +990,67 @@
       "IL-Galesburg": {
         "srcID": "IL-Galesburg",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=jFBSPlsIPeE",
         "isViewEnabled": true,
         "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=Kedmg3_FIuc",
         "timestamps": [
           {
-            "offTS": 1696987922
+            "offTS": 1706228783
           },
           {
-            "primeTS": 1696987592
-          },
-          {
-            "screenTS": 1696988409
+            "screenTS": 1706228772
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 11
           },
           {
-            "screenAge": 140
+            "screenCume": 5723
           },
           {
-            "primeCume": 0
+            "currentDay": 5
           },
           {
-            "screenCume": 1680
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 1
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "IL-PortByron": {
-        "isViewEnabled": false,
         "srcID": "IL-PortByron",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=ARVzJkBIAx8",
+        "isViewEnabled": true,
         "useAsFill": false,
+        "srcUrl": "https://www.youtube.com/watch?v=VQKbVxkimsE",
         "timestamps": [
           {
-            "offTS": 1694230261
+            "offTS": 1706070262
           },
           {
-            "primeTS": 1694217600
-          },
-          {
-            "screenTS": 1694230261
+            "screenTS": 1706070197
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 65
           },
           {
-            "screenAge": 422
+            "screenCume": 290
           },
           {
-            "primeCume": 0
+            "currentDay": 3
           },
           {
-            "screenCume": 3782
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 6
-          },
-          {
-            "currentScreenID": 3
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
@@ -800,143 +1059,168 @@
         "srcID": "IL-Savanna",
         "srcUrl": "https://www.youtube.com/watch?v=wR6pk7KMiG0",
         "srcType": "video/youtube",
-        "useAsFill": true,
         "isViewEnabled": true,
+        "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1696988917
+            "offTS": 1706227200
           },
           {
-            "primeTS": 1696988917
-          },
-          {
-            "screenTS": 1696988917
+            "screenTS": 1706229077
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 85
+            "screenAge": 32
           },
           {
-            "screenAge": 85
+            "screenCume": 63
           },
           {
-            "primeCume": 888
+            "currentDay": 5
           },
           {
-            "screenCume": 884
+            "currentScreenView": "subb"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 4
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "motion"
           }
         ],
         "__collections__": {}
       },
       "IN-Griffith": {
-        "isViewEnabled": false,
         "srcID": "IN-Griffith",
-        "srcUrl": "https://www.youtube.com/watch?v=YMGLorDhw0w",
         "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=t_Meqtgm-po",
+        "isViewEnabled": true,
         "useAsFill": true,
         "timestamps": [
           {
-            "offTS": 1696985242
+            "offTS": 1706229021
           },
           {
-            "primeTS": 1696979459
-          },
-          {
-            "screenTS": 1696985876
+            "screenTS": 1706227200
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 153
+            "screenAge": 1821
           },
           {
-            "screenAge": 55
+            "screenCume": 3642
           },
           {
-            "primeCume": 0
+            "currentDay": 5
           },
           {
-            "screenCume": 2182
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 2
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "MI-Owosso": {
-        "isViewEnabled": false,
         "srcID": "MI-Owosso",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=WHFMiAUKNVI",
         "useAsFill": false,
-        "__collections__": {}
-      },
-      "MI-ThreeRivers": {
-        "isViewEnabled": false,
-        "srcID": "MI-ThreeRivers",
-        "srcType": "video/youtube",
-        "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=-gy0HBHFkzA",
-        "__collections__": {}
-      },
-      "MN-Fridley": {
-        "srcID": "MN-Fridley",
-        "srcType": "video/youtube",
-        "useAsFill": true,
-        "srcUrl": "https://www.youtube.com/watch?v=eKgTWMldG1w",
+        "srcUrl": "https://www.youtube.com/watch?v=KWx1JvXPtX4",
         "isViewEnabled": true,
         "timestamps": [
           {
-            "offTS": 1696987343
+            "offTS": 1706152647
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988549
+            "screenTS": 1706152491
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 156
           },
           {
-            "screenAge": 43
+            "screenCume": 1232
           },
           {
-            "primeCume": 0
+            "currentDay": 4
           },
           {
-            "screenCume": 106
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "MI-ThreeRivers": {
+        "srcID": "MI-ThreeRivers",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=-gy0HBHFkzA",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706092719
+          },
+          {
+            "screenTS": 1706092368
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 351
+          },
+          {
+            "screenCume": 5935
           },
           {
             "currentDay": 3
           },
           {
-            "currentScreenID": 3
+            "currentScreenView": "off"
           },
           {
-            "screenType": 2
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "MN-Fridley": {
+        "srcID": "MN-Fridley",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=eKgTWMldG1w",
+        "useAsFill": true,
+        "isViewEnabled": true,
+        "timestamps": [
+          {
+            "offTS": 1706229021
+          },
+          {
+            "screenTS": 1706227200
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 1821
+          },
+          {
+            "screenCume": 3642
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
@@ -944,85 +1228,101 @@
       "MN-Munger": {
         "srcID": "MN-Munger",
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=CWhPJ7Erteg",
+        "srcUrl": "https://www.youtube.com/watch?v=wkzgLmpqbGA",
+        "useAsFill": false,
         "isViewEnabled": true,
-        "useAsFill": true,
         "timestamps": [
           {
-            "offTS": 1696982400
+            "offTS": 1706035326
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988549
+            "screenTS": 1706035202
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 124
           },
           {
-            "screenAge": 140
+            "screenCume": 661
           },
           {
-            "primeCume": 0
+            "currentDay": 2
           },
           {
-            "screenCume": 976
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
-          },
-          {
-            "currentScreenID": 2
-          },
-          {
-            "screenType": 2
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "MO-Sedalia": {
         "srcID": "MO-Sedalia",
-        "srcUrl": "https://www.youtube.com/watch?v=h62nn0ybGOs",
         "srcType": "video/youtube",
         "isViewEnabled": true,
-        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=fynlBBDHA5A",
+        "useAsFill": false,
         "timestamps": [
           {
-            "offTS": 1696982400
+            "offTS": 1706227415
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988549
+            "screenTS": 1706227148
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 267
           },
           {
-            "screenAge": 140
+            "screenCume": 3333
           },
           {
-            "primeCume": 0
+            "currentDay": 5
           },
           {
-            "screenCume": 979
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "MO-Springfield": {
+        "srcID": "MO-Springfield",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "srcUrl": "https://www.youtube.com/watch?v=GipcChRMo5s",
+        "useAsFill": true,
+        "timestamps": [
+          {
+            "offTS": 1706228281
           },
           {
-            "currentScreenID": 1
+            "screenTS": 1706228105
           },
           {
-            "screenType": 2
+            "eventAge": 0
+          },
+          {
+            "screenAge": 176
+          },
+          {
+            "screenCume": 1671
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
@@ -1035,71 +1335,174 @@
         "useAsFill": false,
         "__collections__": {}
       },
-      "WI-Neenah": {
-        "isViewEnabled": false,
-        "srcID": "WI-Neenah",
+      "WI-Columbus": {
+        "srcID": "WI-Columbus",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=HUK3Rd06i3E",
+        "isViewEnabled": true,
         "useAsFill": false,
-        "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=gc9iaJymxRc",
-        "__collections__": {}
-      },
-      "WI-StevensPoint": {
-        "isViewEnabled": false,
-        "srcID": "WI-StevensPoint",
-        "srcUrl": "https://www.youtube.com/watch?v=BKDtznT30dQ",
-        "srcType": "video/youtube",
-        "useAsFill": true,
         "timestamps": [
           {
-            "offTS": 1696982400
+            "offTS": 1706226781
           },
           {
-            "primeTS": 1696982400
-          },
-          {
-            "screenTS": 1696988701
+            "screenTS": 1706226727
           },
           {
             "eventAge": 0
           },
           {
-            "primeAge": 0
+            "screenAge": 54
           },
           {
-            "screenAge": 65
+            "screenCume": 6560
           },
           {
-            "primeCume": 0
+            "currentDay": 4
           },
           {
-            "screenCume": 226
+            "currentScreenView": "off"
           },
           {
-            "currentDay": 3
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "WI-Neenah": {
+        "srcID": "WI-Neenah",
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=viuOvBoyETE&pp=ygUObmVlbmFoIHJhaWxjYW0%3D",
+        "useAsFill": true,
+        "isViewEnabled": true,
+        "timestamps": [
+          {
+            "offTS": 1706228426
           },
           {
-            "currentScreenID": 3
+            "screenTS": 1706228149
           },
           {
-            "screenType": 2
+            "eventAge": 0
+          },
+          {
+            "screenAge": 277
+          },
+          {
+            "screenCume": 5337
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
+        "__collections__": {}
+      },
+      "WI-StevensPoint": {
+        "srcID": "WI-StevensPoint",
+        "srcUrl": "https://www.youtube.com/watch?v=BKDtznT30dQ",
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706216392
+          },
+          {
+            "screenTS": 1706216202
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 190
+          },
+          {
+            "screenCume": 56559
+          },
+          {
+            "currentDay": 4
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
           }
         ],
         "__collections__": {}
       },
       "WI-Trempealeau": {
-        "isViewEnabled": false,
         "srcID": "WI-Trempealeau",
-        "srcUrl": "https://www.youtube.com/watch?v=HNPrdedvGvE",
         "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=I7ul_ptIbWY",
+        "isViewEnabled": true,
         "useAsFill": false,
+        "timestamps": [
+          {
+            "offTS": 1706228772
+          },
+          {
+            "screenTS": 1706228404
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 368
+          },
+          {
+            "screenCume": 11519
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
         "__collections__": {}
       },
       "WI-Waupaca": {
-        "isViewEnabled": false,
         "srcID": "WI-Waupaca",
         "srcUrl": "https://www.youtube.com/watch?v=6HhEkZ7P3ro",
         "srcType": "video/youtube",
-        "useAsFill": false,
+        "useAsFill": true,
+        "isViewEnabled": true,
+        "timestamps": [
+          {
+            "offTS": 1706229021
+          },
+          {
+            "screenTS": 1706227200
+          },
+          {
+            "eventAge": 0
+          },
+          {
+            "screenAge": 1821
+          },
+          {
+            "screenCume": 3642
+          },
+          {
+            "currentDay": 5
+          },
+          {
+            "currentScreenView": "off"
+          },
+          {
+            "viewAssignment": "off"
+          }
+        ],
         "__collections__": {}
       }
     },
@@ -1112,29 +1515,29 @@
         ],
         "channelIsEnabled": true,
         "updateUrl": "http://199.188.65.156/updateMotionStatus.php",
+        "areCameraUpdates": false,
         "liveCams": {
           "prim": {
+            "srcID": "IL-EastDubuque",
+            "srcUrl": "https://www.youtube.com/watch?v=BP0syXojZL8",
+            "srcType": "video/youtube"
+          },
+          "subb": {
             "srcID": "IL-Savanna",
             "srcUrl": "https://www.youtube.com/watch?v=wR6pk7KMiG0",
             "srcType": "video/youtube"
           },
-          "subb": {
-            "srcID": "IA-CedarFalls",
-            "srcUrl": "https://www.youtube.com/watch?v=TU3mpAgY64s",
-            "srcType": "video/youtube"
-          },
           "subc": {
-            "srcID": "IA-Dubuque",
-            "srcUrl": "https://www.youtube.com/watch?v=R_bXYWvHDCg",
+            "srcID": "IL-Chicago-E",
+            "srcUrl": "https://www.youtube.com/watch?v=Wfgul0tzOWg",
             "srcType": "video/youtube"
           },
           "suba": {
-            "srcID": "IA-Clinton",
-            "srcUrl": "https://www.youtube.com/watch?v=3e-IRzOVbvI",
+            "srcID": "IA-FortMadison",
+            "srcUrl": "https://www.youtube.com/watch?v=0V632IsT8o4",
             "srcType": "video/youtube"
           }
         },
-        "areCameraUpdates": false,
         "adminUsers": [
           "ma2vAm8KvrgKqqOjyuzQeFRtrkf1",
           "KVvMtQG6lNMi0ECmbe9ytbNVqjc2"
@@ -1142,62 +1545,125 @@
         "__collections__": {}
       },
       "Timers": {
-        "refreshTimes": [
-          {
-            "sec": 0,
-            "min": 30
-          }
-        ],
-        "idTimes": [
-          {
-            "sec": 45,
-            "min": 59
-          }
-        ],
+        "idTimes": [],
+        "refreshTimes": [],
         "__collections__": {}
       }
     },
     "Motion": {
-      "84:9a:40:ab:9c:4f": {
-        "isViewEnabled": true,
-        "macAddress": "84:9a:40:ab:9c:4f",
-        "newEventCount": 0,
-        "srcID": "IL-Galesburg",
-        "srcUrl": "https://www.youtube.com/watch?v=jFBSPlsIPeE",
-        "hasRemoteStopControl": true,
-        "srcType": "video/youtube",
-        "useAsFill": true,
-        "hasMotion": false,
-        "eventTS": 1696987662000,
-        "when": "2023-10-10T20:27:42-05:00",
-        "__collections__": {}
-      },
       "IA-BellePlaine": {
         "macAddress": "IA-BellePlaine",
         "newEventCount": 0,
         "srcID": "IA-BellePlaine",
-        "srcUrl": "https://www.youtube.com/watch?v=jgfL5xNldP8",
         "srcType": "video/youtube",
         "hasRemoteStopControl": true,
+        "srcUrl": "https://www.youtube.com/watch?v=leE4RuZ052s",
+        "srcName": "Belle Plaine, Iowa",
         "isViewEnabled": true,
-        "useAsFill": true,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-BellePlaine.jpg",
+        "heading": "west",
         "hasMotion": false,
-        "eventTS": 1696983811000,
-        "when": "2023-10-10T19:23:31-05:00",
+        "eventTS": 1706226012000,
+        "when": "2024-01-25T17:40:12-06:00",
+        "__collections__": {}
+      },
+      "IA-Bellevue": {
+        "macAddress": "IA-Bellevue",
+        "hasMotion": false,
+        "srcID": "IA-Bellevue",
+        "newEventCount": 0,
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "srcUrl": "https://www.youtube.com/watch?v=PUHXeIV26ac",
+        "srcName": "Bellevue, Iowa",
+        "eventTS": 1702526599000,
+        "when": "2023-12-13T22:03:19-06:00",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Bellevue.jpg",
+        "__collections__": {}
+      },
+      "IA-Calmar": {
+        "macAddress": "IA-Calmar",
+        "newEventCount": 0,
+        "srcID": "IA-Calmar",
+        "srcType": "video/youtube",
+        "hasRemoteStopControl": true,
+        "srcName": "Calmar, Iowa",
+        "useAsFill": false,
+        "srcUrl": "https://www.youtube.com/watch?v=JGUnjx4GiRQ",
+        "isViewEnabled": true,
+        "thumbnailUrl": "images/IA-Calmar.jpg",
+        "hasMotion": false,
+        "eventTS": 1706230041000,
+        "when": "2024-01-25T18:47:21-06:00",
+        "__collections__": {}
+      },
+      "IA-Carroll": {
+        "macAddress": "IA-Carroll",
+        "newEventCount": 0,
+        "srcID": "IA-Carroll",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "srcName": "Carroll, Iowa",
+        "srcUrl": "https://www.youtube.com/watch?v=M-x6RKRTsu8",
+        "isViewEnabled": true,
+        "heading": "east",
+        "hasMotion": false,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Carroll.jpg",
+        "eventTS": 1706232775000,
+        "when": "2024-01-25T19:32:55-06:00",
+        "__collections__": {}
+      },
+      "IA-CedarFalls": {
+        "macAddress": "IA-CedarFalls",
+        "newEventCount": 0,
+        "srcID": "IA-CedarFalls",
+        "srcUrl": "https://www.youtube.com/watch?v=TU3mpAgY64s",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "srcName": "Cedar Falls, Iowa",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-CedarFalls.jpg",
+        "hasMotion": false,
+        "eventTS": 1706231849000,
+        "when": "2024-01-25T19:17:29-06:00",
+        "__collections__": {}
+      },
+      "IA-Clarence": {
+        "macAddress": "IA-Clarence",
+        "newEventCount": 0,
+        "srcID": "IA-Clarence",
+        "srcUrl": "https://www.youtube.com/watch?v=qz_MYFPu4L8",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "srcName": "Clarence, Iowa",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Clarence.jpg",
+        "heading": "east",
+        "hasMotion": false,
+        "eventTS": 1706231798000,
+        "when": "2024-01-25T19:16:38-06:00",
         "__collections__": {}
       },
       "IA-Clinton": {
         "macAddress": "IA-Clinton",
         "srcID": "IA-Clinton",
         "newEventCount": 0,
-        "useAsFill": true,
         "srcUrl": "https://www.youtube.com/watch?v=3e-IRzOVbvI",
-        "hasRemoteStopControl": true,
         "srcType": "video/youtube",
         "isViewEnabled": true,
+        "srcName": "Clinton, Iowa",
+        "hasRemoteStopControl": true,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Clinton.jpg",
         "hasMotion": false,
-        "eventTS": 1696988941000,
-        "when": "2023-10-10T20:49:01-05:00",
+        "eventTS": 1706197161000,
+        "when": "2024-01-25T09:39:21-06:00",
         "__collections__": {}
       },
       "IA-Dubuque": {
@@ -1206,12 +1672,30 @@
         "srcID": "IA-Dubuque",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=R_bXYWvHDCg",
-        "useAsFill": true,
         "isViewEnabled": true,
+        "srcName": "Dubuque, Iowa",
         "hasMotion": false,
-        "eventTS": 1696987719000,
-        "when": "2023-10-10T20:28:39-05:00",
+        "eventTS": 1704277495000,
+        "when": "2024-01-03T04:24:55-06:00",
+        "srcUrl": "https://www.youtube.com/watch?v=qmqZef__YmI",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Dubuque.jpg",
+        "__collections__": {}
+      },
+      "IA-FortMadison": {
+        "macAddress": "IA-FortMadison",
+        "newEventCount": 0,
+        "srcID": "IA-FortMadison",
+        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=0V632IsT8o4",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "srcName": "Fort Madison, Iowa",
+        "isViewEnabled": true,
+        "thumbnailUrl": "images/IA-FortMadison.jpg",
+        "hasMotion": false,
+        "eventTS": 1706224176000,
+        "when": "2024-01-25T17:09:36-06:00",
         "__collections__": {}
       },
       "IA-GrandMound": {
@@ -1221,53 +1705,190 @@
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
         "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=E7fx2DFN4Y8",
+        "isViewEnabled": true,
+        "srcName": "Grand Mound, Iowa",
+        "thumbnailUrl": "images/IA-GrandMound.jpg",
+        "srcUrl": "https://www.youtube.com/watch?v=6bpI_KlhjBM",
+        "heading": "westphp",
         "hasMotion": false,
-        "eventTS": 1696413383000,
-        "when": "2023-10-04T04:56:23-05:00",
-        "isViewEnabled": false,
+        "eventTS": 1706231844000,
+        "when": "2024-01-25T19:17:24-06:00",
         "__collections__": {}
       },
       "IA-Grinnell": {
         "macAddress": "IA-Grinnell",
         "newEventCount": 0,
         "srcID": "IA-Grinnell",
-        "srcUrl": "https://www.youtube.com/watch?v=gFjxKw3vMHo",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
+        "srcName": "Grinnell, Iowa",
         "isViewEnabled": true,
-        "useAsFill": true,
+        "useAsFill": false,
+        "heading": "west",
         "hasMotion": false,
-        "eventTS": 1696987532000,
-        "when": "2023-10-10T20:25:32-05:00",
+        "eventTS": 1705053912000,
+        "when": "2024-01-12T04:05:12-06:00",
+        "thumbnailUrl": "images/IA-Grinnell.jpg",
+        "srcUrl": "https://www.youtube.com/watch?v=iELYokBniUU",
+        "__collections__": {}
+      },
+      "IA-Guttenberg": {
+        "macAddress": "IA-Guttenberg",
+        "hasMotion": false,
+        "newEventCount": 0,
+        "srcID": "IA-Guttenberg",
+        "srcUrl": "https://www.youtube.com/watch?v=ki3pa4ktm8s",
+        "when": "new",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "srcName": "Guttenberg, Iowa",
+        "eventTS": 1704938803000,
+        "isViewEnabled": false,
+        "thumbnailUrl": "images/IA-Guttenberg.jpg",
+        "useAsFill": false,
         "__collections__": {}
       },
       "IA-IowaFalls": {
         "macAddress": "IA-IowaFalls",
         "newEventCount": 0,
         "srcID": "IA-IowaFalls",
-        "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=7cQi62x8wLk",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
-        "hasMotion": false,
-        "eventTS": 1696759475000,
-        "when": "2023-10-08T05:04:35-05:00",
         "isViewEnabled": true,
+        "srcUrl": "https://www.youtube.com/watch?v=sOgJp66LkGs",
+        "srcName": "Iowa Falls, Iowa",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-IowaFalls.jpg",
+        "hasMotion": false,
+        "eventTS": 1706225870000,
+        "when": "2024-01-25T17:37:50-06:00",
+        "__collections__": {}
+      },
+      "IA-Manly": {
+        "macAddress": "IA-Manly",
+        "newEventCount": 0,
+        "srcID": "IA-Manly",
+        "srcUrl": "https://www.youtube.com/watch?v=OLIiHzZtCDM",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "srcName": "Manly, Iowa",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Manly.jpg",
+        "hasMotion": false,
+        "eventTS": 1706231730000,
+        "when": "2024-01-25T19:15:30-06:00",
         "__collections__": {}
       },
       "IA-MountPleasant-DT": {
-        "isViewEnabled": false,
         "macAddress": "IA-MountPleasant-DT",
-        "hasMotion": false,
         "newEventCount": 0,
         "srcID": "IA-MountPleasant-DT",
-        "eventTS": 0,
-        "when": "last",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
-        "useAsFill": true,
-        "srcUrl": "https://www.youtube.com/watch?v=yVy5ei3gW6U",
+        "isViewEnabled": true,
+        "srcName": "Mount Pleasant, Iowa (Downtown)",
+        "srcUrl": "https://www.youtube.com/watch?v=MNu8WPMgEIc",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-MountPleasant-DT.jpg",
+        "hasMotion": false,
+        "eventTS": 1706006169000,
+        "when": "2024-01-23T04:36:09-06:00",
+        "__collections__": {}
+      },
+      "IA-MountPleasant-W": {
+        "macAddress": "IA-MountPleasant-W",
+        "newEventCount": 0,
+        "srcID": "IA-MountPleasant-W",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "srcName": "Mount Pleasant, Iowa (West)",
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-MountPleasant-W.jpg",
+        "srcUrl": "https://www.youtube.com/watch?v=OgzExfGNv8s",
+        "hasMotion": false,
+        "eventTS": 1706230656000,
+        "when": "2024-01-25T18:57:36-06:00",
+        "__collections__": {}
+      },
+      "IA-MountVernon": {
+        "macAddress": "IA-MountVernon",
+        "newEventCount": 0,
+        "srcID": "IA-MountVernon",
+        "srcUrl": "https://www.youtube.com/watch?v=tZyQgxl_cgw",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "srcName": "Mount Vernon, Iowa",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-MountVernon.jpg",
+        "heading": "west",
+        "hasMotion": false,
+        "eventTS": 1706232841000,
+        "when": "2024-01-25T19:34:01-06:00",
+        "__collections__": {}
+      },
+      "IA-Muscatine": {
+        "srcName": "Muscatine, Iowa",
+        "srcID": "IA-Muscatine",
+        "srcUrl": "https://www.youtube.com/watch?v=gnJcuXuZua8",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "newEventCount": 0,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Muscatine.jpg",
+        "hasMotion": false,
+        "eventTS": 1706189359000,
+        "when": "2024-01-25T07:29:19-06:00",
+        "__collections__": {}
+      },
+      "IA-Ottumwa-BNSF": {
+        "srcName": "Ottumwa, Iowa (BNSF)",
+        "srcType": "video/youtube",
+        "macAddress": "IA-Ottumwa-BNSF",
+        "newEventCount": 0,
+        "srcID": "IA-Ottumwa-BNSF",
+        "hasRemoteStopControl": true,
+        "hasMotion": false,
+        "eventTS": 1703670495000,
+        "when": "2023-12-27T03:48:15-06:00",
+        "useAsFill": false,
+        "isViewEnabled": true,
+        "srcUrl": "https://youtube.com/live/iVWH4P1CGfk",
+        "thumbnailUrl": "images/IA-Ottumwa-BNSF.jpg",
+        "__collections__": {}
+      },
+      "IA-Ottumwa-CP": {
+        "isViewEnabled": true,
+        "srcName": "Ottumwa, Iowa (CP)",
+        "srcType": "video/youtube",
+        "macAddress": "IA-Ottumwa-CP",
+        "newEventCount": 0,
+        "srcID": "IA-Ottumwa-CP",
+        "srcUrl": "https://www.youtube.com/watch?v=EYSalhvPdFo",
+        "hasRemoteStopControl": true,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Ottumwa-CP.jpg",
+        "hasMotion": false,
+        "eventTS": 1706228359000,
+        "when": "2024-01-25T18:19:19-06:00",
+        "__collections__": {}
+      },
+      "IA-Washington": {
+        "isViewEnabled": true,
+        "srcName": "Washington, Iowa",
+        "srcID": "IA-Washington",
+        "srcUrl": "https://www.youtube.com/watch?v=Ps18m-X-mow",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "useAsFill": false,
+        "thumbnailUrl": "images/IA-Washington.jpg",
+        "hasMotion": false,
+        "eventTS": 1706213384000,
+        "when": "2024-01-25T14:09:44-06:00",
         "__collections__": {}
       },
       "IA-WestLiberty": {
@@ -1279,51 +1900,75 @@
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
         "isViewEnabled": true,
+        "srcName": "West Liberty, Iowa",
+        "thumbnailUrl": "images/IA-WestLiberty.jpg",
         "hasMotion": false,
-        "eventTS": 1696981358000,
-        "when": "2023-10-10T18:42:38-05:00",
+        "eventTS": 1706229363000,
+        "when": "2024-01-25T18:36:03-06:00",
         "__collections__": {}
       },
       "IL-EastDubuque": {
         "macAddress": "IL-EastDubuque",
         "newEventCount": 0,
         "srcID": "IL-EastDubuque",
-        "srcUrl": "https://www.youtube.com/watch?v=lHAPCFe73jM",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
         "isViewEnabled": true,
-        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=BP0syXojZL8",
+        "srcName": "East Dubuque, Illinois",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IL-EastDubuque.jpg",
+        "heading": "east",
         "hasMotion": false,
-        "eventTS": 1696988954000,
-        "when": "2023-10-10T20:49:14-05:00",
+        "eventTS": 1706232527000,
+        "when": "2024-01-25T19:28:47-06:00",
+        "__collections__": {}
+      },
+      "IL-Flossmoor": {
+        "isViewEnabled": true,
+        "srcName": "Flossmoor, Illinois",
+        "srcID": "IL-Flossmoor",
+        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=qCl-WYvdxAA",
+        "hasRemoteStopControl": true,
+        "newEventCount": 0,
+        "srcType": "video/youtube",
+        "thumbnailUrl": "images/IL-Flossmoor.jpg",
+        "hasMotion": false,
+        "eventTS": 1706232605000,
+        "when": "2024-01-25T19:30:05-06:00",
         "__collections__": {}
       },
       "IL-Galesburg": {
         "isViewEnabled": true,
-        "macAddress": "84:9a:40:ab:9c:4f",
         "newEventCount": 0,
         "srcID": "IL-Galesburg",
         "useAsFill": true,
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
-        "srcUrl": "https://www.youtube.com/watch?v=jFBSPlsIPeE",
+        "macAddress": "IL-Galesburg",
+        "srcName": "Galesburg, Illinois",
+        "srcUrl": "https://www.youtube.com/watch?v=Kedmg3_FIuc",
+        "thumbnailUrl": "images/IL-Galesburg.jpg",
         "hasMotion": false,
-        "eventTS": 1696987662000,
-        "when": "2023-10-10T20:27:42-05:00",
+        "eventTS": 1706232380000,
+        "when": "2024-01-25T19:26:20-06:00",
         "__collections__": {}
       },
       "IL-PortByron": {
-        "isViewEnabled": false,
         "macAddress": "IL-PortByron",
-        "hasMotion": false,
         "newEventCount": 0,
         "srcID": "IL-PortByron",
-        "useAsFill": false,
-        "srcUrl": "https://www.youtube.com/watch?v=ARVzJkBIAx8",
-        "eventTS": 0,
-        "when": "last",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
+        "hasMotion": false,
+        "srcName": "Port Byron, Illinois",
+        "isViewEnabled": true,
+        "eventTS": 1704783712000,
+        "when": "2024-01-09T01:01:52-06:00",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IL-PortByron.jpg",
+        "srcUrl": "https://www.youtube.com/watch?v=VQKbVxkimsE",
         "__collections__": {}
       },
       "IL-Savanna": {
@@ -1333,11 +1978,58 @@
         "srcUrl": "https://www.youtube.com/watch?v=wR6pk7KMiG0",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
-        "useAsFill": true,
         "isViewEnabled": true,
+        "srcName": "Savanna, Illinois",
+        "useAsFill": false,
+        "thumbnailUrl": "images/IL-Savanna.jpg",
         "hasMotion": false,
-        "eventTS": 1696988925000,
-        "when": "2023-10-10T20:48:45-05:00",
+        "eventTS": 1706232289000,
+        "when": "2024-01-25T19:24:49-06:00",
+        "__collections__": {}
+      },
+      "IN-Griffith": {
+        "srcName": "Griffith, Indianna",
+        "srcID": "IN-Griffith",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "srcUrl": "https://www.youtube.com/watch?v=t_Meqtgm-po",
+        "isViewEnabled": true,
+        "useAsFill": true,
+        "thumbnailUrl": "images/IN-Griffith.jpg",
+        "hasMotion": false,
+        "eventTS": 1706219115000,
+        "when": "2024-01-25T15:45:15-06:00",
+        "__collections__": {}
+      },
+      "MI-Owosso": {
+        "isViewEnabled": true,
+        "srcName": "Owosso, Michigan",
+        "srcID": "MI-Owosso",
+        "srcUrl": "https://www.youtube.com/watch?v=KWx1JvXPtX4",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "useAsFill": false,
+        "thumbnailUrl": "images/MI-Owosso.jpg",
+        "hasMotion": false,
+        "eventTS": 1706152511000,
+        "when": "2024-01-24T21:15:11-06:00",
+        "__collections__": {}
+      },
+      "MI-ThreeRivers": {
+        "isViewEnabled": true,
+        "srcName": "Three Rivers, Michigan",
+        "srcID": "MI-ThreeRivers",
+        "srcUrl": "https://www.youtube.com/watch?v=-gy0HBHFkzA",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "useAsFill": false,
+        "thumbnailUrl": "images/MI-ThreeRivers.jpg",
+        "hasMotion": false,
+        "eventTS": 1706127202000,
+        "when": "2024-01-24T14:13:22-06:00",
         "__collections__": {}
       },
       "MN-Fridley": {
@@ -1347,103 +2039,219 @@
         "srcUrl": "https://www.youtube.com/watch?v=eKgTWMldG1w",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
-        "useAsFill": true,
         "isViewEnabled": true,
+        "srcName": "Fridley, Minnesota",
+        "useAsFill": true,
+        "thumbnailUrl": "images/MN-Fridley.jpg",
         "hasMotion": false,
-        "eventTS": 1696987313000,
-        "when": "2023-10-10T20:21:53-05:00",
+        "eventTS": 1706230470000,
+        "when": "2024-01-25T18:54:30-06:00",
         "__collections__": {}
       },
       "MN-Munger": {
         "macAddress": "MN-Munger",
         "newEventCount": 0,
         "srcID": "MN-Munger",
-        "srcUrl": "https://www.youtube.com/watch?v=CWhPJ7Erteg",
         "srcType": "video/youtube",
         "hasRemoteStopControl": true,
+        "srcName": "Munger, Minnesota",
+        "srcUrl": "https://www.youtube.com/watch?v=wkzgLmpqbGA",
         "isViewEnabled": true,
-        "useAsFill": true,
+        "useAsFill": false,
         "hasMotion": false,
-        "eventTS": 1696985374000,
-        "when": "2023-10-10T19:49:34-05:00",
+        "eventTS": 1704055082000,
+        "when": "2023-12-31T14:38:02-06:00",
+        "thumbnailUrl": "images/MN-Munger.jpg",
         "__collections__": {}
       },
       "MO-Sedalia": {
         "macAddress": "MO-Sedalia",
         "newEventCount": 0,
         "srcID": "MO-Sedalia",
-        "srcUrl": "https://www.youtube.com/watch?v=h62nn0ybGOs",
         "hasRemoteStopControl": true,
         "srcType": "video/youtube",
         "isViewEnabled": true,
-        "useAsFill": true,
+        "srcName": "Sedalia, Missouri",
+        "srcUrl": "https://www.youtube.com/watch?v=fynlBBDHA5A",
+        "useAsFill": false,
+        "thumbnailUrl": "images/MO-Sedalia.jpg",
         "hasMotion": false,
-        "eventTS": 1696985197000,
-        "when": "2023-10-10T19:46:37-05:00",
+        "eventTS": 1706227169000,
+        "when": "2024-01-25T17:59:29-06:00",
+        "__collections__": {}
+      },
+      "MO-Springfield": {
+        "isViewEnabled": true,
+        "srcName": "Springfield, Missouri",
+        "srcID": "MO-Springfield",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "srcUrl": "https://www.youtube.com/watch?v=GipcChRMo5s",
+        "useAsFill": true,
+        "thumbnailUrl": "images/MO-Springfield.jpg",
+        "hasMotion": false,
+        "eventTS": 1706220319000,
+        "when": "2024-01-25T16:05:19-06:00",
+        "__collections__": {}
+      },
+      "WI-Columbus": {
+        "srcName": "Columbus, Wisconsin",
+        "srcID": "WI-Columbus",
+        "srcUrl": "https://www.youtube.com/watch?v=HUK3Rd06i3E",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "isViewEnabled": true,
+        "newEventCount": 0,
+        "useAsFill": false,
+        "thumbnailUrl": "images/WI-Columbus.jpg",
+        "hasMotion": false,
+        "eventTS": 1706226778000,
+        "when": "2024-01-25T17:52:58-06:00",
+        "__collections__": {}
+      },
+      "WI-Neenah": {
+        "srcName": "Neenah, Wisconsin",
+        "srcID": "WI-Neenah",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "srcUrl": "https://www.youtube.com/watch?v=viuOvBoyETE&pp=ygUObmVlbmFoIHJhaWxjYW0%3D",
+        "isViewEnabled": true,
+        "useAsFill": true,
+        "thumbnailUrl": "images/WI-Neenah.jpg",
+        "hasMotion": false,
+        "eventTS": 1706230202000,
+        "when": "2024-01-25T18:50:02-06:00",
+        "__collections__": {}
+      },
+      "WI-StevensPoint": {
+        "srcName": "Stevens Point, Wisconsin",
+        "srcID": "WI-StevensPoint",
+        "srcUrl": "https://www.youtube.com/watch?v=BKDtznT30dQ",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "isViewEnabled": true,
+        "useAsFill": false,
+        "thumbnailUrl": "images/WI-StevensPoint.jpg",
+        "hasMotion": false,
+        "eventTS": 1706230746000,
+        "when": "2024-01-25T18:59:06-06:00",
+        "__collections__": {}
+      },
+      "WI-Trempealeau": {
+        "srcName": "Trempealeau, Wisconsin",
+        "srcID": "WI-Trempealeau",
+        "srcUrl": "https://www.youtube.com/watch?v=I7ul_ptIbWY",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "isViewEnabled": true,
+        "thumbnailUrl": "images/WI-Trempealeau.jpg",
+        "useAsFill": false,
+        "hasMotion": false,
+        "eventTS": 1706228500000,
+        "when": "2024-01-25T18:21:40-06:00",
+        "__collections__": {}
+      },
+      "WI-Waupaca": {
+        "isViewEnabled": true,
+        "srcName": "Waupaca, Wisconsin",
+        "srcID": "WI-Waupaca",
+        "useAsFill": true,
+        "srcUrl": "https://www.youtube.com/watch?v=6HhEkZ7P3ro",
+        "hasRemoteStopControl": true,
+        "srcType": "video/youtube",
+        "newEventCount": 0,
+        "thumbnailUrl": "images/WI-Waupaca.jpg",
+        "hasMotion": false,
+        "eventTS": 1706232385000,
+        "when": "2024-01-25T19:26:25-06:00",
         "__collections__": {}
       }
     },
     "News": {
       "All": {
         "A01": {
-          "text": "Welcome to the Best of Railcams channel.",
           "id": "A01",
-          "start": {
-            "__datatype__": "timestamp",
-            "value": {
-              "_seconds": 1688003100,
-              "_nanoseconds": 0
-            }
-          },
-          "end": {
-            "__datatype__": "timestamp",
-            "value": {
-              "_seconds": 1817084700,
-              "_nanoseconds": 0
-            }
-          },
           "isActive": true,
-          "isDateControlled": false
-        },
-        "Priority": {
-          "text": "Urgent message would be here",
-          "id": "Priority",
+          "isDateControlled": false,
           "start": {
             "__datatype__": "timestamp",
             "value": {
-              "_seconds": 1688223600,
+              "_seconds": 1687988700,
               "_nanoseconds": 0
             }
           },
           "end": {
             "__datatype__": "timestamp",
             "value": {
-              "_seconds": 1943406000,
+              "_seconds": 1817070300,
               "_nanoseconds": 0
             }
           },
-          "isDateControlled": true,
-          "isActive": false
+          "text": "Welcome to The Train Station, the best place to watch trains."
         },
         "A02": {
-          "text": "Our network includes <em>38</em> live webcams at <em>33</em> sites.",
           "id": "A02",
+          "isActive": true,
+          "isDateControlled": false,
           "start": {
             "__datatype__": "timestamp",
             "value": {
-              "_seconds": 1688207220,
+              "_seconds": 1688192820,
               "_nanoseconds": 0
             }
           },
           "end": {
             "__datatype__": "timestamp",
             "value": {
-              "_seconds": 1688769120,
+              "_seconds": 1688754720,
               "_nanoseconds": 0
             }
           },
-          "isDateControlled": true,
+          "text": "Our network includes <em>57</em> live webcams at <em>53</em> sites."
+        },
+        "Priority": {
+          "id": "Priority",
+          "isDateControlled": false,
+          "text": "",
+          "start": {
+            "__datatype__": "timestamp",
+            "value": {
+              "_seconds": 1688166000,
+              "_nanoseconds": 0
+            }
+          },
+          "end": {
+            "__datatype__": "timestamp",
+            "value": {
+              "_seconds": 1943348400,
+              "_nanoseconds": 0
+            }
+          },
           "isActive": false
+        },
+        "null": {
+          "isDateControlled": false,
+          "isActive": true,
+          "id": "null",
+          "start": {
+            "__datatype__": "timestamp",
+            "value": {
+              "_seconds": 1688164020,
+              "_nanoseconds": 0
+            }
+          },
+          "end": {
+            "__datatype__": "timestamp",
+            "value": {
+              "_seconds": 1688725920,
+              "_nanoseconds": 0
+            }
+          },
+          "text": "Northern Transcon Railcams - Otter Tail Channel @NTR-OTC  ottertailchannel.com"
         },
         "__collections__": {}
       }

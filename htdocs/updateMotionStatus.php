@@ -70,7 +70,7 @@ for($loopCount=0; $loopCount<count($motionCollection); $loopCount++) {
    //Count of cams enabled or not
    $allcams[] = $id;
    //Write changes back to db
-   $mm->updateMotion($motionCollection[$loopCount]['macAddress'], $motionCollection[$loopCount]);
+   $mm->updateMotion($motionCollection[$loopCount]['srcID'], $motionCollection[$loopCount]);
 }
 
 //Tally counts

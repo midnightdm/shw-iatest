@@ -95,7 +95,7 @@ class TrainDaemon {
         $this->mapActiveScreens();
 
 
-        $this->loopCount           = 180;
+        $this->loopCount           = 90;
         $this->lastCleanUp         = $now-50; //Used to increment cleanup routine
         $this->lastCameraSwitch    = $now-50; //Prevents rapid camera switching if 2 vessels near
         $this->lastJsonSave        = $now-10; //Used to increment liveScan.json save
@@ -133,7 +133,7 @@ class TrainDaemon {
             echo $this->loopCount."-";
             
             //Every 3 minutes
-            if($this->loopCount==180) {
+            if($this->loopCount==90) {
                 $this->loopCount = 0;
                 $this->updateMotionStatus();
                 
@@ -198,9 +198,6 @@ class TrainDaemon {
             $this->showScreenCamStats();
             $this->saveTimestampsOfCurrentCams();
         }
-        // if($this->processMotionUpdates()) {
-        //     $this->assignAllScreens();
-        // }
         $this->processMotionUpdates();
         $this->assignAllScreens();
         
@@ -219,9 +216,9 @@ class TrainDaemon {
 
     public function testForControlUpdates() {
         $report = $this->MotionModel->areThereControlUpdates();
-        if($report[0]) {
-            flog("Screen {$report[1]} switched remotely\n");
-            $this->assignScreen($report[1]);
+        if($report['hasChange']) {
+            flog("Screen {$report['screen']} switched remotely\n");
+            $this->assignScreen($report['screen'], $report['isLocked']);
             $this->MotionModel->resetAreControlUpdates();
         }
     }
@@ -235,7 +232,11 @@ class TrainDaemon {
             //echo "mapActiveScreens screenName: $screenName, screenMap ".is_array($screenMap);
             $srcID = $screenMap['srcID'];
             $this->liveCams[$srcID]->currentScreenID = $this->screenNames[$screenName];
+            $this->liveCams[$srcID]->isLocked = $screenMap['isLocked'];
+            $this->liveCams[$srcID]->srcName = $screenMap['srcName'];
+            $this->liveCams[$srcID]->isMuted = $screenMap['isMuted'];
             $this->screens[$screenName] = $this->liveCams[$srcID];
+            
         }
     }
 
@@ -245,6 +246,25 @@ class TrainDaemon {
                 return $key;
             }
         }
+    }
+
+    public function getCurrentMotionCams() {
+        //Return all when cams # <= screens.
+        if(count($this->inCurrent) <=4) {
+            return $this->inCurrent;
+        }
+        //Otherwise reduce to cams less seen already
+        $result = array();
+        foreach($this->inCurrent as $id) {
+            $obj = $this->liveCams[$id];
+            $timeValue = $obj->screenCume; //This is an integer
+            $result[$id] = $timeValue;
+        }
+        //Do some sorting of values here
+        asort($result);
+        //Put IDs of the smallest 4 into an array to be returne
+        $idArray = array_slice(array_keys($result), 0, 4);
+        return $idArray;
     }
 
     public function processMotionUpdates() {//:boolean
@@ -289,9 +309,6 @@ class TrainDaemon {
         flog("Expired Cams: ");
         flog(print_a($expired));
         flog("--------------------------------------------\n");
-        // foreach($expired as $srcID) {
-        //     unset($this->liveCams[$srcID]);
-        // }
         $this->inCurrent = array_values(array_diff($this->inCurrent, $expired));
 
         //add new cams
@@ -299,17 +316,7 @@ class TrainDaemon {
         flog(" New Current: ");
         flog(print_a($this->inCurrent));
         flog("----------------------------------------------\n");
-        //Return true if inCurrent is different from last loop
-        // if(count($expired) || count($this->newCams)) {
-        //     $isDifferent = true;
-        // } else {
-        //     $isDifferent = false;
-        // }
         
-        //$isDifferentString = $isDifferent ? "YES, change screens" : "NO, keep screens unchanged";
-        //flog("Are the sensed motion cameras different?  $isDifferentString\n\n");
-
-        //return $isDifferent;
     }
 
 
@@ -319,10 +326,12 @@ class TrainDaemon {
         $screenKey = 0;
         $motionIncrement = 0;
         $tracer = "\nassignAllScreens()\n* Begin Motion Loop\n";
-        /* a different version */
-        foreach($this->inCurrent as $id) { //Outer loop: IDs of cams with motion
+        /* Get upto 4 current cams */
+        $currentCams = $this->getCurrentMotionCams();
+        //OLD foreach($this->inCurrent as $id) { //Outer loop: IDs of cams with motion
+        foreach($currentCams as $id) { //Outer loop: IDs of cams with motion
             $tracer .= "   screenKey->".$screenKey." ".$keys[$screenKey].", id with motion is $id\n";
-            for($m=0; $screenKey<4; $m++, $screenKey++) {       //Inner loop: check existing screens status
+            for($m=0; $screenKey<3; $m++, $screenKey++) {       //Inner loop: check existing screens status
                 if($motionIncrement>=$motionTotal) {
                     $tracer .= "   Motion count reached.\n";
                     $this->MotionModel->setControlsFlags($this->flags);
@@ -330,6 +339,17 @@ class TrainDaemon {
                 }
                 $obj = $this->screens[$keys[$m]];
                 $tracer .= "   currentScreenView {$obj->currentScreenView} ";
+
+                //NEW LOCK SCREEN CODED ADDED 1/27/24
+
+                //Leave remote-switched camera assignment on if screen is locked
+                if($obj->isLocked) {
+                    $tracer .= "Skipped because {$keys[$m]} screen is locked. {$obj->srcID} (Kept Fill)\n";
+                    $motionIncrement++;
+                    continue;
+                }
+
+
                 //Is ID on screen already?
                 if (in_array($id, array_column($this->screens, 'srcID'))) {
                     //Yes, then is the on-screen ID of this iteration?
@@ -373,7 +393,7 @@ class TrainDaemon {
                                         //$motionIncrement++;
                                     }   
                                 }
-                            } else {
+                            } else {                                                                                                                                                                            
                                 //No, then swap prime fill with this motion cam
                                 $primeID = $this->screens[$keys[0]->srcID];
                                 $this->assignMotionScreen($keys[$screenKey], $primeID);
@@ -479,21 +499,27 @@ class TrainDaemon {
         
         // Assign remaining screens with fill cameras when their timeout values are expired
         $tracer .= "* Begin Fill Loop.\n";
-        for ($f=$screenKey; $f < 4; $f++) {
+        for ($f=$screenKey; $f <=3; $f++) {
             $formattedID = sprintf("%-15s", $this->screens[$keys[$f]]->srcID );
             $timeOut = $this->screens[$keys[$f]]->fillTimeoutValueExpired()[0] ? "true":"false"; 
-            $tracer .= "   screenKey-> ".$f." ".$keys[$f].", $formattedID timeout? $timeOut, tsa ".$this->screens[$keys[$f]]->fillTimeoutValueExpired()[1]. ", toa ".$this->screens[$keys[$f]]->fillTimeoutValueExpired()[2]."\n";
+            $locked = $this->screens[$keys[$f]]->isLocked ? "true" : "false";
+            $tracer .= "   screenKey-> ".$f." ".$keys[$f].", $formattedID timeout? $timeOut, Duration=".$this->screens[$keys[$f]]->fillTimeoutValueExpired()[1]. ", Time To Live=".$this->screens[$keys[$f]]->fillTimeoutValueExpired()[2]." isLocked=$locked\n";
 
-            if($this->screens[$keys[$f]]->viewAssignment === "off" ||
-                $this->screens[$keys[$f]]->fillTimeoutValueExpired()[0]) {
-                $srcID = $this->getRotationCamera();
-                // Check that the new fill camera is not assigned already
-                while (in_array($srcID, array_column($this->screens, 'srcID'))) {
+            if($this->screens[$keys[$f]]->isLocked) {
+                continue;
+            } else {
+                if( $this->screens[$keys[$f]]->viewAssignment === "off" || $this->screens[$keys[$f]]->fillTimeoutValueExpired()[0]) {
                     $srcID = $this->getRotationCamera();
+                    // Check that the new fill camera is not assigned already
+                    while (in_array($srcID, array_column($this->screens, 'srcID'))) {
+                        $srcID = $this->getRotationCamera();
+                    }
+                    $tracer .= "      Random fill choice is $srcID to replace {$this->screens[$keys[$f]]->srcID}\n";
+                    $this->assignFillScreen($keys[$f], $srcID);
                 }
-                $tracer .= "      Random fill choice is $srcID to replace {$this->screens[$keys[$f]]->srcID}\n";
-                $this->assignFillScreen($keys[$f], $srcID);
             }
+
+
         }
         $this->eliminateDuplicateScreenAssignments();
         //Now send to database
@@ -531,8 +557,19 @@ class TrainDaemon {
                 return;
             }
 
-            // Don't switch away from a view if it was activated recently
+            //NEW LOCK SCREEN CODED ADDED 1/27/24
+
+            //Leave remote-switched camera assignment on if screen is locked
             $activeCamera = $this->liveCams[$lastAssignment[$k]];
+            if($activeCamera->isLocked) {
+                $tracer .= "Skipped because {$keys[$k]} is locked.\n";
+                $returnString .= "     ".$keys[$k]."-> ".$activeCamera->srcID." (Kept Fill)\n";
+                $k++;
+                continue;
+            }
+
+            // Don't switch away from a view if it was activated recently
+            
             $timeSinceActivated = time() - $activeCamera->screenTS;
             $tracer .= "timeSinceActivated=$timeSinceActivated, motionTimeoutValue=".$activeCamera->motionTimeoutValue."\n";
             if ($timeSinceActivated < $activeCamera->motionTimeoutValue) {
@@ -643,6 +680,17 @@ class TrainDaemon {
             $activeCamera = $this->liveCams[$lastAssignment[$k]];
             $timeSinceActivated = time() - $activeCamera->screenTS;
             $tracer .= ", timeSinceActivated=".$timeSinceActivated.", fillTimeoutValue=".$activeCamera->fillTimeoutValue."\n";
+
+            // NEW CODE 1/27/24
+
+            //Leave remote-switched camera assignment on if screen is locked
+            if($activeCamera->isLocked) {
+                $tracer .= "Skipped because {$keys[$k]} is locked.\n";
+                $returnString .= "     ".$keys[$k]."-> ".$activeCamera->srcID." (Kept Fill)\n";
+                $k++;
+                continue;
+            }
+            
             //Don't use motion cam for sub if already used in prime
             $isPrime = false;
             if($k>0 && $activeCamera->srcID == $lastAssignment[0]) {
@@ -702,19 +750,18 @@ class TrainDaemon {
     }
 
 
-    public function assignScreen($screenName) {
+    public function assignScreen($screenName, $isLocked=false) {
         //Manual switch made as fill
         //  Buffer the srcID currently on screen
         $srcID = $this->flags['liveCams'][$screenName]['srcID'];
         //Update the control array with the new choice
         $this->getControlsFlags();
         $newSrcID = $this->flags['liveCams'][$screenName]['srcID'];
-        //$this->handleCameraSelection($screenName, $newSrcID);
         //Switch current camera off
         $this->liveCams[$srcID]->assignScreenOff();
         //and new camera on
         $this->screens[$screenName] = $this->liveCams[$newSrcID];
-        $this->liveCams[$newSrcID]->assignFillScreen($screenName);
+        $this->liveCams[$newSrcID]->assignFillScreen($screenName, $isLocked);
     }
 
 
@@ -834,6 +881,7 @@ class TrainDaemon {
         $this->flags['liveCams'][$screen]['srcID']   = $newSelection['srcID'];
         $this->flags['liveCams'][$screen]['srcType'] = $newSelection['srcType'];
         $this->flags['liveCams'][$screen]['srcUrl']  = $newSelection['srcUrl'];
+        $this->flags['liveCams'][$screen]['srcName'] = $newSelection['srcName'];
         //$this->MotionModel->setControlsFlags($this->flags);
     }
 
@@ -866,10 +914,13 @@ class TrainDaemon {
         $this->flags['liveCams'][$screenKey]['srcID']   = $newSelection['srcID'];
         $this->flags['liveCams'][$screenKey]['srcType'] = $newSelection['srcType'];
         $this->flags['liveCams'][$screenKey]['srcUrl']  = $newSelection['srcUrl'];
+        $this->flags['liveCams'][$screenKey]['srcName'] = $newSelection['srcName'];
         //Turn off present screen and assign new one
         $this->screens[$screenKey]->assignScreenOff();
-        $this->screens[$screenKey] = $obj;
+        // 1/24/24 reversed order of next 2 lines to signMotionScreen then screens = $obj
         $obj->assignMotionScreen($screenKey);
+        $this->screens[$screenKey] = $obj; 
+        
     }
 
     public function assignFillScreen($screenKey, $srcID) {
@@ -888,10 +939,11 @@ class TrainDaemon {
         $this->flags['liveCams'][$screenKey]['srcID']   = $newSelection['srcID'];
         $this->flags['liveCams'][$screenKey]['srcType'] = $newSelection['srcType'];
         $this->flags['liveCams'][$screenKey]['srcUrl']  = $newSelection['srcUrl'];
+        $this->flags['liveCams'][$screenKey]['srcName'] = $newSelection['srcName'];
         //Turn off present screen and assign new one
         $this->screens[$screenKey]->assignScreenOff();
         $this->screens[$screenKey] = $obj;
-        $obj->assignFillScreen($screenKey);
+        $obj->assignFillScreen($screenKey, false);
     }
 
     public function mapLiveCams() {

@@ -22,13 +22,16 @@ final class LiveCam {
   public string $srcID;
   public string $srcType;
   public string $srcUrl;
+  public string $srcName;
   public bool $isAssignedAsFillCam = false;
   public bool $isAssignedAsMotionCam = false;
+  public bool $isLocked = false;
   public string $viewAssignment = "off";
   public bool $useAsFill;
   public string $when;
   public int $fillTimeoutValue;
   public int $motionTimeoutValue;
+  public int $motionTimeoutOffset;
   
   //Properties from 'timestamps' subarray
   public int $offTS      = 0; 
@@ -147,13 +150,15 @@ public function map(array $array): void {
 
   public function assignMotionScreen($screenKey) {
     $this->viewAssignment = "motion";
+    $this->isLocked = false;
     $this->currentScreenView = $screenKey;
     $this->screenTS = time();
     $this->generateMotionTimeoutValue();
   }
 
-  public function assignFillScreen($screenKey) {
+  public function assignFillScreen($screenKey, $isLocked) {
     $this->viewAssignment = "fill";
+    $this->isLocked = $isLocked;
     $this->currentScreenView = $screenKey;
     $this->screenTS = time();
     $this->generateFillTimeoutValue();
@@ -163,6 +168,7 @@ public function map(array $array): void {
     $timestamp = time();
     $this->currentScreenView = "off";
     $this->viewAssignment = "off";
+    $this->isLocked = false;
     $this->offTS = $timestamp;
     $this->screenAge = $timestamp-$this->screenTS;
     $this->screenCume = $this->screenAge+$this->screenCume;
@@ -196,10 +202,10 @@ public function map(array $array): void {
   }
 
   public function generateFillTimeoutValue() {
-    $this->fillTimeoutValue = rand(150, 360);
+    $this->fillTimeoutValue = rand(60, 180);
   }
 
   public function generateMotionTimeoutValue() {
-    $this->motionTimeoutValue = rand(150, 360);
+    $this->motionTimeoutValue = rand(60, 180);
   }
 }

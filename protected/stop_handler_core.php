@@ -33,9 +33,9 @@ $file = fopen($path, 'a');
 fwrite($file, $header);
 
 //Get curent camera data
-$cam = $mm->getMotionDocument($mac);
+$cam = $mm->getMotionDocument($location);
 if($cam===false || !array_key_exists('srcID', $cam) || !array_key_exists('eventTS', $cam)) {
-    exit("<html><h1>macAddress $mac was not found</h1></html>");
+    exit("<html><h1>Source ID was not found</h1></html>");
 } else {
     //Determine seconds since event started
     $srcID  = $cam['srcID'];
@@ -45,14 +45,14 @@ if($cam===false || !array_key_exists('srcID', $cam) || !array_key_exists('eventT
 
     //
 
-    //Toggle hasMoton off and write current time to db
+    //Toggle hasMotion off and write current time to db
     $updated = [
         'hasMotion' => false,
-        'hasRemoteStopControl' => true,
+        'hasRemoteStopControl' => false,
         'eventTS' => $msTs,
-        'when' => $when
-    ];
-    $mm->updateMotion($mac, $updated);
+        'when' => $when,
+        'newEventCount' => 1    ];
+    $mm->updateMotion($location, $updated);
 
     //Write to log 
     $string = "\n".$when.",".$srcID.",".$duration.",--";

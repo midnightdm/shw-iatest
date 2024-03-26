@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="wccmotion.css"> 
+    
+    <title>Camera Motion Status Control</title>
+<script defer src="../wccmotion.js"></script></head>
+<body>
+    <nav>
+        <div id="login-container">  
+          <h1>Login for Webcam Controls</h4><br />
+            <div class="input-field">
+              <input type="email" placeholder="Login Email" id="login-email" required size="40"/>
+              <label for="login-email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" placeholder="Login Password" id="login-password" required size="40" />
+              <label for="login-password">Password</label>
+            </div>
+            <button id="login-btn">Login</button>
+        </div>
+    </nav>
+    <section>
+        <div class="navbar">
+            <ul class="nav-list">
+                <li><a href="/">Channel</a></li>
+                <li><a href="/wcc/">Controls</a></li>
+                <li><a href="/wcc/edit.html">Edit</a></li>
+                <li><a href="/upmap.html">Map</a></li>
+                <li><a class="selected" href="/wcc/motion.html">Motion Control</a></li>
+                <li><a href="https://motion.steel-highway.com/">Motion Status</a></li>
+                <li><a href="/wcc/news.html">News</a></li>
+            </ul>
+        </div>
+        <h1>Camera Motion Status Control</h1>
+        <p>Unlike the standard Motion Status page, this one adds a link to <em>reset</em> the motion activation status to off.  This should be done if the status has been active long after any trains are visable.</p>
+
+        <div class="center">
+            <div id="bc1" class="boxContainer">
+                <h2>Loading Data...</h2>
+            </div>
+        </div>
+    </section>
+    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/3.0.1/Youtube.js"></script>
+    <div class="nav-buttons">
+        <button type="submit" id="logout-btn" class="btn yellow darken-2 z-depth-0">Logout</button>
+    </div>
+    <div id="videoModal" class="preview">
+        <video id="vt-preview">
+            <source id="vs-preview" src="https://www.youtube.com/watch?v=Uz64iqF7E_0" type="video/youtube">
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a web browser that
+              <a href="https://videojs.com/html5-video-support/" target="_blank"
+                >supports HTML5 video</a>
+            </p>
+          </video>
+    </div>
+    <button id="closePreviewBtn">Close Preview</button>
+</body>
+</html>

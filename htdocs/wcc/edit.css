@@ -75,6 +75,8 @@ a {
     background-color: rgb(34, 29, 68);
     padding: 2rem;
     text-align: left;
+    max-height: 1050px;
+    overflow-y: auto;
     
 }
 .div2B { 
@@ -88,7 +90,7 @@ a {
 button {
     margin: 2px;
     padding: 5px;
-    width: 10rem;
+    width: 12rem;
     text-align: left;
 }
 

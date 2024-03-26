@@ -34078,7 +34078,20 @@ const DataModel = {
   },
   cameras: {},
   camerasArr: [],
-  buffer: []
+  buffer: [],
+  screenLocks: {
+    prim: false,
+    suba: false,
+    subb: false,
+    subc: false
+  },
+  screenMutes: {
+    prim: false,
+    suba: true,
+    subb: true,
+    subc: true
+  },
+  cams: []
 };
 
 /***/ }),
@@ -34101,7 +34114,8 @@ const Environment = {
     storageBucket: "sh-railcam-tour.appspot.com",
     messagingSenderId: "277445216183",
     appId: "1:277445216183:web:e20d1414fb212e04128a32"
-  }
+  },
+  fetchUrl: 'https://us-central1-sh-railcam-tour.cloudfunctions.net/getMotionCams'
 };
 
 /***/ }),
@@ -37005,7 +37019,7 @@ async function fetchCameras() {
   dataModel.cameras = {};
   const q = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "Cameras"), (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.where)("srcID", "!=", ""));
   const camerasSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(q, dataSet => {
-    console.log("fetchCameras()");
+    //console.log("fetchCameras()")
     dataSet.docChanges().forEach(docChange => {
       data = docChange.doc.data();
       if (docChange.type === "added") {
@@ -37025,15 +37039,15 @@ async function fetchCameras() {
       }
     });
     arr.sort((a, b) => {
-      if (a.srcID.toLowerCase() < b.srcID.toLowerCase()) {
+      if (a.srcName.toLowerCase() < b.srcName.toLowerCase()) {
         return -1;
       }
-      if (a.srcID.toLowerCase() > b.srcID.toLowerCase()) {
+      if (a.srcName.toLowerCase() > b.srcName.toLowerCase()) {
         return 1;
       }
       return 0;
     });
-    console.log("camerasArr", arr);
+    //console.log("camerasArr", arr)
     dataModel.camerasArr = arr;
     buildCameraButtons();
     updateTallyLights();
@@ -37043,9 +37057,13 @@ async function fetchControlsFlags() {
   const flagsSnapshot = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "Controls", "Flags"), querySnapshot => {
     let dataSet = querySnapshot.data();
     let wasOutput = false; //Resets when screen updates
-    console.log("fetchControlsFlags() ", dataSet);
+    //console.log("fetchControlsFlags() ", dataSet)
     dataModel.channelIsEnabled = dataSet.chanelIsEnabled;
     dataModel.liveCams = dataSet.liveCams;
+    dataModel.screenLocks.prim = dataSet.liveCams.prim.isLocked;
+    dataModel.screenLocks.suba = dataSet.liveCams.suba.isLocked;
+    dataModel.screenLocks.subb = dataSet.liveCams.subb.isLocked;
+    dataModel.screenLocks.subc = dataSet.liveCams.subc.isLocked;
     updateTallyLights();
   });
 }
@@ -37065,7 +37083,7 @@ function buildCameraButtons() {
   for (bs in btnSets) {
     i = 0;
     dataModel.camerasArr.forEach(cam => {
-      btnSets[bs] += `<button class="${bs} camswitch" id="${bs + i.toString() + 'btn'}" data-id="${cam.srcID}"><span id="${bs + i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcID}</button><br>`;
+      btnSets[bs] += `<button class="${bs} camswitch" id="${bs + i.toString() + 'btn'}" data-id="${cam.srcID}"><span id="${bs + i.toString() + 'led'}" class="led"></span>&nbsp;&nbsp;${cam.srcName}</button><br>\n`;
       i++;
     });
   }
@@ -37073,10 +37091,10 @@ function buildCameraButtons() {
   const div2b = document.getElementById("div2B");
   const div3b = document.getElementById("div3B");
   const div4b = document.getElementById("div4B");
-  div1B.innerHTML = "<h3>PRIMARY</h3>" + btnSets.prim;
-  div2b.innerHTML = "<h3>SUB-A</h3>" + btnSets.suba;
-  div3b.innerHTML = "<h3>SUB-B</h3>" + btnSets.subb;
-  div4b.innerHTML = "<h3>SUB-C</h3>" + btnSets.subc;
+  div1B.innerHTML = `<h3>PRIMARY <label class="checkbox"><input type="checkbox" id="chkprim" name="chkprim" value="${dataModel.screenLocks.prim}"><span></span></label></h3><div class="btnBox">` + btnSets.prim + `</div>`;
+  div2b.innerHTML = `<h3>SUB-A <label class="checkbox"><input type="checkbox" id="chksuba" name="chksuba" value="${dataModel.screenLocks.suba}"><span></span></label></h3><div class="btnBox">` + btnSets.suba + `</div>`;
+  div3b.innerHTML = `<h3>SUB-B <label class="checkbox"><input type="checkbox" id="chksubb" name="chksubb" value="${dataModel.screenLocks.subb}"><span></span></label></h3><div class="btnBox">` + btnSets.subb + `</div>`;
+  div4b.innerHTML = `<h3>SUB-C <label class="checkbox"><input type="checkbox" id="chksubc" name="chksubc" value="${dataModel.screenLocks.subc}"><span></span></label></h3><div class="btnBox">` + btnSets.subc + `</div>`;
 
   //Set Event Handlers
   clickableBtns = document.getElementsByClassName('camswitch');
@@ -37084,23 +37102,50 @@ function buildCameraButtons() {
     btn = clickableBtns[i];
     btn.onclick = handleCameraSelection;
   }
+  const chkprim = document.getElementById("chkprim");
+  const chksuba = document.getElementById("chksuba");
+  const chksubb = document.getElementById("chksubb");
+  const chksubc = document.getElementById("chksubc");
+  chkprim.addEventListener('click', function () {
+    handleLockSelection('prim');
+    console.log("cnkprim checkbox clicked", dataModel.screenLocks.prim);
+  });
+  chksuba.addEventListener('click', function () {
+    handleLockSelection('suba');
+  });
+  chksubb.addEventListener('click', function () {
+    handleLockSelection('subb');
+  });
+  chksubc.addEventListener('click', function () {
+    handleLockSelection('subc');
+  });
 }
 function handleCameraSelection() {
   if (!userIsAdmin && !userIsLogged) {
     return alert("User not authorized for remote client refresh operation.");
   }
-  let choice = this.innerText.trim();
+  let choice = this.dataset.id;
   let screen = this.classList[0];
+  let isLocked = dataModel.screenLocks[screen];
+  let isMuted = dataModel.screenMutes[screen];
   console.log("Selected Camera is", choice, "from column", screen);
   //Write to database
   let newSelection = dataModel.cameras[choice];
-  console.log("selected data from sources", newSelection.srcUrl, newSelection.srcID, newSelection.srcType);
+  //console.log("selected data from sources", newSelection.srcUrl, newSelection.srcID, newSelection.srcType, newSelection.isLocked)
   let liveCams = Object.assign({}, dataModel.liveCams);
+  let areControlUpdates = {
+    hasChange: true,
+    screen: screen,
+    isLocked: isLocked
+  };
   liveCams[screen].srcID = newSelection.srcID;
+  liveCams[screen].srcName = newSelection.srcName;
   liveCams[screen].srcType = newSelection.srcType;
   liveCams[screen].srcUrl = newSelection.srcUrl;
+  liveCams[screen].isLocked = isLocked;
+  liveCams[screen].isMuted = isMuted;
   (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
-    areControlUpdates: [true, screen]
+    areControlUpdates
   }, {
     merge: true
   });
@@ -37111,6 +37156,60 @@ function handleCameraSelection() {
   });
   updateTallyLights();
 }
+function handleLockSelection(screen) {
+  if (!userIsAdmin && !userIsLogged) {
+    return alert("User not authorized for remote client refresh operation.");
+  }
+  let liveCams = Object.assign({}, dataModel.liveCams);
+  let isLocked = dataModel.screenLocks[screen] ? false : true;
+  let isMuted = dataModel.screenMutes[screen] ? false : true;
+  let areControlUpdates = {
+    hasChange: true,
+    screen: screen,
+    isLocked: isLocked,
+    isMuted: isMuted
+  };
+  liveCams[screen].isLocked = isLocked;
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    areControlUpdates
+  }, {
+    merge: true
+  });
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    liveCams
+  }, {
+    merge: true
+  });
+  updateTallyLights();
+}
+function handleMuteSelection(screen) {
+  if (!userIsAdmin && !userIsLogged) {
+    return alert("User not authorized for remote client refresh operation.");
+  }
+  let liveCams = Object.assign({}, dataModel.liveCams);
+  let isMuted = dataModel.screenMutes[screen] ? false : true;
+  let isLocked = dataModel.screenLocks[screen] ? false : true;
+  let areControlUpdates = {
+    hasChange: true,
+    screen: screen,
+    isLocked: isLocked,
+    isMuted: isMuted
+  };
+  liveCams[screen].isMuted = isMuted;
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    areControlUpdates
+  }, {
+    merge: true
+  });
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(controlsFlagsRef, {
+    liveCams
+  }, {
+    merge: true
+  });
+  updateTallyLights();
+}
+
+//Depricated function
 function handleCameraRotation() {
   if (!userIsAdmin && !userIsLogged) {
     return alert("User not authorized for remote client refresh operation.");
@@ -37225,24 +37324,42 @@ function testLoggeduserIsAdmin(uid) {
   }
 }
 function updateTallyLights() {
-  console.log("updateTallyLights()");
+  //console.log("updateTallyLights()")
   //remove all current lights
   let onLeds = document.querySelectorAll('.led.on');
-  console.log("found on leds", onLeds);
+  //console.log("found on leds", onLeds)
   for (var i = 0; i < onLeds?.length; i++) {
     onLeds[i].classList.remove('on');
+    onLeds[i].classList.remove('locked');
   }
   //Set currently active cameras from the dataModel
-  console.log("prim id", dataModel.liveCams.prim.srcID);
+  //console.log("prim id", dataModel.liveCams.prim.srcID)
   let prim = document.querySelectorAll('[data-id="' + dataModel.liveCams.prim.srcID + '"].prim span.led');
   let suba = document.querySelectorAll('[data-id="' + dataModel.liveCams.suba.srcID + '"].suba span.led');
   let subb = document.querySelectorAll('[data-id="' + dataModel.liveCams.subb.srcID + '"].subb span.led');
   let subc = document.querySelectorAll('[data-id="' + dataModel.liveCams.subc.srcID + '"].subc span.led');
   //console.log("return for prim", prim)
   prim[0].classList.add('on');
+  if (dataModel.screenLocks.prim) {
+    prim[0].classList.add('locked');
+  }
   suba[0].classList.add('on');
+  if (dataModel.screenLocks.suba) {
+    suba[0].classList.add('locked');
+  }
   subb[0].classList.add('on');
+  if (dataModel.screenLocks.subb) {
+    subb[0].classList.add('locked');
+  }
   subc[0].classList.add('on');
+  if (dataModel.screenLocks.subc) {
+    subc[0].classList.add('locked');
+  }
+  //Update checkbox settings from model
+  chkprim.checked = dataModel.screenLocks.prim;
+  chksuba.checked = dataModel.screenLocks.suba;
+  chksubb.checked = dataModel.screenLocks.subb;
+  chksubc.checked = dataModel.screenLocks.subc;
 }
 
 //Activated on page

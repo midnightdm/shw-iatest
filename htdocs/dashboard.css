@@ -103,6 +103,7 @@ video#vt-subc_youtube_api {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 12rem;
     color: white;
+    text-shadow: 0 0 3px #000, 0 0 5px #000;
     position: relative;
     top:35%;
     z-index: 20;
@@ -112,8 +113,9 @@ video#vt-subc_youtube_api {
 
 .subTitle {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 5rem;
+    font-size: 4rem;
     color: white;
+    text-shadow: 0 0 3px #000, 0 0 5px #000;
     position: relative;
     top:35%;
     z-index: 20;

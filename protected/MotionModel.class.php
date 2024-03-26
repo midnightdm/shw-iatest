@@ -106,7 +106,7 @@ class MotionModel extends Firestore {
         $data = $snapshot->data();
         return $data['areControlUpdates']; 
     }
-    return [false, ''];
+    return ['hasChange' => false];
   }
 
   public function getControlsFlags() {
@@ -151,7 +151,12 @@ class MotionModel extends Firestore {
   }
 
   public function resetAreControlUpdates() {
-    $this->controlsFlagsRef->set( ['areControlUpdates' => [false, '']],['merge'=>true]);
+    $this->controlsFlagsRef->set( ['areControlUpdates' => [
+        'hasChange' => false, 
+        'screen' => '',
+        'isLocked' => false]
+    ],
+    ['merge'=>true]);
   }
 
 }

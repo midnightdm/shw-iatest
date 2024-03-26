@@ -1,16 +1,24 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const generateOutputConfig = (filename, outputPath) => ({
+    path: path.join(__dirname, outputPath),
+    filename: `${filename}.js`,
+    chunkFilename: '[id].[chunkhash].js',
+    publicPath: './', // Adjust this based on your needs
+  });
+
 module.exports = {
   mode: 'development',
   entry: {
     bundle: './src/index.js',
+    motion: './src/motion.js',
+    wccmotion: './src/wccmotion.js',
     wcc: './src/wcc.js',
     wccedit: './src/wccedit.js',
     wccnews: './src/wccnews.js',
     upmap: './src/upmap.js'
   },
-  watch: true,
   output: {
     path: path.join(__dirname, 'htdocs'),
     filename: "[name].js",
@@ -32,10 +40,24 @@ module.exports = {
         publicPath: '../'
     }),
     new HtmlWebpackPlugin({
+        template: './src/motion.html',
+        inject: true,
+        chunks: ['motion'],
+        filename: 'motion/index.html',
+        publicPath: './'
+    }),
+    new HtmlWebpackPlugin({
         template: './src/wccedit.html',
         inject: true,
         chunks: ['wccedit'],
         filename: 'wcc/edit.html',
+        publicPath: '../'
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/wccmotion.html',
+        inject: true,
+        chunks: ['wccmotion'],
+        filename: 'wcc/motion.html',
         publicPath: '../'
     }),
     new HtmlWebpackPlugin({

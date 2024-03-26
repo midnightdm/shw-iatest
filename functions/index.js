@@ -9,6 +9,7 @@ admin.initializeApp();
 const db = admin.firestore();
 const xml2js = require('xml2js');
 const database = {wasUpdated: false, error: "none", macAddress: "null"};
+//const cors = require('cors')({origin: true});
 
 // Imports the Google Cloud client library
 const {Storage} = require('@google-cloud/storage');
@@ -39,6 +40,7 @@ exports.updateMotionStatus = functions.https.onRequest(async (req, res)=> {
     })
 })
 
+
 exports.handleMotionTest = functions.https.onRequest(async (req, res)=>{
     //Grab the post
     const event = req.body;
@@ -47,6 +49,22 @@ exports.handleMotionTest = functions.https.onRequest(async (req, res)=>{
         .then( (obj) => processTestPost(obj))
         .then(()=> { res.status(201).end() });
 });
+
+exports.getMotionCams = functions.https.onRequest(async (req, res)=>{
+    getMotion().then((json)=>{
+        res.set('Access-Control-Allow-Origin', '*');
+        if (req.method === 'OPTIONS') {
+            // Send response to OPTIONS requests
+            res.set('Access-Control-Allow-Methods', 'GET');
+            res.set('Access-Control-Allow-Headers', 'Content-Type');
+            res.set('Access-Control-Max-Age', '3600');
+            res.status(204).send(JSON.stringify(json));
+        } else {
+            res.status(200).send(JSON.stringify(json));
+        } 
+    })
+});
+
 
   //Helper functions used by the code above
 async function processPost(inputObj) {
@@ -148,7 +166,7 @@ async function updateStatus() {
         if(motionCollection[loopCount].isViewEnabled) {
             viewEnabledCount++;
         }
-        if(motoinCollection[loopCount].useAsFill) {
+        if(motionCollection[loopCount].useAsFill) {
             useAsFillCount++;
         }
         //Test for > 30 sec age of last motion detect
@@ -163,6 +181,20 @@ async function updateStatus() {
     }
     //Return counts
     return {viewEnabledCount, useAsFillCount, motionLessCount,'length': motionCollection.length,  'ages': ages }
+}
+
+async function getMotion() {
+    const motionCollection = []
+    //Put current motion events in an array
+    const motionSnapshot = await db.collection('Motion').get();
+    motionSnapshot.forEach( async (doc) => {
+        const data = doc.data();
+        //Gather only view enabled cameras
+        if(data.isViewEnabled == true) {
+            motionCollection.push(data);
+        }
+    });
+    return motionCollection
 }
 
 function saveEventToBucketAsText(eventObject) {

@@ -34082,7 +34082,20 @@ const DataModel = {
   },
   cameras: {},
   camerasArr: [],
-  buffer: []
+  buffer: [],
+  screenLocks: {
+    prim: false,
+    suba: false,
+    subb: false,
+    subc: false
+  },
+  screenMutes: {
+    prim: false,
+    suba: true,
+    subb: true,
+    subc: true
+  },
+  cams: []
 };
 
 /***/ }),
@@ -34106,7 +34119,8 @@ const Environment = {
     storageBucket: "sh-railcam-tour.appspot.com",
     messagingSenderId: "277445216183",
     appId: "1:277445216183:web:e20d1414fb212e04128a32"
-  }
+  },
+  fetchUrl: 'https://us-central1-sh-railcam-tour.cloudfunctions.net/getMotionCams'
 };
 
 /***/ }),
